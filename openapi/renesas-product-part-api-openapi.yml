@@ -1,0 +1,1730 @@
+openapi: 3.0.0
+info:
+  title: Renesas Web Data Board & Kit Product Part API
+  description: 'The Renesas Web Data API enables external systems to retrieve product metadata in real time, without relying on manual CSV downloads or periodic feed refreshes. This shift improves data consistency, streamlines integrations, and aligns with modern API-first architectures.
+
+    '
+  version: 1.2.0
+servers:
+- url: https://api.renesas.com/web-data/v1
+  description: Production Server
+- url: https://api.renesas-dev.com/web-data/v1
+  description: Staging Server
+security:
+- ApiKeyAuth: []
+tags:
+- name: Product Part
+  description: Endpoints for retrieving product parts.
+paths:
+  /product-parts:
+    get:
+      tags:
+      - Product Part
+      security:
+      - ApiKeyAuth: []
+      summary: Get All Product Parts
+      parameters:
+      - name: limit
+        in: query
+        description: The number of results to return (default 10).
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 10
+      - name: offset
+        in: query
+        description: The page number for pagination (default 0). This is multiplied by limit to get the actual offset.
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+      - name: order
+        in: query
+        description: Sorting property (default sort is by last updated date). Multiple sorts can be supplied by comma concatenation.
+        required: false
+        schema:
+          type: string
+          enum:
+          - last_updated
+          - part_number
+          - part_status
+          - 1ku_price
+          - stock
+          default: last_updated
+        example: last_updated,part_number
+      - name: orderDirection
+        in: query
+        description: Sorting direction (default is "desc"). Multiple directions can be defined for multiple sorts.
+        required: false
+        schema:
+          type: string
+          default: desc
+        example: desc,asc
+      - name: part_number_prefix
+        in: query
+        description: Filter by part number prefix.
+        required: false
+        schema:
+          type: string
+      - name: part_number
+        in: query
+        description: Filter by exact part number.
+        required: false
+        schema:
+          type: string
+      - name: part_status
+        in: query
+        description: Filter by part status.
+        required: false
+        schema:
+          type: string
+          enum:
+          - Active
+          - Preview
+          - NRND
+          - Not Recommended for New Designs
+          - Not Recommended<br /> for New Designs
+          - Obsolete
+      - name: generic_product_id
+        in: query
+        description: Filter by generic product ID.
+        required: false
+        schema:
+          type: string
+      - name: product_family
+        in: query
+        description: Filter by product family.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/product_part'
+                  pagination:
+                    type: object
+                    properties:
+                      offset:
+                        type: integer
+                        description: The actual offset used (page * limit)
+                      limit:
+                        type: integer
+                        description: The number of items per page
+                      total:
+                        type: integer
+                        description: Total number of items available
+                      has_more:
+                        type: boolean
+                        description: Whether there are more items available
+              example:
+                data:
+                - orderableId: ISL91302B40-EVZ
+                  productCategory: ''
+                  firstProductSubcategory: Multi-Channel Power Management ICs (PMICs)
+                  genericId: ISL91302B40-EVZ
+                  genericTitle: ISL91302B Evaluation Board 1, 4+0 PMIC, WLCSP RoHS Compliant
+                  genericUrl: https://www.renesas.com/en/design-resources/boards-kits/isl91302b40-evz
+                  productFamily: ''
+                  1kuPrice: 352.42
+                  status: Active
+                  type: ''
+                  description: ''
+                  class: ''
+                  category: ''
+                  leadCount: 0
+                  dimensions:
+                    length: 0
+                    width: 0
+                    thickness: 0
+                    pitch: 0
+                  peakReflowTemperature: ''
+                  leadFree: true
+                  partAvailability: false
+                  featuredDocument:
+                    title: ''
+                    url: ''
+                  images: ''
+                  regulatory:
+                    htsus: 8471.30.1180
+                    eccn: EAR99
+                    moistureSensitivityLevel: Not Applicable
+                    rohsCompliant: ''
+                    chinaRohsCompliant: ''
+                    hazardousMaterials:
+                      mercury: ''
+                      lead: ''
+                      halogen: ''
+                      cadmium: ''
+                      hexavalentChromium: ''
+                      pbde: ''
+                      pbb: ''
+                  lifecycle: ''
+                  alternative:
+                    alternativeGenericId: ''
+                    alternativeNote: ''
+                  packaging:
+                    package:
+                      packageCode: pkg_20001
+                      href: /packages/pkg_20001
+                    carrierType: Board Pack
+                    packageCode: ''
+                    pbFreeCategory: None
+                    jedecStandard: ''
+                    quantityPerCarrier: ''
+                    quantityPerReel: ''
+                    reelSize: ''
+                    tapePin1Quad: ''
+                    tapePocketPitch: ''
+                    packageUrl: ''
+                    packageDescription: The ISL91302B40-EVZ platform allows quick evaluation...
+                    packageName: ''
+                    prevCode: ''
+                  plp: ''
+                  sampleable: true
+                  replacementProduct: ''
+                  replacementProductRemark: ''
+                  parametricAttributes:
+                  - productPartAttributeId: field__display_1k_unit_price
+                    attributeValues:
+                    - 352.42
+                    attributeName: Price (USD)
+                    href: /product-parts/attributes/field__display_1k_unit_price
+                  - productPartAttributeId: field__group_name_linked_url
+                    attributeValues:
+                    - 'URL: https://www.renesas.com/products/microcontrollers-microprocessors/ra-cortex-m-mcus/ra2a1-32mhz-arm-cortex-m23-with-capacitive-touch-sensing-unit-low-power-microcontroller|RA2A1'
+                    attributeName: Group Name
+                    href: /product-parts/attributes/field__group_name_linked_url
+                    attributeValuesParsed:
+                    - type: URL
+                      value: RA2A1
+                      url: https://www.renesas.com/products/microcontrollers-microprocessors/ra-cortex-m-mcus/ra2a1-32mhz-arm-cortex-m23-with-capacitive-touch-sensing-unit-low-power-microcontroller
+                - orderableId: ISL71090SEHX50SAMPLE
+                  productCategory: Space & Harsh Environment
+                  firstProductSubcategory: Hi-Rel Voltage References
+                  genericId: ISL71090SEH50
+                  genericTitle: Radiation Hardened Ultra Low Noise, Precision Voltage Reference
+                  genericUrl: https://www.renesas.com/en/products/isl71090seh50
+                  productFamily: ''
+                  1kuPrice: ''
+                  status: Active
+                  type: ''
+                  description: ''
+                  class: ''
+                  category: ''
+                  leadCount: 0
+                  dimensions:
+                    length: 0
+                    width: 0
+                    thickness: 0
+                    pitch: 0
+                  peakReflowTemperature: ''
+                  leadFree: true
+                  partAvailability: false
+                  featuredDocument:
+                    title: ''
+                    url: ''
+                  images:
+                  - https://www.renesas.com/sites/default/files/isl71090seh50_0.png
+                  regulatory:
+                    htsus: 8542.39.0090
+                    eccn: 9A515.e.1
+                    moistureSensitivityLevel: Not Applicable
+                    rohsCompliant: ''
+                    chinaRohsCompliant: ''
+                    hazardousMaterials:
+                      mercury: ''
+                      lead: ''
+                      halogen: ''
+                      cadmium: ''
+                      hexavalentChromium: ''
+                      pbde: ''
+                      pbb: ''
+                  lifecycle: ''
+                  alternative:
+                    alternativeGenericId: ''
+                    alternativeNote: ''
+                  packaging:
+                    package:
+                      packageCode: pkg_20002
+                      href: /packages/pkg_20002
+                    carrierType: Die Waffle Pack
+                    packageCode: ''
+                    pbFreeCategory: Not Applicable
+                    jedecStandard: ''
+                    quantityPerCarrier: ''
+                    quantityPerReel: ''
+                    reelSize: ''
+                    tapePin1Quad: ''
+                    tapePocketPitch: ''
+                    packageUrl: ''
+                    packageDescription: The ISL71090SEH50 is an ultra low noise...
+                    packageName: ''
+                    prevCode: ''
+                  plp: ''
+                  sampleable: false
+                  replacementProduct: ''
+                  replacementProductRemark: ''
+                  parametricAttributes:
+                  - productPartAttributeId: field__sel
+                    attributeValues:
+                    - '86'
+                    attributeName: DSEE (MeV·cm2/mg)
+                    href: /product-parts/attributes/field__sel
+                  - productPartAttributeId: field__supply_voltage_min
+                    attributeValues:
+                    - to: '7'
+                      from: '7'
+                    attributeName: Supply Voltage (min)
+                    href: /product-parts/attributes/field__supply_voltage_min
+                - orderableId: RAA7881502GSP#AB0
+                  productCategory: Interface
+                  firstProductSubcategory: RS-485/422 with Enhanced ESD Protection
+                  genericId: RAA788150
+                  genericTitle: 5V Full-Duplex, 0.115Mbps RS-485/422 Differential Transceiver with ±5kV EFT Immunity and ±10kV ESD Protection
+                  genericUrl: https://www.renesas.com/en/products/raa788150
+                  productFamily: ''
+                  1kuPrice: 1.00163
+                  status: Active
+                  type: SOICN
+                  description: ''
+                  class: ''
+                  category: ''
+                  leadCount: 14
+                  dimensions:
+                    length: 8.7
+                    width: 3.9
+                    thickness: 0
+                    pitch: 1.3
+                  peakReflowTemperature: ''
+                  leadFree: true
+                  partAvailability: true
+                  featuredDocument:
+                    title: ''
+                    url: ''
+                  images:
+                  - https://www.renesas.com/sites/default/files/RAA788150%20-%20Typical%20Operating%20Circuit%20for%20Full-Duplex%20Transceiver.PNG
+                  - https://www.renesas.com/sites/default/files/RAA788150%20-%20Block%20Diagram.PNG
+                  regulatory:
+                    htsus: ''
+                    eccn: ''
+                    moistureSensitivityLevel: '3'
+                    rohsCompliant: ''
+                    chinaRohsCompliant: ''
+                    hazardousMaterials:
+                      mercury: ''
+                      lead: ''
+                      halogen: ''
+                      cadmium: ''
+                      hexavalentChromium: ''
+                      pbde: ''
+                      pbb: ''
+                  lifecycle: ''
+                  alternative:
+                    alternativeGenericId: ''
+                    alternativeNote: ''
+                  packaging:
+                    package:
+                      packageCode: pkg_9399
+                      href: /packages/pkg_9399
+                    carrierType: Tube
+                    packageCode: MOR
+                    pbFreeCategory: Pb-Free 100% Matte Tin Plate w/Anneal-e3
+                    jedecStandard: ''
+                    quantityPerCarrier: ''
+                    quantityPerReel: ''
+                    reelSize: ''
+                    tapePin1Quad: ''
+                    tapePocketPitch: ''
+                    packageUrl: https://www.renesas.com/en/package/mor
+                    packageDescription: The RAA788150 5V full-duplex powered RS-485/RS-422 transceiver...
+                    packageName: M14.15
+                    prevCode: MOR
+                  plp: ''
+                  sampleable: true
+                  replacementProduct: ''
+                  replacementProductRemark: ''
+                  parametricAttributes:
+                  - productPartAttributeId: field__data_rate
+                    attributeValues:
+                    - '0.115'
+                    attributeName: Data Rate (Mbps)
+                    href: /product-parts/attributes/field__data_rate
+                  - productPartAttributeId: field__display_1k_unit_price
+                    attributeValues:
+                    - 1.00163
+                    attributeName: Price (USD)
+                    href: /product-parts/attributes/field__display_1k_unit_price
+                pagination:
+                  offset: 0
+                  limit: 3
+                  total: 8973
+                  has_more: true
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: Failed to retrieve parts list
+  /product-parts/{orderable_id}:
+    get:
+      tags:
+      - Product Part
+      security:
+      - ApiKeyAuth: []
+      summary: Get Product Part by ID
+      parameters:
+      - name: orderable_id
+        in: path
+        schema:
+          type: string
+        required: true
+        description: The unique identifier of the product part.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/product_part'
+              example:
+                orderableId: R5F571MGCDFB#10
+                productCategory: Microcontrollers & Microprocessors
+                firstProductSubcategory: RX 32-Bit Performance/Efficiency MCUs
+                genericId: RX71M
+                genericTitle: High Performance Real-time Engine 32-bit Microcontrollers for Industrial Equipment
+                genericUrl: https://www.renesas.com/en/products/rx71m
+                productFamily: RX
+                1kuPrice: 13.43121
+                status: Active
+                type: LFQFP
+                description: ''
+                class: IC
+                category: ''
+                leadCount: 144
+                dimensions:
+                  length: 20
+                  width: 20
+                  thickness: 1.7
+                  pitch: 0.5
+                peakReflowTemperature: ''
+                leadFree: true
+                partAvailability: false
+                featuredDocument:
+                  title: ''
+                  url: ''
+                images:
+                - https://www.renesas.com/sites/default/files/block-rx71m_0.png
+                - https://www.renesas.com/sites/default/files/rx71m-pin-memory-image-item-d_0.png
+                - https://www.renesas.com/sites/default/files/rx71m-pin-memory-image-item-g_0.png
+                chipImage: https://www.renesas.com/sites/default/files/r5f571mgcdfb-chip.png
+                regulatory:
+                  htsus: 8542.31.0025
+                  eccn: 3A991.a.2
+                  moistureSensitivityLevel: '3'
+                  rohsCompliant: true
+                  chinaRohsCompliant: true
+                  hazardousMaterials:
+                    mercury: true
+                    lead: true
+                    halogen: true
+                    cadmium: true
+                    hexavalentChromium: true
+                    pbde: true
+                    pbb: true
+                lifecycle: e
+                alternative:
+                  alternativeGenericId: ''
+                  alternativeNote: ''
+                packaging:
+                  package:
+                    packageCode: pkg_9398
+                    href: /packages/pkg_9398
+                  carrierType: Full Carton (Tray)
+                  packageCode: pkg_9398
+                  pbFreeCategory: ''
+                  jedecStandard: ''
+                  quantityPerCarrier: ''
+                  quantityPerReel: ''
+                  reelSize: ''
+                  tapePin1Quad: ''
+                  tapePocketPitch: ''
+                  packageUrl: https://www.renesas.com/en/package/pkg9398
+                  packageDescription: 32-bit microcontroller capable of up to 240 MHz operation...
+                  packageName: PLQP0144KA-A
+                  prevCode: FP-144LV
+                plp: 2039/12
+                sampleable: false
+                replacementProduct: ''
+                replacementProductRemark: ''
+                parametricAttributes:
+                - productPartAttributeId: field__gpu
+                  attributeValues:
+                  - 'No'
+                  attributeName: 3D GPU
+                  href: /product-parts/attributes/field__gpu
+                - productPartAttributeId: field__i2c
+                  attributeValues:
+                  - '11'
+                  attributeName: I2C
+                  href: /product-parts/attributes/field__i2c
+                - productPartAttributeId: field__bit_length
+                  attributeValues:
+                  - '32'
+                  attributeName: Bit Length
+                  href: /product-parts/attributes/field__bit_length
+                - productPartAttributeId: field__supply_voltage_v
+                  attributeValues:
+                  - to: '3.6'
+                    from: '2.7'
+                  attributeName: Supply Voltage
+                  href: /product-parts/attributes/field__supply_voltage_v
+                - productPartAttributeId: field__display_1k_unit_price
+                  attributeValues:
+                  - 13.43121
+                  attributeName: Price (USD)
+                  href: /product-parts/attributes/field__display_1k_unit_price
+                - productPartAttributeId: field__group_name_linked_url
+                  attributeValues:
+                  - 'URL: https://www.renesas.com/products/microcontrollers-microprocessors/rx-32-bit-performance-efficiency-mcus/rx71m-high-performance-real-time-engine-32-bit-microcontrollers-industrial-equipment|RX71M'
+                  attributeName: Group Name
+                  href: /product-parts/attributes/field__group_name_linked_url
+                  attributeValuesParsed:
+                  - type: URL
+                    value: RX71M
+                    url: https://www.renesas.com/products/microcontrollers-microprocessors/rx-32-bit-performance-efficiency-mcus/rx71m-high-performance-real-time-engine-32-bit-microcontrollers-industrial-equipment
+        '404':
+          description: Product part not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: Product part with ID 'INVALID123' not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: Failed to retrieve product part
+  /product-parts/search:
+    post:
+      tags:
+      - Product Part
+      security:
+      - ApiKeyAuth: []
+      summary: Parametric Search for Product Parts
+      description: Search for product parts within a specific product using parametric attributes.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - productId
+              properties:
+                productId:
+                  type: string
+                  description: The product identifier to search within (required).
+                  example: RA2A1
+                limit:
+                  type: integer
+                  description: The number of results to return (default 10).
+                  minimum: 1
+                  maximum: 100
+                  default: 10
+                offset:
+                  type: integer
+                  description: The page number for pagination (default 0). This is multiplied by limit to get the actual offset.
+                  minimum: 0
+                  default: 0
+                filters:
+                  type: array
+                  description: Array of parametric attribute filters.
+                  items:
+                    type: object
+                    required:
+                    - productPartAttributeId
+                    properties:
+                      productPartAttributeId:
+                        type: string
+                        description: The attribute identifier to filter by.
+                        example: field__segment_lcd_controller
+                      values:
+                        type: array
+                        description: Values to match (OR operation within this array).
+                        items:
+                          oneOf:
+                          - type: string
+                          - type: number
+                          - type: boolean
+                        example:
+                        - 'Yes'
+                        - Available
+                      operator:
+                        type: string
+                        description: Comparison operator for numeric values.
+                        enum:
+                        - eq
+                        - gt
+                        - gte
+                        - lt
+                        - lte
+                        - range
+                        default: eq
+                      min:
+                        type: number
+                        description: Minimum value for range operator.
+                      max:
+                        type: number
+                        description: Maximum value for range operator.
+            example:
+              productId: RA2A1
+              limit: 20
+              offset: 0
+              filters:
+              - productPartAttributeId: field__operating_frequency
+                operator: gte
+                min: 48
+              - productPartAttributeId: field__package_type
+                values:
+                - LQFP
+                - QFN
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        orderableId:
+                          type: string
+                          description: Orderable product part identifier.
+                        genericId:
+                          type: string
+                          description: Generic product identifier.
+                        status:
+                          type: string
+                          description: Part status.
+                        parametricAttributes:
+                          type: array
+                          description: Array of parametric attribute objects.
+                          items:
+                            type: object
+                            properties:
+                              productPartAttributeId:
+                                type: string
+                              attributeValues:
+                                type: array
+                                items:
+                                  oneOf:
+                                  - type: string
+                                  - type: number
+                                  - type: boolean
+                                  - type: object
+                              attributeName:
+                                type: string
+                              href:
+                                type: string
+                                format: uri
+                        href:
+                          type: string
+                          format: uri
+                          description: URL to the full product part details.
+                  pagination:
+                    type: object
+                    properties:
+                      offset:
+                        type: integer
+                        description: The actual offset used (page * limit)
+                      limit:
+                        type: integer
+                        description: The number of items per page
+                      total:
+                        type: integer
+                        description: Total number of items matching the search
+                      has_more:
+                        type: boolean
+                        description: Whether there are more items available
+                  filters:
+                    type: object
+                    description: The filters that were applied.
+              example:
+                data:
+                - orderableId: R7FA2A1AB3CFM#AA0
+                  genericId: RA2A1
+                  status: Active
+                  parametricAttributes:
+                  - productPartAttributeId: field__operating_frequency
+                    attributeValues:
+                    - 48
+                    attributeName: Operating Frequency (MHz)
+                    href: /product-parts/attributes/field__operating_frequency
+                  - productPartAttributeId: field__package_type
+                    attributeValues:
+                    - LQFP
+                    attributeName: Package Type
+                    href: /product-parts/attributes/field__package_type
+                  - productPartAttributeId: field__pin_count
+                    attributeValues:
+                    - 48
+                    attributeName: Pin Count
+                    href: /product-parts/attributes/field__pin_count
+                  - productPartAttributeId: field__flash_memory_kb
+                    attributeValues:
+                    - 256
+                    attributeName: Flash Memory (KB)
+                    href: /product-parts/attributes/field__flash_memory_kb
+                  - productPartAttributeId: field__ram_kb
+                    attributeValues:
+                    - 32
+                    attributeName: RAM (KB)
+                    href: /product-parts/attributes/field__ram_kb
+                  href: /product-parts/R7FA2A1AB3CFM%23AA0
+                - orderableId: R7FA2A1AB3CFM#BA0
+                  genericId: RA2A1
+                  status: Active
+                  parametricAttributes:
+                  - productPartAttributeId: field__operating_frequency
+                    attributeValues:
+                    - 48
+                    attributeName: Operating Frequency (MHz)
+                    href: /product-parts/attributes/field__operating_frequency
+                  - productPartAttributeId: field__package_type
+                    attributeValues:
+                    - LQFP
+                    attributeName: Package Type
+                    href: /product-parts/attributes/field__package_type
+                  - productPartAttributeId: field__pin_count
+                    attributeValues:
+                    - 48
+                    attributeName: Pin Count
+                    href: /product-parts/attributes/field__pin_count
+                  - productPartAttributeId: field__flash_memory_kb
+                    attributeValues:
+                    - 256
+                    attributeName: Flash Memory (KB)
+                    href: /product-parts/attributes/field__flash_memory_kb
+                  - productPartAttributeId: field__ram_kb
+                    attributeValues:
+                    - 32
+                    attributeName: RAM (KB)
+                    href: /product-parts/attributes/field__ram_kb
+                  href: /product-parts/R7FA2A1AB3CFM%23BA0
+                - orderableId: R7FA2A1AB3CNF#AA0
+                  genericId: RA2A1
+                  status: Active
+                  parametricAttributes:
+                  - productPartAttributeId: field__operating_frequency
+                    attributeValues:
+                    - 48
+                    attributeName: Operating Frequency (MHz)
+                    href: /product-parts/attributes/field__operating_frequency
+                  - productPartAttributeId: field__package_type
+                    attributeValues:
+                    - QFN
+                    attributeName: Package Type
+                    href: /product-parts/attributes/field__package_type
+                  - productPartAttributeId: field__pin_count
+                    attributeValues:
+                    - 40
+                    attributeName: Pin Count
+                    href: /product-parts/attributes/field__pin_count
+                  - productPartAttributeId: field__flash_memory_kb
+                    attributeValues:
+                    - 256
+                    attributeName: Flash Memory (KB)
+                    href: /product-parts/attributes/field__flash_memory_kb
+                  - productPartAttributeId: field__ram_kb
+                    attributeValues:
+                    - 32
+                    attributeName: RAM (KB)
+                    href: /product-parts/attributes/field__ram_kb
+                  href: /product-parts/R7FA2A1AB3CNF%23AA0
+                pagination:
+                  offset: 0
+                  limit: 20
+                  total: 7
+                  has_more: false
+                filters:
+                  productId: RA2A1
+                  applied:
+                  - productPartAttributeId: field__operating_frequency
+                    operator: gte
+                    min: 48
+                  - productPartAttributeId: field__package_type
+                    values:
+                    - LQFP
+                    - QFN
+        '400':
+          description: Bad request - missing required productId or invalid filters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: productId is required
+        '404':
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: Product with ID 'RA2A1' not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: Failed to perform parametric search
+  /product-parts/attributes:
+    get:
+      tags:
+      - Product Part
+      security:
+      - ApiKeyAuth: []
+      summary: Get All Product Part Attributes
+      description: List all available parametric attributes that can be used for filtering product parts.
+      parameters:
+      - name: limit
+        in: query
+        description: The number of results to return (default 50).
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 50
+      - name: offset
+        in: query
+        description: The page number for pagination (default 0). This is multiplied by limit to get the actual offset.
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+      - name: productId
+        in: query
+        description: Filter attributes by product ID to get only attributes relevant to that product.
+        required: false
+        schema:
+          type: string
+        example: RA2A1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/product_part_attribute'
+                  pagination:
+                    type: object
+                    properties:
+                      offset:
+                        type: integer
+                        description: The actual offset used (page * limit)
+                      limit:
+                        type: integer
+                        description: The number of items per page
+                      total:
+                        type: integer
+                        description: Total number of attributes available
+                      has_more:
+                        type: boolean
+                        description: Whether there are more items available
+              example:
+                data:
+                - productPartAttributeId: field__operating_frequency
+                  attributeName: Operating Frequency (MHz)
+                  attributeType: numeric
+                  description: Maximum operating frequency of the microcontroller
+                  unit: MHz
+                  filterType: range
+                - productPartAttributeId: field__package_type
+                  attributeName: Package Type
+                  attributeType: string
+                  description: Physical package type of the component
+                  unit: null
+                  filterType: select
+                  possibleValues:
+                  - LQFP
+                  - QFN
+                  - BGA
+                  - TQFP
+                - productPartAttributeId: field__memory_flash_kb
+                  attributeName: Flash Memory (KB)
+                  attributeType: numeric
+                  description: On-chip flash memory size
+                  unit: KB
+                  filterType: range
+                - productPartAttributeId: field__memory_ram_kb
+                  attributeName: RAM (KB)
+                  attributeType: numeric
+                  description: On-chip RAM size
+                  unit: KB
+                  filterType: range
+                - productPartAttributeId: field__segment_lcd_controller
+                  attributeName: Segment LCD Controller
+                  attributeType: boolean
+                  description: Has segment LCD controller
+                  unit: null
+                  filterType: boolean
+                  possibleValues:
+                  - 'Yes'
+                  - 'No'
+                pagination:
+                  offset: 0
+                  limit: 50
+                  total: 127
+                  has_more: true
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: Failed to retrieve product part attributes
+  /product-parts/attributes/{productPartAttributeId}:
+    get:
+      tags:
+      - Product Part
+      security:
+      - ApiKeyAuth: []
+      summary: Get Product Part Attribute by ID
+      parameters:
+      - name: productPartAttributeId
+        in: path
+        required: true
+        description: The unique identifier of the product part attribute.
+        schema:
+          type: string
+        example: field__operating_frequency
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/product_part_attribute'
+              example:
+                productPartAttributeId: field__operating_frequency
+                attributeName: Operating Frequency (MHz)
+                attributeType: numeric
+                description: Maximum operating frequency of the microcontroller
+                unit: MHz
+                filterType: range
+        '404':
+          description: Product part attribute not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: Product part attribute with ID 'field__invalid' not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: Failed to retrieve product part attribute
+  /product-parts/cross-reference:
+    post:
+      tags:
+      - Product Part
+      security:
+      - ApiKeyAuth: []
+      summary: Cross Reference Product Parts
+      description: 'Find Renesas replacement parts for up to 200 competitor part numbers per request. Inputs with no matches are included in the response with an empty `results` array.
+
+        '
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - partNumbers
+              properties:
+                partNumbers:
+                  type: array
+                  description: List of competitor part numbers to look up. Maximum 200.
+                  minItems: 1
+                  maxItems: 200
+                  items:
+                    type: string
+            example:
+              partNumbers:
+              - STM32F103C8T6
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    description: One entry per input part number, in request order.
+                    items:
+                      type: object
+                      properties:
+                        partNumber:
+                          type: string
+                          description: The input part number this entry corresponds to.
+                        results:
+                          type: array
+                          description: Matching Renesas parts. Empty array if no cross-references were found.
+                          items:
+                            type: object
+                            properties:
+                              crossPartNumber:
+                                type: string
+                                description: The competitor part number as stored in the cross-reference database.
+                              crossManufacturer:
+                                type: string
+                                description: Manufacturer of the competitor part.
+                              matchType:
+                                type: string
+                                description: 'How closely the Renesas part matches the queried part.
+
+                                  - `Drop-in` — Pin-for-Pin Replacement. Form, fit, function, and all electrical specifications are identical.
+
+                                  - `Footprint` — Pin Equivalent, but electrical specifications are not identical. Minor redesign may be needed, but board re-layout may not be needed.
+
+                                  - `Functional` — Equivalent part, but pin configuration is not similar. Minor redesign and board re-layout may be required.
+
+                                  '
+                                enum:
+                                - Drop-in
+                                - Footprint
+                                - Functional
+                              orderableId:
+                                type: string
+                                description: Renesas orderable part number, present when matched via orderable ID.
+                              genericId:
+                                type: string
+                                description: Renesas generic product identifier, present when matched via generic ID.
+                              status:
+                                type: string
+                                description: Part lifecycle status.
+                              comments:
+                                type: string
+                                description: Any notes or caveats about this cross-reference match.
+                              description:
+                                type: string
+                                description: Renesas part description.
+                              dataSource:
+                                type: string
+                                description: Origin of this cross-reference record.
+                                enum:
+                                - Renesas Database
+                              href:
+                                type: string
+                                format: uri
+                                description: URL to the full product part details.
+              example:
+                data:
+                - partNumber: STM32F103C8T6
+                  results:
+                  - crossPartNumber: STM32F103C8T6
+                    crossManufacturer: STMicroelectronics
+                    matchType: Functional
+                    genericId: RX63T
+                    status: Active
+                    comments: 32-bit Microcontrollers for Motor Control Enhancing the Precision of Inverter/Converter Control
+                    description: Like the RX62T Group, the high performance (max. 100 MHz) of this microcontroller makes it ideal for motor control. On-chip functions include multifunction timers (MTU3 and GPT) that facilitate mot...
+                    dataSource: Renesas Database
+                    href: /product-parts/RX63T
+                  - crossPartNumber: STM32F103C8T6
+                    crossManufacturer: STMicroelectronics
+                    matchType: Functional
+                    orderableId: R5F563T5EDFL#10
+                    genericId: RX63T
+                    status: NRND
+                    comments: 32-bit Microcontrollers for Motor Control Enhancing the Precision of Inverter/Converter Control
+                    description: Like the RX62T Group, the high performance (max. 100 MHz) of this microcontroller makes it ideal for motor control. On-chip functions include multifunction timers (MTU3 and GPT) that facilitate mot...
+                    dataSource: Renesas Database
+                    href: /product-parts/R5F563T5EDFL%2310
+                  - crossPartNumber: STM32F103C8T6
+                    crossManufacturer: STMicroelectronics
+                    matchType: Functional
+                    orderableId: R5F563T5EDFL#V0
+                    genericId: RX63T
+                    status: NRND
+                    comments: 32-bit Microcontrollers for Motor Control Enhancing the Precision of Inverter/Converter Control
+                    description: Like the RX62T Group, the high performance (max. 100 MHz) of this microcontroller makes it ideal for motor control. On-chip functions include multifunction timers (MTU3 and GPT) that facilitate mot...
+                    dataSource: Renesas Database
+                    href: /product-parts/R5F563T5EDFL%23V0
+                  - crossPartNumber: STM32F103C8T6
+                    crossManufacturer: STMicroelectronics
+                    matchType: Functional
+                    orderableId: R5F563T5EGFL#V0
+                    genericId: RX63T
+                    status: NRND
+                    comments: 32-bit Microcontrollers for Motor Control Enhancing the Precision of Inverter/Converter Control
+                    description: Like the RX62T Group, the high performance (max. 100 MHz) of this microcontroller makes it ideal for motor control. On-chip functions include multifunction timers (MTU3 and GPT) that facilitate mot...
+                    dataSource: Renesas Database
+                    href: /product-parts/R5F563T5EGFL%23V0
+                  - crossPartNumber: STM32F103C8T6
+                    crossManufacturer: STMicroelectronics
+                    matchType: Functional
+                    orderableId: R5F563T6EGFL#V0
+                    genericId: RX63T
+                    status: NRND
+                    comments: 32-bit Microcontrollers for Motor Control Enhancing the Precision of Inverter/Converter Control
+                    description: Like the RX62T Group, the high performance (max. 100 MHz) of this microcontroller makes it ideal for motor control. On-chip functions include multifunction timers (MTU3 and GPT) that facilitate mot...
+                    dataSource: Renesas Database
+                    href: /product-parts/R5F563T6EGFL%23V0
+        '400':
+          description: Bad request - missing or invalid request body
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: partNumbers is required and must contain between 1 and 200 entries
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: Failed to retrieve cross-reference results
+components:
+  schemas:
+    product_part_attribute:
+      type: object
+      required:
+      - productPartAttributeId
+      properties:
+        productPartAttributeId:
+          type: string
+          description: Unique identifier for the product part attribute.
+    product_part:
+      type: object
+      properties:
+        orderableId:
+          type: string
+          description: Unique identifier for the orderable product part.
+          example: R5F100MJAFB#10
+        productCategory:
+          type: string
+          description: Category of the product.
+          example: Microcontrollers
+        firstProductSubcategory:
+          type: string
+          description: First level subcategory of the product.
+          example: RL78
+        genericId:
+          type: string
+          description: Generic identifier of the product part.
+          example: R5F100MJA
+        genericTitle:
+          type: string
+          description: Generic title of the product part.
+          example: RL78/L13 Microcontroller
+        genericUrl:
+          type: string
+          format: uri
+          description: URL for the generic product part page.
+          example: /products/microcontrollers/rl78/r5f100mja
+        productFamily:
+          type: string
+          description: Family of the product.
+          example: RL78/L13
+        1kuPrice:
+          type: number
+          format: float
+          nullable: true
+          description: Price for 1K units of the product part.
+          example: 36.08
+        budgetaryPrice:
+          type: array
+          description: Budgetary price breaks for the product part.
+          items:
+            type: object
+            properties:
+              units:
+                type: integer
+                description: Quantity break at which this price applies.
+              price:
+                type: number
+                format: float
+                description: Unit price at this quantity break.
+              currency:
+                type: string
+                description: Currency of the price.
+                example: USD
+          example:
+          - units: 1
+            price: 43.29
+            currency: USD
+          - units: 100
+            price: 40.59
+            currency: USD
+          - units: 1000
+            price: 36.08
+            currency: USD
+        status:
+          type: string
+          enum:
+          - Active
+          - Obsolete
+          - NRND
+          description: Current status of the product part.
+          example: Active
+        type:
+          type: string
+          description: Type of the product part (e.g., IC, Module).
+          example: IC
+        description:
+          type: string
+          description: Description of the product part.
+          example: RL78/L13 32-bit Microcontroller, 100-pin LQFP
+        class:
+          type: string
+          nullable: true
+          description: Classification of the product part.
+          example: Microcontroller
+        category:
+          type: string
+          nullable: true
+          description: Category of the product part.
+          example: MCU
+        leadCount:
+          type: integer
+          minimum: 0
+          description: Number of leads in the product part.
+          example: 100
+        dimensions:
+          type: object
+          properties:
+            length:
+              type: number
+              format: float
+              nullable: true
+              description: Length of the product part.
+              example: 14
+            width:
+              type: number
+              format: float
+              nullable: true
+              description: Width of the product part.
+              example: 14
+            thickness:
+              type: number
+              format: float
+              nullable: true
+              description: Thickness of the product part.
+              example: 1.4
+            pitch:
+              type: number
+              format: float
+              nullable: true
+              description: Pitch of the product part.
+              example: 0.5
+        peakReflowTemperature:
+          type: string
+          nullable: true
+          description: Peak reflow temperature for the product part.
+          example: 260°C
+        leadFree:
+          type: boolean
+          description: Indicates if the product part is lead-free.
+          example: true
+        partAvailability:
+          type: string
+          description: Availability status of the product part.
+          example: In Stock
+        featuredDocument:
+          type: object
+          properties:
+            documentTitle:
+              type: string
+              description: Title of the featured document.
+              example: 'RL78/L13 User''s Manual: Hardware'
+            documentUrl:
+              type: string
+              format: uri
+              description: URL of the featured document.
+              example: https://www.renesas.com/en/document/mah/rl78l13-users-manual-hardware
+        images:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: List of image URLs.
+          example:
+          - https://www.renesas.com/images/products/r5f100mja.jpg
+        chipImage:
+          type: string
+          format: uri
+          nullable: true
+          description: URL of the chip image.
+          example: https://www.renesas.com/sites/default/files/r7fa2e1a52dnh-chip.png
+        regulatory:
+          type: object
+          properties:
+            htsus:
+              type: string
+              nullable: true
+              description: HTSUS classification.
+              example: 8542.31.0001
+            eccn:
+              type: string
+              nullable: true
+              description: ECCN classification.
+              example: EAR99
+            moistureSensitivityLevel:
+              type: string
+              nullable: true
+              description: Moisture Sensitivity Level (MSL).
+              example: MSL3
+            rohsCompliant:
+              type: boolean
+              description: Indicates if the product part is RoHS compliant.
+              example: true
+            chinaRohsCompliant:
+              type: boolean
+              description: Indicates if the product part complies with China RoHS.
+              example: true
+            hazardousMaterials:
+              type: object
+              properties:
+                mercury:
+                  type: boolean
+                  example: false
+                lead:
+                  type: boolean
+                  example: false
+                halogen:
+                  type: boolean
+                  example: false
+                cadmium:
+                  type: boolean
+                  example: false
+                hexavalentChromium:
+                  type: boolean
+                  example: false
+                pbde:
+                  type: boolean
+                  example: false
+                pbb:
+                  type: boolean
+                  example: false
+        lifecycle:
+          type: string
+          description: Lifecycle status of the product part.
+          example: Active
+        alternative:
+          type: object
+          properties:
+            alternativeGenericId:
+              type: string
+              nullable: true
+              description: Alternative generic ID for the product part.
+              example: null
+            alternativeNote:
+              type: string
+              nullable: true
+              description: Additional notes on alternatives.
+              example: null
+        packaging:
+          type: object
+          properties:
+            package:
+              type: object
+              properties:
+                packageCode:
+                  type: string
+                  description: Code of the package.
+                  example: pkg_20128
+                href:
+                  type: string
+                  format: uri
+                  description: URL for the package details.
+                  example: /packages/pkg_20128
+            carrierType:
+              type: string
+              description: Type of carrier (e.g., Tape & Reel, Tray).
+              example: Tray
+            packageCode:
+              type: string
+              description: Package code.
+              example: LQFP100
+            pbFreeCategory:
+              type: string
+              description: Pb-free category.
+              example: e3
+            jedecStandard:
+              type: string
+              description: JEDEC standard compliance.
+              example: MS-026
+            quantityPerCarrier:
+              type: integer
+              minimum: 0
+              description: Quantity per carrier.
+              example: 160
+            quantityPerReel:
+              type: integer
+              minimum: 0
+              nullable: true
+              description: Quantity per reel.
+              example: null
+            reelSize:
+              type: string
+              nullable: true
+              description: Reel size information.
+              example: null
+            tapePin1Quad:
+              type: string
+              nullable: true
+              description: Tape pin 1 quadrant information.
+              example: null
+            tapePocketPitch:
+              type: number
+              format: float
+              nullable: true
+              description: Tape pocket pitch measurement.
+              example: null
+            packageUrl:
+              type: string
+              format: uri
+              description: URL for packaging details.
+              example: /packages/pkg_20128
+            packageDescription:
+              type: string
+              description: Description of the packaging.
+              example: 100-pin Plastic LQFP
+            packageName:
+              type: string
+              description: Name of the package.
+              example: LQFP
+            prevCode:
+              type: string
+              nullable: true
+              description: Previous package code if applicable.
+              example: null
+        plp:
+          type: string
+          nullable: true
+          description: PLP termination information.
+          example: null
+        sampleable:
+          type: boolean
+          description: Indicates if the product part is sampleable.
+          example: true
+        directBuy:
+          type: boolean
+          description: Indicates if the product part is available for direct purchase.
+          example: true
+        replacementProduct:
+          type: string
+          nullable: true
+          description: Replacement product identifier.
+          example: null
+        replacementProductRemark:
+          type: string
+          nullable: true
+          description: Remarks about the replacement product.
+          example: null
+        distiInventory:
+          type: object
+          description: Distributor inventory data for the product part.
+          example:
+            value:
+              Avnet:
+                part: R5F100MJAFB#10
+                quantity: 0
+                distributorName: Avnet
+                shoppingCartUrl: https://octopart.com/opatz8j6/a1?t=6mGMtfdr4Qcwqr5MhX7SeSwC9I
+              Mouser:
+                part: R5F100MJAFB#10
+                quantity: 0
+                distributorName: Mouser
+                shoppingCartUrl: https://octopart.com/opatz8j6/a1?t=H5CztugTnVtRp4dgk6vwuAReO08
+              DigiKey:
+                part: R5F100MJAFB#10
+                quantity: 0
+                distributorName: DigiKey
+                shoppingCartUrl: https://octopart.com/opatz8j6/a1?t=zrCxo4MP4FYXWvJEnnpJaW2vidQW
+              Chip One Stop:
+                part: R5F100MJAFB#10
+                quantity: 259
+                distributorName: Chip One Stop
+                shoppingCartUrl: https://octopart.com/opatz8j6/a1?t=Sd4qnFxxO6OrLxpTKBwUmW2Z3nAO
+            updated: '2024-01-15T10:30:00Z'
+            inStock: 1
+            quantity: 259
+          properties:
+            value:
+              type: object
+              description: Map of distributor inventory entries, keyed by distributor name.
+              additionalProperties:
+                type: object
+                properties:
+                  part:
+                    type: string
+                    description: Distributor part number.
+                    example: R5F100MJAFB#10
+                  quantity:
+                    type: integer
+                    minimum: 0
+                    description: Available quantity at the distributor.
+                    example: 259
+                  distributorName:
+                    type: string
+                    description: Name of the distributor.
+                    example: Chip One Stop
+                  shoppingCartUrl:
+                    type: string
+                    format: uri
+                    description: URL to add the part to the distributor's shopping cart.
+                    example: https://octopart.com/opatz8j6/a1?t=Sd4qnFxxO6OrLxpTKBwUmW2Z3nAO
+            updated:
+              type: string
+              format: date-time
+              description: Date and time when the inventory data was last updated.
+              example: '2024-01-15T10:30:00Z'
+            inStock:
+              type: integer
+              minimum: 0
+              maximum: 1
+              description: Flag indicating whether any distributor has stock (1 = in stock, 0 = out of stock).
+              example: 1
+            quantity:
+              type: integer
+              minimum: 0
+              description: Total available quantity across all distributors.
+              example: 259
+        cadModel:
+          type: array
+          description: List of CAD model downloads available for the product part, across various EDA tools.
+          items:
+            type: object
+            properties:
+              cadSoftware:
+                type: string
+                description: Name of the CAD software tool.
+                example: Allegro
+              url:
+                type: string
+                format: uri
+                description: URL to download or view the CAD model. Present for third-party provider entries.
+                example: https://componentsearchengine.com/part-view/R5F5651CHGBP%2320/Renesas%20Electronics
+              providedBy:
+                type: string
+                description: Provider of the CAD model.
+                example: SamacSys
+              agileId:
+                type: string
+                description: Agile ID of the associated document resource. Present when the CAD model is a Renesas-provided document.
+                example: X0185126
+              dcpDocumentId:
+                type: string
+                nullable: true
+                description: DCP Document ID of the associated document resource. Present when the CAD model is a Renesas-provided document.
+                example: R20UT4567EJ0100
+              title:
+                type: string
+                description: Title of the associated document. Present when the CAD model is a Renesas-provided document.
+                example: Altium ECAD Library R5F5651CHGBP#20
+              type:
+                type: string
+                description: Type of the associated document. Present when the CAD model is a Renesas-provided document.
+                example: ECAD Model
+              language:
+                type: string
+                description: Language of the associated document. Present when the CAD model is a Renesas-provided document.
+                example: en
+              href:
+                type: string
+                format: uri
+                description: API path to the associated document resource. Present when the CAD model is a Renesas-provided document.
+                example: /documents/R20UT4567EJ0100
+          example:
+          - cadSoftware: Altium
+            providedBy: Renesas
+            agileId: X0185126
+            dcpDocumentId: R20UT4567EJ0100
+            title: Altium ECAD Library R5F5651CHGBP#20
+            type: ECAD Model
+            language: en
+            href: /documents/R20UT4567EJ0100
+          - cadSoftware: Allegro
+            providedBy: SamacSys
+            url: https://componentsearchengine.com/part-view/R5F5651CHGBP%2320/Renesas%20Electronics
+          - cadSoftware: CADSTAR
+            providedBy: SamacSys
+            url: https://componentsearchengine.com/part-view/R5F5651CHGBP%2320/Renesas%20Electronics
+          - cadSoftware: Capture
+            providedBy: SamacSys
+            url: https://componentsearchengine.com/part-view/R5F5651CHGBP%2320/Renesas%20Electronics
+          - cadSoftware: CircuitStudio
+            providedBy: SamacSys
+            url: https://componentsearchengine.com/part-view/R5F5651CHGBP%2320/Renesas%20Electronics
+          - cadSoftware: CR-500
+            providedBy: SamacSys
+            url: https://componentsearchengine.com/part-view/R5F5651CHGBP%2320/Renesas%20Electronics
+          - cadSoftware: CR-8000
+            providedBy: SamacSys
+            url: https://componentsearchengine.com/part-view/R5F5651CHGBP%2320/Renesas%20Electronics
+          - cadSoftware: DEHDL
+            providedBy: SamacSys
+            url: https://componentsearchengine.com/part-view/R5F5651CHGBP%2320/Renesas%20Electronics
+        parametricAttributes:
+          type: array
+          description: List of parametric attributes for the product part.
+          items:
+            type: object
+            required:
+            - productPartAttributeId
+            - attributeName
+            - href
+            - attributeValues
+            properties:
+              productPartAttributeId:
+                type: string
+                description: Unique identifier for the product part attribute.
+                example: field__segment_lcd_controller
+              attributeName:
+                type: string
+                description: Name of the attribute.
+                example: Segment LCD Controller
+              href:
+                type: string
+                format: uri
+                description: URL for the attribute.
+                example: /product-parts/attributes/field__segment_lcd_controller
+              attributeValues:
+                type: array
+                description: List of values for the attribute.
+                items:
+                  oneOf:
+                  - type: string
+                    description: A single value for the attribute.
+                  - type: number
+                    format: float
+                    description: A numeric value for the attribute.
+                  - type: boolean
+                    description: A boolean value for the attribute.
+                example:
+                - Value1
+                - Value2
+                - 3.14
+                - true
+              attributeValuesParsed:
+                type: array
+                description: 'Parsed representation of `attributeValues` for attributes with structured string formats. Present only when the raw values can be parsed into a known type. Entity references (`GP`, `BK`, `DOC`, `OP`) include an `href` pointing to the corresponding API resource. URL references include a `url` field for the external link.
+
+                  '
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      description: 'Identifies the reference syntax:
+
+                        - `GP` — Generic Product (resolved by product ID)
+
+                        - `BK` — Board/Kit (resolved by product ID)
+
+                        - `DOC` — Document (resolved by Agile ID)
+
+                        - `OP` — Orderable Part (resolved by part number)
+
+                        - `URL` — Arbitrary external URL with display label
+
+                        '
+                      enum:
+                      - GP
+                      - BK
+                      - DOC
+                      - OP
+                      - URL
+                    value:
+                      type: string
+                      description: The ID, part number, or display label depending on `type`.
+                      example: RA2E1
+                    href:
+                      type: string
+                      description: API path to the referenced resource. Present for `GP`, `BK`, `DOC`, and `OP` types.
+                      example: /products/RA2E1
+                    url:
+                      type: string
+                      description: External URL. Present for `URL` type only.
+                      example: https://www.renesas.com/products/microcontrollers-microprocessors/ra-cortex-m-mcus/ra2e1-48mhz-arm-cortex-m23-entry-level-general-purpose-microcontroller
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key required for authentication

@@ -1,0 +1,525 @@
+openapi: 3.0.0
+info:
+  title: Renesas Web Data Board & Kit API
+  description: 'The Renesas Web Data API enables external systems to retrieve product metadata in real time, without relying on manual CSV downloads or periodic feed refreshes. This shift improves data consistency, streamlines integrations, and aligns with modern API-first architectures.
+
+    '
+  version: 1.2.0
+servers:
+- url: https://api.renesas.com/web-data/v1
+  description: Production Server
+- url: https://api.renesas-dev.com/web-data/v1
+  description: Staging Server
+security:
+- ApiKeyAuth: []
+tags:
+- name: Board & Kit
+  description: Endpoints for retrieving boards and kits.
+paths:
+  /boards-kits:
+    get:
+      tags:
+      - Board & Kit
+      security:
+      - ApiKeyAuth: []
+      summary: Get All Boards & Kits
+      parameters:
+      - name: limit
+        in: query
+        description: The number of results to return (default 10).
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 10
+      - name: offset
+        in: query
+        description: The page number for pagination (default 0). This is multiplied by limit to get the actual offset.
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+      - name: order
+        in: query
+        description: Sorting property (default sort is by www update date). Multiple sorts can be supplied by comma concatenation.
+        required: false
+        schema:
+          type: string
+          enum:
+          - wwwUpdateDate
+          - title
+          - boardKitType
+          default: wwwUpdateDate
+        example: wwwUpdateDate,title
+      - name: orderDirection
+        in: query
+        description: Sorting direction (default is "desc"). Multiple directions can be defined for multiple sorts.
+        required: false
+        schema:
+          type: string
+          default: desc
+        example: desc,asc
+      - name: boardKitId
+        in: query
+        description: Filter by board/kit identifier.
+        required: false
+        schema:
+          type: string
+      - name: boardKitType
+        in: query
+        description: Filter by board/kit type.
+        required: false
+        schema:
+          type: string
+          enum:
+          - development
+          - evaluation
+          - demonstration
+          - reference
+          - starter
+      - name: category
+        in: query
+        description: Filter by product category.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/board_kit'
+                  pagination:
+                    type: object
+                    properties:
+                      offset:
+                        type: integer
+                        description: The actual offset used (page * limit)
+                      limit:
+                        type: integer
+                        description: The number of items per page
+                      total:
+                        type: integer
+                        description: Total number of items available
+                      has_more:
+                        type: boolean
+                        description: Whether there are more items available
+              example:
+                data:
+                - boardKitId: rx71m-starter-kit-plus
+                  wwwUpdateDate: '2024-01-15T10:30:00Z'
+                  url: https://www.renesas.com/design-resources/boards-kits/rx71m-starter-kit-plus
+                  uuid: 5cdd14dc-21a8-4e9e-9d4d-4a83042b4e47
+                  title: Renesas Starter Kit+ for RX71M
+                  boardKitType: evaluation
+                  category:
+                  - level: 1
+                    title: Microcontrollers & Microprocessors
+                  - level: 2
+                    title: RX 32-Bit Performance/Efficiency MCUs
+                  description: 32-bit microcontroller capable of up to 240 MHz operation. Employs the RXv2 core, a more powerful evolved form of the RX core that was used in previous RX devices, while maintaining compatibility.
+                  features: On-board debugger, Arduino compatible headers, multiple interface options
+                  applications: Industrial automation, motor control, IoT applications
+                  images:
+                  - https://www.renesas.com/sites/default/files/rx71m-evb-top.jpg
+                  - https://www.renesas.com/sites/default/files/rx71m-evb-bottom.jpg
+                  orderableProducts:
+                  - orderableId: R5F571MFCDFB#V0
+                    href: /product-parts/R5F571MFCDFB%23V0
+                  partner:
+                  - name: TESSERA Technology Inc.
+                    url: https://www.tessera.co.jp/eng/
+                  relatedBoardsKits:
+                  - boardKitId: RX71M-Starter-Kit-Plus
+                    title: Renesas Starter Kit+ for RX71M
+                    href: /boards-kits/RX71M-Starter-Kit-Plus
+                  - boardKitId: YRPBRX71M
+                    title: RX71M Revelation Kit - Easy Evaluation and Development with RX71M
+                    href: /boards-kits/YRPBRX71M
+                  featuredDocuments:
+                  - agileId: X0052700
+                    dcpDocumentId: R01DS0249EJ0120
+                    title: RX71M Datasheet Group Rev.1.20
+                    type: Datasheet
+                    language: en
+                    href: /documents/R01DS0249EJ0120
+                  relatedDocuments:
+                  - agileId: X0052700
+                    dcpDocumentId: R01DS0249EJ0120
+                    title: RX71M Datasheet Group Rev.1.20
+                    type: Datasheet
+                    language: en
+                    href: /documents/R01DS0249EJ0120
+                - boardKitId: s7g2-dk
+                  wwwUpdateDate: '2024-01-10T14:20:00Z'
+                  url: https://www.renesas.com/design-resources/boards-kits/s7g2-dk
+                  uuid: 2b8f94ac-31d8-4e2e-8c3d-5b92053c5e48
+                  title: Synergy S7G2 Development Kit
+                  boardKitType: development
+                  category:
+                  - level: 1
+                    title: Microcontrollers & Microprocessors
+                  - level: 2
+                    title: Synergy MCUs
+                  description: Complete development kit for Synergy S7G2 microcontroller with integrated development environment and rich connectivity options
+                  features: Integrated development environment, rich connectivity options
+                  applications: IoT gateways, industrial HMI, connected appliances
+                  images:
+                  - https://www.renesas.com/sites/default/files/s7g2-dk-main.jpg
+                  orderableProducts:
+                  - orderableId: S7G2DK
+                    href: /product-parts/S7G2DK
+                  partner:
+                  - name: TESSERA Technology Inc.
+                    url: https://www.tessera.co.jp/eng/
+                pagination:
+                  offset: 0
+                  limit: 10
+                  total: 156
+                  has_more: true
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: Failed to retrieve boards and kits list
+  /boards-kits/{board_kit_id}:
+    get:
+      tags:
+      - Board & Kit
+      security:
+      - ApiKeyAuth: []
+      summary: Get Board or Kit by ID
+      parameters:
+      - name: board_kit_id
+        in: path
+        schema:
+          type: string
+        required: true
+        description: The unique identifier of the board or kit.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/board_kit'
+              example:
+                boardKitId: rx71m-starter-kit-plus
+                wwwUpdateDate: '2024-01-15T10:30:00Z'
+                url: https://www.renesas.com/design-resources/boards-kits/rx71m-starter-kit-plus
+                uuid: 5cdd14dc-21a8-4e9e-9d4d-4a83042b4e47
+                title: Renesas Starter Kit+ for RX71M
+                boardKitType: evaluation
+                category:
+                - level: 1
+                  title: Microcontrollers & Microprocessors
+                - level: 2
+                  title: RX 32-Bit Performance/Efficiency MCUs
+                description: 32-bit microcontroller capable of up to 240 MHz operation. Employs the RXv2 core, a more powerful evolved form of the RX core that was used in previous RX devices, while maintaining compatibility. Realizes 1160 CoreMark, the top performance among microcontrollers with built-in flash.
+                features: On-board debugger, Arduino compatible headers, multiple interface options
+                applications: Industrial automation, motor control, IoT applications
+                additionalDetails: The RX71M evaluation board provides a complete development environment for evaluating and developing applications using the RX71M microcontroller.
+                images:
+                - https://www.renesas.com/sites/default/files/rx71m-evb-top.jpg
+                - https://www.renesas.com/sites/default/files/rx71m-evb-bottom.jpg
+                orderableProducts:
+                - orderableId: R5F571MFCDFB#V0
+                  href: /product-parts/R5F571MFCDFB%23V0
+                - orderableId: R5F571MFCDFC#V0
+                  href: /product-parts/R5F571MFCDFC%23V0
+                relatedBoardsKits:
+                - boardKitId: RX71M-Starter-Kit-Plus
+                  title: Renesas Starter Kit+ for RX71M
+                  href: /boards-kits/RX71M-Starter-Kit-Plus
+                - boardKitId: YRPBRX71M
+                  title: RX71M Revelation Kit - Easy Evaluation and Development with RX71M
+                  href: /boards-kits/YRPBRX71M
+                featuredDocuments:
+                - agileId: X0052700
+                  dcpDocumentId: R01DS0249EJ0120
+                  title: RX71M Datasheet Group Rev.1.20
+                  type: Datasheet
+                  language: en
+                  href: /documents/R01DS0249EJ0120
+                relatedDocuments:
+                - agileId: X0052700
+                  dcpDocumentId: R01DS0249EJ0120
+                  title: RX71M Datasheet Group Rev.1.20
+                  type: Datasheet
+                  language: en
+                  href: /documents/R01DS0249EJ0120
+                softwareTools:
+                - name: e2 studio
+                  url: https://www.renesas.com/en/software-tool/e2-studio
+                - name: Renesas Flash Programmer (Programming GUI)
+                  url: https://www.renesas.com/en/software-tool/renesas-flash-programmer-programming-gui
+                partner:
+                - name: TESSERA Technology Inc.
+                  url: https://www.tessera.co.jp/eng/
+        '404':
+          description: Board or kit not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: Board/kit with ID 'invalid-id' not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: Failed to retrieve board/kit details
+components:
+  schemas:
+    board_kit:
+      type: object
+      properties:
+        boardKitId:
+          type: string
+          description: Unique identifier for the board or kit.
+          example: rx71m-starter-kit-plus
+        wwwUpdateDate:
+          type: string
+          description: Date the Board page was last updated on the website.
+        uuid:
+          type: string
+          description: UUID of the board or kit.
+          example: 5cdd14dc-21a8-4e9e-9d4d-4a83042b4e47
+        title:
+          type: string
+          description: Title of the board or kit.
+          example: Renesas Starter Kit+ for RX71M
+        url:
+          type: string
+          format: uri
+          description: Public URL of the board or kit page on the Renesas website.
+          example: https://www.renesas.com/design-resources/boards-kits/rx71m-starter-kit-plus
+        boardKitType:
+          type: string
+          description: Type classification of the board or kit.
+          enum:
+          - development
+          - evaluation
+          - demonstration
+          - reference
+          - starter
+          example: evaluation
+        category:
+          type: array
+          description: Category.
+          items:
+            type: object
+            properties:
+              level:
+                type: integer
+                description: "Level of the category:\n* 1 - Primary category\n* 2 - Secondary subcategory  \n* 3 - Tertiary subcategory\n* 4 - Fourth-level subcategory\n"
+                enum:
+                - 1
+                - 2
+                - 3
+                - 4
+              title:
+                type: string
+                description: Title of the category.
+            example:
+            - level: 1
+              title: Microcontrollers & Microprocessors
+            - level: 2
+              title: RX 32-Bit Performance/Efficiency MCUs
+        description:
+          type: string
+          description: Detailed description of the board or kit.
+          example: The Renesas Starter Kit+ for RX71M is the perfect starter kit for developers who are new to the RX71M. The kit includes an LCD display module, on-chip debugging emulator, and integrated development environment so you can start evaluating the RX71M immediately after opening the box. Please use this product to experience the performance and functions of the RX71M.
+        features:
+          type: string
+          description: Key features and capabilities of the board or kit.
+          example: On-board debugger, Arduino compatible headers, multiple interface options
+        applications:
+          type: string
+          description: Target applications and use cases.
+          example: Industrial automation, motor control, IoT applications
+        additionalDetails:
+          type: string
+          nullable: true
+          description: Additional technical details and specifications.
+        images:
+          type: array
+          description: Array of image URLs for the board or kit.
+          items:
+            type: string
+            format: uri
+          example:
+          - https://www.renesas.com/sites/default/files/rx71m-evb-top.jpg
+          - https://www.renesas.com/sites/default/files/rx71m-evb-bottom.jpg
+        orderableProducts:
+          type: array
+          description: List of orderable product parts associated with this board/kit.
+          items:
+            type: object
+            properties:
+              orderableId:
+                type: string
+                description: Orderable product part identifier.
+              href:
+                type: string
+                format: uri
+                description: URL to the product part endpoint.
+          example:
+          - orderableId: R5F571MFCDFB#V0
+            href: /product-parts/R5F571MGCDFB%2310
+          - orderableId: R5F571MFCDFC#V0
+            href: /product-parts/R5F571MGCDFB%2330
+        relatedBoardsKits:
+          type: array
+          description: List of related product identifiers.
+          items:
+            type: object
+            properties:
+              boardKitId:
+                type: string
+                description: Related board or kit identifier.
+              title:
+                type: string
+                description: Title of the related board or kit.
+              href:
+                type: string
+                format: uri
+                description: URL to the board/kit endpoint.
+          example:
+          - boardKitId: RX71M-Starter-Kit-Plus
+            title: Renesas Starter Kit+ for RX71M
+            href: /boards-kits/RX71M-Starter-Kit-Plus
+          - boardKitId: YRPBRX71M
+            title: RX71M Revelation Kit - Easy Evaluation and Development with RX71M
+            href: /boards-kits/YRPBRX71M
+        featuredDocuments:
+          type: array
+          description: Featured documents associated with the board/kit.
+          items:
+            type: object
+            properties:
+              agileId:
+                type: string
+                description: Agile ID of the document.
+              dcpDocumentId:
+                type: string
+                nullable: true
+                description: DCP Document ID, if applicable.
+              title:
+                type: string
+                description: Document title.
+              type:
+                type: string
+                description: Document type.
+              language:
+                type: string
+                description: Document language.
+              href:
+                type: string
+                format: uri
+                description: Public URL of the document file.
+          example:
+          - agileId: X0052700
+            dcpDocumentId: R01DS0249EJ0120
+            title: RX71M Datasheet Group Rev.1.20
+            type: Datasheet
+            language: en
+            href: /documents/R01DS0249EJ0120
+        relatedDocuments:
+          type: array
+          description: List of related document identifiers.
+          items:
+            type: object
+            properties:
+              agileId:
+                type: string
+                description: Agile ID of the document.
+              dcpDocumentId:
+                type: string
+                nullable: true
+                description: DCP Document ID, if applicable.
+              title:
+                type: string
+                description: Document title.
+              type:
+                type: string
+                description: Document type.
+              language:
+                type: string
+                description: Document language.
+              href:
+                type: string
+                format: uri
+                description: Public URL of the document file.
+          example:
+          - agileId: X0052700
+            dcpDocumentId: R01DS0249EJ0120
+            title: RX71M Datasheet Group Rev.1.20
+            type: Datasheet
+            language: en
+            href: /documents/R01DS0249EJ0120
+        softwareTools:
+          type: array
+          description: Compatible software tools and development environments.
+          items:
+            type: object
+            properties:
+              softwareToolName:
+                type: string
+                description: Software tool identifier (uses full title).
+              href:
+                type: string
+                format: uri
+                description: URL to the software tool endpoint.
+          example:
+          - softwareToolName: e2 studio
+            href: /software-tools/e2%20studio
+          - softwareToolName: Renesas Flash Programmer (Programming GUI)
+            href: /software-tools/Renesas%20Flash%20Programmer%20(Programming%20GUI)
+        partner:
+          type: array
+          nullable: true
+          description: Partner information if applicable.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Partner company name.
+              url:
+                type: string
+                format: uri
+                nullable: true
+                description: Partner website URL.
+          example:
+          - name: TESSERA Technology Inc.
+            url: https://www.tessera.co.jp/eng/
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key required for authentication

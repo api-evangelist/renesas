@@ -1,0 +1,637 @@
+openapi: 3.0.0
+info:
+  title: Renesas Web Data Board & Kit Document API
+  description: 'The Renesas Web Data API enables external systems to retrieve product metadata in real time, without relying on manual CSV downloads or periodic feed refreshes. This shift improves data consistency, streamlines integrations, and aligns with modern API-first architectures.
+
+    '
+  version: 1.2.0
+servers:
+- url: https://api.renesas.com/web-data/v1
+  description: Production Server
+- url: https://api.renesas-dev.com/web-data/v1
+  description: Staging Server
+security:
+- ApiKeyAuth: []
+tags:
+- name: Document
+  description: Endpoint for retrieving documents.
+paths:
+  /documents:
+    get:
+      tags:
+      - Document
+      summary: Get All Documents
+      parameters:
+      - name: limit
+        in: query
+        description: The number of results to return (default 10).
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+      - name: offset
+        in: query
+        description: The offset for pagination.
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+      - name: language
+        in: query
+        description: Filter by document language (`en`, `ja`, `zh-hans`).
+        required: false
+        schema:
+          type: string
+          enum:
+          - en
+          - ja
+          - zh-hans
+      - name: dcpDocumentIdStartsWith
+        in: query
+        description: Filter by DCP Document ID prefix.
+        required: false
+        schema:
+          type: string
+      - name: productId
+        in: query
+        description: Filter by associated product ID.
+        required: false
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: 'Filter by document type. Example values: `Datasheet`, `Datasheet - Short-Form`, `Datasheet Addendum`, `Datasheet Change Notice Guide`, `Manual - Development Tools`, `Manual - Hardware`, `Manual - Software`, `Quick Start Guide`, `General Reliability Literature`, `ICP Test Report`, `Materials Composition Declaration`, `MSDS Document`, `Product Reliability Report`.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: subType
+        in: query
+        description: 'Filter by document sub-type. Example values: `Core Module`, `Driver Package`, `FIT Module`, `FreeRTOS`, `Software Integration System Application Example`, `Development Environment`, `Middleware`, `Migration Guide`, `Peripherals - Analog`, `Peripherals - Built-in Memory`, `Peripherals - Clock`, `Peripherals - Communication`, `Peripherals - Other`, `Peripherals - Security`, `Peripherals - Timer`.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: category
+        in: query
+        description: Filter by the product category the document is associated with.
+        required: false
+        schema:
+          type: string
+      - name: documentRevisionDateStart
+        in: query
+        description: Filter by documents revised on or after this date (YYYY-MM-DD).
+        required: false
+        schema:
+          type: string
+          format: date
+      - name: documentRevisionDateEnd
+        in: query
+        description: Filter by documents revised on or before this date (YYYY-MM-DD).
+        required: false
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/document'
+                  pagination:
+                    type: object
+                    properties:
+                      offset:
+                        type: integer
+                        description: The actual offset used
+                      limit:
+                        type: integer
+                        description: The number of items per page
+                      total:
+                        type: integer
+                        description: Total number of items available
+                      has_more:
+                        type: boolean
+                        description: Whether there are more items available
+              example:
+                data:
+                - agileId: X0052700
+                  dcpDocumentId: R01DS0249EJ0120
+                  url: https://www.renesas.com/en/document/dst/rx71m-datasheet-group-rev120-r01ds0249ej0120
+                  category:
+                  - level: 1
+                    title: Microcontrollers & Microprocessors
+                  - level: 2
+                    title: RX 32-Bit Performance/Efficiency MCUs
+                  product:
+                  - productId: RX71M
+                    type: Product
+                    title: RX71M Group
+                    nid: '12345'
+                    uuid: 550e8400-e29b-41d4-a716-446655440000
+                    language: en
+                  title: RX71M Datasheet Group Rev.1.20
+                  type: Datasheet
+                  fileType: PDF
+                  secureDocument: false
+                  href: /documents/R01DS0249EJ0120
+                  revisionDate: '2024-01-15'
+                  wwwUpdateDate: '2024-01-15T10:30:00Z'
+                  language: en
+                  nid: '67890'
+                  uuid: 660f9550-f3ac-42e5-b827-556766550001
+                  published: true
+                  featured: true
+                  filename: r01ds0249ej0120.pdf
+                  myrenesasDocument: false
+                - agileId: X0061760
+                  dcpDocumentId: R01AN0184EJ0110
+                  url: https://www.renesas.com/en/document/apn/rx-family-driver-package-application-note
+                  category:
+                  - level: 1
+                    title: Microcontrollers & Microprocessors
+                  - level: 2
+                    title: RX 32-Bit Performance/Efficiency MCUs
+                  title: RX Family Driver Package Application Note
+                  type: Manual - Software
+                  subType:
+                  - Driver Package
+                  fileType: PDF
+                  secureDocument: false
+                  href: /documents/R01AN0184EJ0110
+                  revisionDate: '2023-12-10'
+                  wwwUpdateDate: '2023-12-10T14:20:00Z'
+                  language: en
+                  nid: '67891'
+                  uuid: 770f9550-f3ac-42e5-b827-556766550002
+                  published: true
+                  featured: false
+                  filename: r01an0184ej0110.pdf
+                  myrenesasDocument: false
+                pagination:
+                  offset: 0
+                  limit: 10
+                  total: 1523
+                  has_more: true
+  /documents/types:
+    get:
+      tags:
+      - Document
+      security:
+      - ApiKeyAuth: []
+      summary: Get All Document Types
+      description: List all available document types and their associated sub-types.
+      parameters:
+      - name: limit
+        in: query
+        description: The number of results to return (default 50).
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 50
+      - name: offset
+        in: query
+        description: The offset for pagination (default 0).
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/document_type'
+                  pagination:
+                    type: object
+                    properties:
+                      offset:
+                        type: integer
+                        description: The actual offset used
+                      limit:
+                        type: integer
+                        description: The number of items per page
+                      total:
+                        type: integer
+                        description: Total number of document types available
+                      has_more:
+                        type: boolean
+                        description: Whether there are more items available
+              example:
+                data:
+                - type: Datasheet
+                  subTypes: []
+                - type: Datasheet - Short-Form
+                  subTypes: []
+                - type: Datasheet Addendum
+                  subTypes: []
+                - type: Datasheet Change Notice Guide
+                  subTypes: []
+                - type: Manual - Development Tools
+                  subTypes: []
+                - type: Manual - Hardware
+                  subTypes:
+                  - Peripherals - Analog
+                  - Peripherals - Built-in Memory
+                  - Peripherals - Clock
+                  - Peripherals - Communication
+                  - Peripherals - Other
+                  - Peripherals - Security
+                  - Peripherals - Timer
+                - type: Manual - Software
+                  subTypes:
+                  - Core Module
+                  - Development Environment
+                  - Driver Package
+                  - FIT Module
+                  - FreeRTOS
+                  - Middleware
+                  - Migration Guide
+                  - Software Integration System Application Example
+                - type: Quick Start Guide
+                  subTypes: []
+                - type: General Reliability Literature
+                  subTypes: []
+                - type: ICP Test Report
+                  subTypes: []
+                - type: Materials Composition Declaration
+                  subTypes: []
+                - type: MSDS Document
+                  subTypes: []
+                - type: Product Reliability Report
+                  subTypes: []
+                pagination:
+                  offset: 0
+                  limit: 50
+                  total: 13
+                  has_more: false
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: Failed to retrieve document types
+  /documents/{dcp_id}:
+    get:
+      tags:
+      - Document
+      summary: Get Document by DCP Document ID
+      parameters:
+      - name: dcp_id
+        in: path
+        required: true
+        description: The DCP document identifier.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/document'
+              example:
+                agileId: X0052700
+                dcpDocumentId: R01DS0249EJ0120
+                url: https://www.renesas.com/en/document/dst/rx71m-datasheet-group-rev120-r01ds0249ej0120
+                category:
+                - level: 1
+                  title: Microcontrollers & Microprocessors
+                - level: 2
+                  title: RX 32-Bit Performance/Efficiency MCUs
+                product:
+                - productId: RX71M
+                  type: Product
+                  title: RX71M Group
+                  nid: '12345'
+                  uuid: 550e8400-e29b-41d4-a716-446655440000
+                  language: en
+                title: RX71M Datasheet Group Rev.1.20
+                type: Datasheet
+                fileType: PDF
+                secureDocument: false
+                revisionDate: '2024-01-15'
+                wwwUpdateDate: '2024-01-15T10:30:00Z'
+                language: en
+                nid: '67890'
+                uuid: 660f9550-f3ac-42e5-b827-556766550001
+                translation:
+                - language: ja
+                  dcpDocumentId: R01DS0249JJ0120
+                  agileId: X0052700
+                  title: RX71Mグループ データシート Rev.1.20
+                  href: /documents/R01DS0249JJ0120
+                published: true
+                featured: true
+                filename: r01ds0249ej0120.pdf
+                disclaimer:
+                - dcpDocumentId: DISC789012
+                  agileId: X1234567
+                  language: en
+                  title: Standard Product Disclaimer
+                  href: /documents/DISC789012
+                myrenesasDocument: false
+        '404':
+          description: Document not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: Document with DCP ID 'INVALID123' not found
+  /documents/agile-id/{agile_id}:
+    get:
+      tags:
+      - Document
+      summary: Get Document by Agile ID
+      parameters:
+      - name: agile_id
+        in: path
+        required: true
+        description: The Agile ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/document'
+              example:
+                agileId: X0061760
+                dcpDocumentId: R01AN0184EJ0110
+                url: https://www.renesas.com/en/document/apn/rx-family-driver-package-application-note
+                category:
+                - level: 1
+                  title: Microcontrollers & Microprocessors
+                - level: 2
+                  title: RX 32-Bit Performance/Efficiency MCUs
+                title: RX Family Driver Package Application Note
+                type: Manual - Software
+                subType: Driver Package
+                fileType: PDF
+                secureDocument: false
+                revisionDate: '2023-12-10'
+                wwwUpdateDate: '2023-12-10T14:20:00Z'
+                language: en
+                nid: '67891'
+                uuid: 770f9550-f3ac-42e5-b827-556766550002
+                published: true
+                featured: false
+                filename: r01an0184ej0110.pdf
+                myrenesasDocument: false
+        '404':
+          description: Document not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: Document with Agile ID 'INVALID123' not found
+components:
+  schemas:
+    document_type:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          description: Document type.
+          example: Manual - Software
+        subTypes:
+          type: array
+          description: List of sub-types associated with this document type.
+          items:
+            type: string
+          example:
+          - Core Module
+          - Driver Package
+          - FIT Module
+    document:
+      type: object
+      properties:
+        agileId:
+          type: string
+          description: Primary Agile ID of the document.
+          example: X0185126
+        dcpDocumentId:
+          type: string
+          description: DCP Document ID, if applicable.
+          example: R01TB0099EJ0100
+        url:
+          type: string
+          format: uri
+          description: URL to download the document.
+          example: https://www.renesas.com/en/document/oth/ra8p1-group-handbook
+        category:
+          type: array
+          description: Category.
+          items:
+            type: object
+            properties:
+              level:
+                type: integer
+                description: "Level of the category:\n* 1 - Primary category\n* 2 - Secondary subcategory  \n* 3 - Tertiary subcategory\n* 4 - Fourth-level subcategory\n"
+                enum:
+                - 1
+                - 2
+                - 3
+                - 4
+              title:
+                type: string
+                description: Title of the category.
+            example:
+            - level: 1
+              title: Category Level 1
+            - level: 2
+              title: Category Level 2
+        product:
+          type: array
+          description: List of associated products.
+          items:
+            type: object
+            properties:
+              productId:
+                type: string
+                description: Associated product ID.
+              type:
+                type: string
+                description: Type of the associated product.
+                enum:
+                - Product
+                - Board & Kit
+                - Software Tool
+              title:
+                type: string
+                description: Associated product title.
+              nid:
+                type: string
+                description: Drupal node ID of the product.
+              uuid:
+                type: string
+                description: UUID of the product node.
+              language:
+                type: string
+                description: Language code of the product node.
+          example:
+          - productId: RL78/G13
+            title: Sample Product Title
+            nid: 12345
+            uuid: 550e8400-e29b-41d4-a716-446655440000
+            language: en
+        title:
+          type: string
+          description: Title of the document.
+          example: RA8P1 Group Handbook
+        type:
+          type: string
+          description: Type of the document (e.g., Flyer, App Note).
+          example: Other
+        subType:
+          type: array
+          description: 'Sub-types of the document. Example values: `Core Module`, `Driver Package`, `FIT Module`, `FreeRTOS`, `Software Integration System Application Example`, `Development Environment`, `Middleware`, `Migration Guide`, `Peripherals - Analog`, `Peripherals - Built-in Memory`, `Peripherals - Clock`, `Peripherals - Communication`, `Peripherals - Other`, `Peripherals - Security`, `Peripherals - Timer`.
+
+            '
+          items:
+            type: string
+          example:
+          - Driver Package
+        fileType:
+          type: string
+          description: File format (e.g., PDF, DOCX).
+          example: PDF
+        secureDocument:
+          type: boolean
+          description: Indicates if the document is secure or restricted.
+        revisionDate:
+          type: string
+          description: Original revision date of the document.
+        wwwUpdateDate:
+          type: string
+          description: Date the document was last updated on the website.
+        language:
+          type: string
+          description: Language of the document (e.g., en, ja, zh-hans).
+        nid:
+          type: string
+          description: Drupal node ID of the document.
+        uuid:
+          type: string
+          description: UUID of the document node.
+        translation:
+          type: array
+          description: List of translations for the document.
+          items:
+            type: object
+            properties:
+              language:
+                type: string
+                description: Language of the document (e.g., en, ja, zh).
+              dcpDocumentId:
+                type: string
+                description: DCP Document ID of the translation.
+              agileId:
+                type: string
+                description: Agile ID of the translation.
+              title:
+                type: string
+                description: Title of the translation document.
+              href:
+                type: string
+                format: uri
+                description: URL to retrieve the translation document.
+            example:
+            - language: ja
+              dcpDocumentId: DOC123456-JA
+              agileId: X1234567
+              href: /documents/DOC123456-JA
+            - language: zh-hans
+              dcpDocumentId: DOC123456-ZH
+              agileId: X1234567
+              title: Document Title in Chinese
+              href: /documents/DOC123456-ZH
+        published:
+          type: boolean
+          description: Publication status of the document.
+        featured:
+          type: boolean
+          description: Whether the document is featured or highlighted.
+        relationship:
+          type: string
+          description: Relationship or association type, if any.
+        filename:
+          type: string
+          description: Original filename of the document.
+        disclaimer:
+          type: array
+          description: List of associated disclaimer documents.
+          items:
+            type: object
+            properties:
+              dcpDocumentId:
+                type: string
+                description: DCP Document ID of the disclaimer document.
+              agileId:
+                type: string
+                description: Agile ID of the disclaimer document.
+              language:
+                type: string
+                description: Language of the document (e.g., en, ja, zh).
+              title:
+                type: string
+                description: Title of the disclaimer document.
+              href:
+                type: string
+                format: uri
+                description: URL to retrieve the disclaimer document.
+          example:
+          - dcpDocumentId: DISC789012
+            language: en
+            agileId: X1234567
+            title: Standard Product Disclaimer
+            href: /documents/DISC789012
+          - dcpDocumentId: DISC789013
+            language: en
+            agileId: X1234567
+            title: Export Control Disclaimer
+            href: /documents/DISC789013
+        myrenesasDocument:
+          type: boolean
+          description: Is a MyRenesas document.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key required for authentication

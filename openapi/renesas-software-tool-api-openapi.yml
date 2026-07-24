@@ -1,0 +1,598 @@
+openapi: 3.0.0
+info:
+  title: Renesas Web Data Board & Kit Software Tool API
+  description: 'The Renesas Web Data API enables external systems to retrieve product metadata in real time, without relying on manual CSV downloads or periodic feed refreshes. This shift improves data consistency, streamlines integrations, and aligns with modern API-first architectures.
+
+    '
+  version: 1.2.0
+servers:
+- url: https://api.renesas.com/web-data/v1
+  description: Production Server
+- url: https://api.renesas-dev.com/web-data/v1
+  description: Staging Server
+security:
+- ApiKeyAuth: []
+tags:
+- name: Software Tool
+  description: Endpoints for retrieving software tools.
+paths:
+  /software-tools:
+    get:
+      tags:
+      - Software Tool
+      security:
+      - ApiKeyAuth: []
+      summary: Get All Software Tools
+      parameters:
+      - name: limit
+        in: query
+        description: The number of results to return (default 10).
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 10
+      - name: offset
+        in: query
+        description: The page number for pagination (default 0). This is multiplied by limit to get the actual offset.
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+      - name: order
+        in: query
+        description: Sorting property (default sort is by www update date). Multiple sorts can be supplied by comma concatenation.
+        required: false
+        schema:
+          type: string
+          enum:
+          - wwwUpdateDate
+          - softwareToolName
+          - softwareType
+          default: wwwUpdateDate
+        example: wwwUpdateDate,softwareToolName
+      - name: orderDirection
+        in: query
+        description: Sorting direction (default is "desc"). Multiple directions can be defined for multiple sorts.
+        required: false
+        schema:
+          type: string
+          default: desc
+        example: desc,asc
+      - name: softwareToolName
+        in: query
+        description: Filter by software tool name using the "contains" behavior.
+        required: false
+        schema:
+          type: string
+      - name: softwareType
+        in: query
+        description: Filter by software tool type. This is a string exact match.
+        required: false
+        schema:
+          type: string
+          default: all
+      - name: includeDiscontinued
+        in: query
+        description: Include discontinued software. Default listing only shows active software.
+        required: false
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/software_tool'
+                  pagination:
+                    type: object
+                    properties:
+                      offset:
+                        type: integer
+                        description: The actual offset used (page * limit)
+                      limit:
+                        type: integer
+                        description: The number of items per page
+                      total:
+                        type: integer
+                        description: Total number of items available
+                      has_more:
+                        type: boolean
+                        description: Whether there are more items available
+              example:
+                data:
+                - softwareToolName: e² studio
+                  wwwUpdateDate: '2024-01-15T10:30:00Z'
+                  url: https://www.renesas.com/software-tool/e2-studio
+                  uuid: 8cdd14dc-21a8-4e9e-9d4d-4a83042b4e48
+                  shortDescription: Eclipse-based integrated development environment (IDE) for Renesas MCU and MPU families
+                  description: e² studio is an Eclipse-based integrated development environment (IDE) that provides a complete development solution for Renesas MCU and MPU families.
+                  softwareType: IDE and Coding Tool
+                  parentSoftwareCategory:
+                  - Development Tools
+                  features: Eclipse-based IDE, integrated debugger, code generation, project templates
+                  discontinued: false
+                  externalUrl: null
+                  images:
+                  - https://www.renesas.com/sites/default/files/e2studio-screenshot.png
+                  evaluationBoards:
+                  - boardKitId: rx71m-starter-kit-plus
+                    title: Renesas Starter Kit+ for RX71M
+                    href: /boards-kits/rx71m-starter-kit-plus
+                  featuredDocuments:
+                  - agileId: X0053000
+                    dcpDocumentId: R01UH0092EJ0120
+                    title: e² studio User's Manual
+                    type: User Manual
+                    language: en
+                    href: /documents/R01UH0092EJ0120
+                - softwareToolName: RZ/G Verified Linux Package [4.4-CIP]
+                  wwwUpdateDate: '2024-01-10T14:20:00Z'
+                  url: https://www.renesas.com/software-tool/rzg-verified-linux-package-44-cip
+                  uuid: 9bde24ec-32b9-5f0f-ae5e-5b94063d6f59
+                  shortDescription: This Linux package contains ported and tested basic software necessary for the industrial segment, and its operation and performance have been verified based on a datasheet.
+                  description: This product provides a whole set of software, which consists of Linux packages and software add-ons. Functions of this product have been verified under our development process management.
+                  softwareType: Software Package
+                  parentSoftwareCategory:
+                  - Tools to Optimize AI Software for AD/ADAS on R-Car SoC
+                  features: Linux kernel (4.4-CIP or 4.4-CIP-RT), 10+ years support with CIP project cooperation, Device Driver, Media Player IF with GStreamer, Video Codec H.264 decoder/encoder (OMX)
+                  discontinued: false
+                  relatedDocumentsSecondary:
+                  - agileId: X0052800
+                    dcpDocumentId: R01US0123EJ0100
+                    title: RZ/G VLP Release Notes
+                    type: Release Notes
+                    language: en
+                    href: /documents/R01US0123EJ0100
+                  relatedSoftwareTools:
+                  - softwareToolName: RZ/G Linux BSP
+                    href: /software-tools/RZ/G Linux BSP
+                pagination:
+                  offset: 0
+                  limit: 10
+                  total: 87
+                  has_more: true
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: Failed to retrieve software tools list
+  /software-tools/{software_tool_id}:
+    get:
+      tags:
+      - Software Tool
+      security:
+      - ApiKeyAuth: []
+      summary: Get Software Tool by ID
+      parameters:
+      - name: tool_id
+        in: path
+        schema:
+          type: string
+        required: true
+        description: The unique identifier of the software tool.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/software_tool'
+              example:
+                softwareToolName: e² studio
+                wwwUpdateDate: '2024-01-15T10:30:00Z'
+                url: https://www.renesas.com/software-tool/e2-studio
+                uuid: 8cdd14dc-21a8-4e9e-9d4d-4a83042b4e48
+                shortDescription: Eclipse-based integrated development environment (IDE) for Renesas MCU and MPU families
+                description: e² studio is an Eclipse-based integrated development environment (IDE) that provides a complete development solution for Renesas MCU and MPU families. It offers comprehensive support for code development, debugging, and project management across all Renesas MCU and MPU product lines.
+                softwareType: IDE and Coding Tool
+                parentSoftwareCategory:
+                - Tools to Optimize AI Software for AD/ADAS on R-Car SoC
+                features: Eclipse-based IDE, integrated debugger, code generation, project templates, multi-core debugging, real-time trace
+                additionalDetails: The IDE includes advanced features such as intelligent code completion, refactoring tools, and integrated version control.
+                documentationDetails: Comprehensive documentation including user manuals, quick start guides, and video tutorials.
+                downloadDetails: Available for Windows, Linux, and macOS. Includes installer packages and update sites.
+                releaseInformation: Latest version 2024.01 released on January 15, 2024 with enhanced debugging capabilities and improved support for RZ series MPUs.
+                targetDeviceDescription: Supports all Renesas MCU and MPU families including RA, RX, RH850, RZ/A, RZ/G, and RZ/V series with comprehensive development toolchain integration.
+                discontinued: false
+                externalUrl: null
+                images:
+                - https://www.renesas.com/sites/default/files/e2studio-screenshot.png
+                - https://www.renesas.com/sites/default/files/e2studio-debug-view.png
+                evaluationBoards:
+                - boardKitId: rx71m-starter-kit-plus
+                  title: Renesas Starter Kit+ for RX71M
+                  href: /boards-kits/rx71m-starter-kit-plus
+                - boardKitId: ra6m4-cpk
+                  title: RA6M4 Clicker Prototype Kit
+                  href: /boards-kits/ra6m4-cpk
+                orderableProducts:
+                - orderableId: R5F571MFCDFB#V0
+                  href: /product-parts/R5F571MFCDFB%23V0
+                featuredDocuments:
+                - agileId: X0053000
+                  dcpDocumentId: R01UH0092EJ0120
+                  title: e² studio User's Manual
+                  type: User Manual
+                  language: en
+                  href: /documents/R01UH0092EJ0120
+                - agileId: X0053001
+                  dcpDocumentId: R01AN0001EJ0100
+                  title: e² studio Quick Start Guide
+                  type: Quick Start Guide
+                  language: en
+                  href: /documents/R01AN0001EJ0100
+                relatedDocuments:
+                - agileId: X0053002
+                  dcpDocumentId: R01AN0002EJ0100
+                  title: e² studio Installation Guide
+                  type: Installation Guide
+                  language: en
+                  href: /documents/R01AN0002EJ0100
+                relatedDocumentsSecondary:
+                - agileId: X0053003
+                  dcpDocumentId: R01AN0003EJ0100
+                  title: e² studio Migration Guide
+                  type: Application Note
+                  language: en
+                  href: /documents/R01AN0003EJ0100
+                relatedSoftwareTools:
+                - softwareToolName: Smart Configurator for RA/RE Family
+                  href: /software-tools/Smart Configurator for RA/RE Family
+                - softwareToolName: Flexible Software Package (FSP)
+                  href: /software-tools/Flexible Software Package (FSP)
+                relatedSoftwareToolsSecondary:
+                - name: Renesas Flash Programmer (Programming GUI)
+                  href: /software-tools/Renesas Flash Programmer (Programming GUI)
+                partner:
+                - name: Eclipse Foundation
+                  url: https://www.eclipse.org/
+                relatedVideos:
+                - videoId: '25586088'
+                  title: How to Use Event Link Control on RA0E1 Fast Prototyping Board
+                  url: https://www.renesas.com/video/how-use-event-link-control-ra0e1-fast-prototyping-board
+        '404':
+          description: Software tool not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: Software tool with ID 'invalid-id' not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: Failed to retrieve software tool details
+components:
+  schemas:
+    software_tool:
+      type: object
+      properties:
+        softwareToolName:
+          type: string
+          description: Unique identifier for the software tool (uses full title).
+          example: RZ/G Verified Linux Package [4.4-CIP]
+        wwwUpdateDate:
+          type: string
+          description: Date the software tool page was last updated on the website.
+        url:
+          type: string
+          format: uri
+          description: Public URL of the software tool page on the Renesas website.
+          example: https://www.renesas.com/software-tool/rzg-verified-linux-package-44-cip
+        uuid:
+          type: string
+          description: UUID of the software tool.
+          example: 8cdd14dc-21a8-4e9e-9d4d-4a83042b4e48
+        shortDescription:
+          type: string
+          description: Brief description of the software tool.
+          example: This Linux package contains ported and tested basic software necessary for the industrial segment, and its operation and performance have been verified based on a datasheet. It enables you to start using a stable Linux environment and basic software immediately, so you can concentrate on developing your application.
+        description:
+          type: string
+          description: Detailed description of the software tool.
+          example: This product provides a whole set of software, which consists of Linux packages and software add-ons. Functions of this product have been verified under our development process management. Regular maintenance is also provided. You can greatly reduce the burden of software development in embedded system development by using this package. Please read the release note included in this product and 'RZ/G Verified Linux Package Start-up Guide' first when you use the package. VLP[4.4-CIP] maintenance will be finished 2027/1H when the maintenance of the corresponding CIP Linux Kernel version is completed.
+        softwareType:
+          type: string
+          description: Type classification of the software tool.
+          example: Software Package
+        parentSoftwareCategory:
+          type: array
+          description: Parent software category name.
+          items:
+            type: string
+          example:
+          - title: Tools to Optimize AI Software for AD/ADAS on R-Car SoC
+        features:
+          type: string
+          description: Key features and capabilities of the software tool.
+          example: Linux kernel (4.4-CIP or 4.4-CIP-RT), 10+ years support with CIP project cooperation, Device Driver, Media Player IF with GStreamer, Video Codec H.264 decoder/encoder (OMX), Video processing with scaling/clipping/compositing, Graphics function with OpenGL ES (SGX)
+        additionalDetails:
+          type: string
+          nullable: true
+          description: Additional technical details and specifications.
+        documentationDetails:
+          type: string
+          nullable: true
+          description: Details about documentation and help resources.
+        downloadDetails:
+          type: string
+          nullable: true
+          description: Information about downloads and installation.
+        releaseInformation:
+          type: string
+          nullable: true
+          description: Release notes and version information.
+          example: 'Next release: 4.4-CIP version VLP 2.1.25 (end of Dec 2026). Latest: 4.4-CIP version VLP 2.1.24 (Dec 26, 2025). Recent updates include VLP 2.1.23-update2 with both 4.4-CIP and 4.4-CIP-RT support.'
+        targetDeviceDescription:
+          type: string
+          nullable: true
+          description: Description of target devices and compatibility.
+          example: 'Target Reference Boards: iWave RZ/G1H-PF Development Kit, iWave RZ/G1M-PF Development Kit, iWave RZ/G1N-PF Development Kit, iWave RZ/G1E-PF Development Kit, iWave RZ/G1C-PF Development Kit. All targets support Standard Version.'
+        discontinued:
+          type: boolean
+          description: Whether the software tool has been discontinued.
+          example: false
+        externalUrl:
+          type: string
+          format: uri
+          nullable: true
+          description: External download or information URL.
+        images:
+          type: array
+          description: Array of image URLs for the software tool.
+          items:
+            type: string
+            format: uri
+          example:
+          - https://www.renesas.com/sites/default/files/e2studio-screenshot.png
+        evaluationBoards:
+          type: array
+          description: List of compatible boards and kits.
+          items:
+            type: object
+            properties:
+              boardKitId:
+                type: string
+                description: Board or kit identifier.
+              title:
+                type: string
+                description: Board or kit title.
+              href:
+                type: string
+                format: uri
+                description: URL to the board/kit details.
+          example:
+          - boardKitId: rx71m-starter-kit-plus
+            title: Renesas Starter Kit+ for RX71M
+            href: /boards-kits/rx71m-starter-kit-plus
+        orderableProducts:
+          type: array
+          description: List of orderable product parts associated with this board/kit.
+          items:
+            type: object
+            properties:
+              orderableId:
+                type: string
+                description: Orderable product part identifier.
+              href:
+                type: string
+                format: uri
+                description: URL to the product part endpoint.
+          example:
+          - orderableId: R5F571MFCDFB#V0
+            href: /product-parts/R5F571MGCDFB%2310
+          - orderableId: R5F571MFCDFC#V0
+            href: /product-parts/R5F571MGCDFB%2330
+        featuredDocuments:
+          type: array
+          description: Featured documents associated with the board/kit.
+          items:
+            type: object
+            properties:
+              agileId:
+                type: string
+                description: Agile ID of the document.
+              dcpDocumentId:
+                type: string
+                nullable: true
+                description: DCP Document ID, if applicable.
+              title:
+                type: string
+                description: Document title.
+              type:
+                type: string
+                description: Document type.
+              language:
+                type: string
+                description: Document language.
+              href:
+                type: string
+                format: uri
+                description: Public URL of the document file.
+          example:
+          - agileId: X0052700
+            dcpDocumentId: R01DS0249EJ0120
+            title: RX71M Datasheet Group Rev.1.20
+            type: Datasheet
+            language: en
+            href: /documents/R01DS0249EJ0120
+        relatedDocuments:
+          type: array
+          description: Technical documentation associated with the software tool.
+          items:
+            type: object
+            properties:
+              agileId:
+                type: string
+                description: Agile ID of the document.
+              dcpDocumentId:
+                type: string
+                nullable: true
+                description: DCP Document ID, if applicable.
+              title:
+                type: string
+                description: Document title.
+              type:
+                type: string
+                description: Document type.
+              language:
+                type: string
+                description: Document language.
+              href:
+                type: string
+                format: uri
+                description: Public URL of the document file.
+            example:
+            - agileId: X0052700
+              dcpDocumentId: R01DS0249EJ0120
+              title: RX71M Datasheet Group Rev.1.20
+              type: Datasheet
+              language: en
+              href: /documents/R01DS0249EJ0120
+        relatedDocumentsSecondary:
+          type: array
+          description: Secondary related documents.
+          items:
+            type: object
+            properties:
+              agileId:
+                type: string
+                description: Agile ID of the document.
+              dcpDocumentId:
+                type: string
+                nullable: true
+                description: DCP Document ID, if applicable.
+              title:
+                type: string
+                description: Document title.
+              type:
+                type: string
+                description: Document type.
+              language:
+                type: string
+                description: Document language.
+              href:
+                type: string
+                format: uri
+                description: Public URL of the document file.
+          example:
+          - agileId: X0052700
+            dcpDocumentId: R01DS0249EJ0120
+            title: RX71M Datasheet Group Rev.1.20
+            type: Datasheet
+            language: en
+            href: /documents/R01DS0249EJ0120
+        relatedSoftwareTools:
+          type: array
+          description: Related software tools (primary).
+          items:
+            type: object
+            properties:
+              softwareToolName:
+                type: string
+                description: Software tool identifier.
+              href:
+                type: string
+                format: uri
+                description: URL to the software tool details.
+          example:
+          - softwareToolName: RZ/G Linux BSP
+            href: /software-tools/RZ/G Linux BSP
+        relatedSoftwareToolsSecondary:
+          type: array
+          description: Related software tools (secondary).
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Software tool identifier.
+              href:
+                type: string
+                format: uri
+                description: URL to the software tool details.
+        alternative:
+          type: object
+          nullable: true
+          description: Alternative software tool.
+          properties:
+            softwareToolName:
+              type: string
+              description: Alternative tool identifier.
+            href:
+              type: string
+              format: uri
+              description: URL to the alternative tool.
+            notes:
+              type: string
+              nullable: true
+              description: Notes about the alternative.
+        partner:
+          type: array
+          nullable: true
+          description: Partner information if applicable.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Partner company name.
+              url:
+                type: string
+                format: uri
+                nullable: true
+                description: Partner website URL.
+          example:
+          - name: TESSERA Technology Inc.
+            url: https://www.tessera.co.jp/eng/
+        relatedVideos:
+          type: array
+          description: Related video content.
+          items:
+            type: object
+            properties:
+              videoId:
+                type: string
+                description: Video node ID.
+                example: '25586088'
+              title:
+                type: string
+                description: Video title.
+                example: How to Use Event Link Control on RA0E1 Fast Prototyping Board
+              url:
+                type: string
+                format: uri
+                description: Video URL.
+                example: https://www.renesas.com/video/how-use-event-link-control-ra0e1-fast-prototyping-board
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key required for authentication

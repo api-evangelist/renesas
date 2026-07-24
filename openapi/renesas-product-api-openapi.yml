@@ -1,0 +1,643 @@
+openapi: 3.0.0
+info:
+  title: Renesas Web Data Board & Kit Product API
+  description: 'The Renesas Web Data API enables external systems to retrieve product metadata in real time, without relying on manual CSV downloads or periodic feed refreshes. This shift improves data consistency, streamlines integrations, and aligns with modern API-first architectures.
+
+    '
+  version: 1.2.0
+servers:
+- url: https://api.renesas.com/web-data/v1
+  description: Production Server
+- url: https://api.renesas-dev.com/web-data/v1
+  description: Staging Server
+security:
+- ApiKeyAuth: []
+tags:
+- name: Product
+  description: Endpoints for retrieving products.
+paths:
+  /products:
+    get:
+      tags:
+      - Product
+      security:
+      - ApiKeyAuth: []
+      summary: Get All Products
+      parameters:
+      - name: limit
+        in: query
+        description: The number of results to return (default 10).
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 10
+      - name: offset
+        in: query
+        description: The page number for pagination (default 0). This is multiplied by limit to get the actual offset.
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+      - name: order
+        in: query
+        description: Sorting property (default sort is by www update date). Multiple sorts can be supplied by comma concatenation.
+        required: false
+        schema:
+          type: string
+          enum:
+          - wwwUpdateDate
+          - title
+          default: wwwUpdateDate
+        example: wwwUpdateDate,title
+      - name: orderDirection
+        in: query
+        description: Sorting direction (default is "desc"). Multiple directions can be defined for multiple sorts.
+        required: false
+        schema:
+          type: string
+          default: desc
+        example: desc,asc
+      - name: productId
+        in: query
+        description: Filter by product identifier.
+        required: false
+        schema:
+          type: string
+      - name: category
+        in: query
+        description: Filter by product category.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/product'
+                  pagination:
+                    type: object
+                    properties:
+                      offset:
+                        type: integer
+                        description: The actual offset used (page * limit)
+                      limit:
+                        type: integer
+                        description: The number of items per page
+                      total:
+                        type: integer
+                        description: Total number of items available
+                      has_more:
+                        type: boolean
+                        description: Whether there are more items available
+              example:
+                data:
+                - productId: RA2A1
+                  wwwUpdateDate: '2024-01-15T10:30:00Z'
+                  url: https://www.renesas.com/products/ra2a1
+                  uuid: 8a9c4b2e-1f3d-4e9a-b5c6-7d8e9f0a1b2c
+                  title: 32-bit Microcontrollers with 48MHz Arm Cortex-M23 and Integration of 24-bit Sigma-Delta ADC
+                  category:
+                  - level: 1
+                    title: Microcontrollers & Microprocessors
+                  - level: 2
+                    title: RA Arm Cortex-M MCUs
+                  description: The RA2A1 group is a high-performance, low-power analog microcontroller based on an Arm® Cortex®-M23 core with a 48MHz clock frequency and a wide range of analog front ends, including two types of A/D converters.
+                  features: '• 48MHz Arm Cortex-M23
+
+                    • 256kB Flash memory and 32kB SRAM
+
+                    • 16-bit SAR A/D, 24-bit SD A/D
+
+                    • USB 2.0 Full Speed
+
+                    • CAN 2.0'
+                  applications: Industrial automation, Process automation, Healthcare
+                  images:
+                  - https://www.renesas.com/sites/default/files/ra2a1-block-diagram.png
+                  orderableProducts:
+                  - orderableId: R7FA2A1AB2CBT#AC0
+                    href: /product-parts/R7FA2A1AB2CBT%23AC0
+                  relatedBoardsKits:
+                  - boardKitId: EK-RA2A1
+                    title: Evaluation Kit for RA2A1 MCU Group
+                    href: /boards-kits/EK-RA2A1
+                  featuredDocuments:
+                  - agileId: X1234567
+                    dcpDocumentId: R01DS0354EJ0111
+                    title: Renesas RA2A1 Group Datasheet
+                    type: Datasheet
+                    language: en
+                    href: /documents/R01DS0354EJ0111
+                  relatedDocuments:
+                  - agileId: X1234567
+                    dcpDocumentId: R01DS0354EJ0111
+                    title: Renesas RA2A1 Group Datasheet
+                    type: Datasheet
+                    language: en
+                    href: /documents/R01DS0354EJ0111
+                  softwareTools:
+                  - softwareToolName: Arm® Keil® MDK
+                    href: /software-tools/Arm%C2%AE%20Keil%C2%AE%20MDK
+                  applicationBlockDiagrams:
+                  - title: USB-C Platform with Liquid Detection and Debug Access
+                    description: USB-C system with liquid detection and debug access through a single connector, improving reliability while simplifying development, testing, and manufacturing.
+                    imageUrl: https://www.renesas.com/sites/default/files/usb-c-liquid-detection-block-diagram.png
+                    url: https://www.renesas.com/en/application/usb-c-platform-liquid-detection-debug-access
+                pagination:
+                  offset: 0
+                  limit: 10
+                  total: 256
+                  has_more: true
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: Failed to retrieve products list
+  /products/{product_id}:
+    get:
+      tags:
+      - Product
+      security:
+      - ApiKeyAuth: []
+      summary: Get Product by ID
+      parameters:
+      - name: product_id
+        in: path
+        schema:
+          type: string
+        required: true
+        description: The unique identifier of the product.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/product'
+              example:
+                productId: RA2A1
+                wwwUpdateDate: '2024-01-15T10:30:00Z'
+                url: https://www.renesas.com/products/ra2a1
+                uuid: 8a9c4b2e-1f3d-4e9a-b5c6-7d8e9f0a1b2c
+                title: 32-bit Microcontrollers with 48MHz Arm Cortex-M23 and Integration of 24-bit Sigma-Delta ADC
+                category:
+                - level: 1
+                  title: Microcontrollers & Microprocessors
+                - level: 2
+                  title: RA Arm Cortex-M MCUs
+                description: The RA2A1 group is a high-performance, low-power analog microcontroller based on an Arm® Cortex®-M23 core with a 48MHz clock frequency and a wide range of analog front ends, including two types of A/D converters. This group supports a 16-bit SAR A/D converter, a 24-bit sigma-delta A/D converter, a 12-bit D/A converter, comparators, and operational amplifiers. These functions are suitable for applications that measure and adjust sensor signals with high accuracy. In addition, UART, I2C, simple SPI, CAN, and USB 2.0 Full-Speed are also integrated as peripheral functions, enabling easy communication with other devices. The RA2A1 supports a wide operating voltage range of 1.6V to 5.5V, enabling communication with devices operating at 5V without level shifters. The RA2A1 MCU targets industrial sensor applications with low power consumption and low-cost advantage.
+                features: '• 48MHz Arm Cortex-M23
+
+                  • 256kB Flash memory and 32kB SRAM
+
+                  • 8kB Data Flash to store data as in EEPROM
+
+                  • Scalable from 32-pin to 64-pin packages
+
+                  • Capacitive touch sensing unit
+
+                  • 16-bit SAR A/D, 24-bit SD A/D
+
+                  • 12-bit D/A, 8-bit D/A
+
+                  • OPAMP (3ch), ACMP-HS/LP
+
+                  • USB 2.0 Full Speed
+
+                  • CAN 2.0
+
+                  • SCI (UART, Simple SPI, Simple I2C)'
+                applications: Industrial automation (photoelectric sensor, fiber sensor, temperature sensor), Process automation (pressure sensor, flow control meter, single phase meter), Building automation/home appliance (smoke detector), Healthcare (pulse oximeters, body composition measurement), General purpose
+                images:
+                - https://www.renesas.com/sites/default/files/ra2a1-block-diagram.png
+                orderableProducts:
+                - orderableId: R7FA2A1AB2CBT#AC0
+                  href: /product-parts/R7FA2A1AB2CBT%23AC0
+                - orderableId: R7FA2A1AB3CFJ#AA0
+                  href: /product-parts/R7FA2A1AB3CFJ%23AA0
+                - orderableId: R7FA2A1AB3CFM#AA0
+                  href: /product-parts/R7FA2A1AB3CFM%23AA0
+                relatedBoardsKits:
+                - boardKitId: EK-RA2A1
+                  title: Evaluation Kit for RA2A1 MCU Group
+                  href: /boards-kits/EK-RA2A1
+                featuredDocuments:
+                - agileId: X1234567
+                  dcpDocumentId: R01DS0354EJ0111
+                  title: Renesas RA2A1 Group Datasheet
+                  type: Datasheet
+                  language: en
+                  href: /documents/R01DS0354EJ0111
+                - agileId: X1234568
+                  dcpDocumentId: R01UH0888EJ0110
+                  title: 'Renesas RA2A1 Group User''s Manual: Hardware'
+                  type: Manual - Hardware
+                  language: en
+                  href: /documents/R01UH0888EJ0110
+                relatedDocuments:
+                - agileId: X1234567
+                  dcpDocumentId: R01DS0354EJ0111
+                  title: Renesas RA2A1 Group Datasheet
+                  type: Datasheet
+                  language: en
+                  href: /documents/R01DS0354EJ0111
+                - agileId: X1234568
+                  dcpDocumentId: R01UH0888EJ0110
+                  title: 'Renesas RA2A1 Group User''s Manual: Hardware'
+                  type: Manual - Hardware
+                  language: en
+                  href: /documents/R01UH0888EJ0110
+                - agileId: X1234569
+                  dcpDocumentId: R01TB0027EJ0100
+                  title: RA2A1 Group Handbook
+                  type: Document
+                  language: en
+                  href: /documents/R01TB0027EJ0100
+                relatedDocumentsSecondary:
+                - agileId: X1234569
+                  dcpDocumentId: R01TB0027EJ0100
+                  title: RA2A1 Group Handbook
+                  type: Document
+                  language: en
+                  href: /documents/R01TB0027EJ0100
+                softwareTools:
+                - softwareToolName: Arm® Keil® MDK
+                  href: /software-tools/Arm%C2%AE%20Keil%C2%AE%20MDK
+                - softwareToolName: E2 Emulator (With Programming Function)
+                  href: /software-tools/E2%20Emulator%20(With%20Programming%20Function)
+                - softwareToolName: EK-RA2A1 Example Project Bundle
+                  href: /software-tools/EK-RA2A1%20Example%20Project%20Bundle
+                applicationBlockDiagrams:
+                - title: USB-C Platform with Liquid Detection and Debug Access
+                  description: USB-C system with liquid detection and debug access through a single connector, improving reliability while simplifying development, testing, and manufacturing.
+                  imageUrl: https://www.renesas.com/sites/default/files/usb-c-liquid-detection-block-diagram.png
+                  url: https://www.renesas.com/en/application/usb-c-platform-liquid-detection-debug-access
+                - title: USB Data Logger
+                  description: Portable USB-C data logger for high-speed, low-power, and accurate metric recording anywhere.
+                  imageUrl: https://www.renesas.com/sites/default/files/usb-data-logger-block-diagram.png
+                  url: https://www.renesas.com/en/application/usb-data-logger
+                - title: Electronic Toll with GNSS
+                  description: ETC systems automate toll payments to reduce traffic and eliminate manual toll booth delays.
+                  imageUrl: https://www.renesas.com/sites/default/files/electronic-toll-gnss-block-diagram.png
+                  url: https://www.renesas.com/en/application/electronic-toll-gnss
+                - title: Gaming Keyboard
+                  description: A power-efficient, highly integrated, and compact keyboard system with customizable RGB lighting and stable, low-latency wireless performance.
+                  imageUrl: https://www.renesas.com/sites/default/files/gaming-keyboard-block-diagram.png
+                  url: https://www.renesas.com/en/application/gaming-keyboard
+                - title: Gaming Mouse
+                  description: A power-efficient, highly integrated, and compact mouse system with customizable RGB lighting and stable, low-latency wireless performance.
+                  imageUrl: https://www.renesas.com/sites/default/files/gaming-mouse-block-diagram.png
+                  url: https://www.renesas.com/en/application/gaming-mouse
+        '404':
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: Product with ID 'invalid-id' not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: Failed to retrieve product details
+components:
+  schemas:
+    product:
+      type: object
+      properties:
+        productId:
+          type: string
+          description: Unique identifier for the product.
+          example: RA2A1
+        wwwUpdateDate:
+          type: string
+          description: Date the product page was last updated on the website.
+        uuid:
+          type: string
+          description: UUID of the product.
+          example: 8a9c4b2e-1f3d-4e9a-b5c6-7d8e9f0a1b2c
+        title:
+          type: string
+          description: Title of the product page.
+          example: 32-bit Microcontrollers with 48MHz Arm Cortex-M23 and Integration of 24-bit Sigma-Delta ADC
+        url:
+          type: string
+          format: uri
+          description: Public URL of the product page on the Renesas website.
+          example: https://www.renesas.com/products/ra2a1
+        category:
+          type: array
+          description: Category.
+          items:
+            type: object
+            properties:
+              level:
+                type: integer
+                description: "Level of the category:\n* 1 - Primary category\n* 2 - Secondary subcategory  \n* 3 - Tertiary subcategory\n* 4 - Fourth-level subcategory\n"
+                enum:
+                - 1
+                - 2
+                - 3
+                - 4
+              title:
+                type: string
+                description: Title of the category.
+            example:
+            - level: 1
+              title: Microcontrollers & Microprocessors
+            - level: 2
+              title: RA Arm Cortex-M MCUs
+        description:
+          type: string
+          description: Detailed description of the product.
+          example: The RA2A1 group is a high-performance, low-power analog microcontroller based on an Arm® Cortex®-M23 core with a 48MHz clock frequency and a wide range of analog front ends, including two types of A/D converters. This group supports a 16-bit SAR A/D converter, a 24-bit sigma-delta A/D converter, a 12-bit D/A converter, comparators, and operational amplifiers. These functions are suitable for applications that measure and adjust sensor signals with high accuracy. In addition, UART, I2C, simple SPI, CAN, and USB 2.0 Full-Speed are also integrated as peripheral functions, enabling easy communication with other devices. The RA2A1 supports a wide operating voltage range of 1.6V to 5.5V, enabling communication with devices operating at 5V without level shifters. The RA2A1 MCU targets industrial sensor applications with low power consumption and low-cost advantage.
+        features:
+          type: string
+          description: Key features and capabilities of the product.
+          example: '• 48MHz Arm Cortex-M23
+
+            • 256kB Flash memory and 32kB SRAM
+
+            • 8kB Data Flash to store data as in EEPROM
+
+            • Scalable from 32-pin to 64-pin packages
+
+            • Capacitive touch sensing unit
+
+            • 16-bit SAR A/D, 24-bit SD A/D
+
+            • 12-bit D/A, 8-bit D/A
+
+            • OPAMP (3ch), ACMP-HS/LP
+
+            • USB 2.0 Full Speed
+
+            • CAN 2.0
+
+            • SCI (UART, Simple SPI, Simple I2C)'
+        applications:
+          type: string
+          description: Target applications and use cases.
+          example: Industrial automation (photoelectric sensor, fiber sensor, temperature sensor), Process automation (pressure sensor, flow control meter, single phase meter), Building automation/home appliance (smoke detector), Healthcare (pulse oximeters, body composition measurement), General purpose
+        images:
+          type: array
+          description: Array of image URLs for the product.
+          items:
+            type: string
+            format: uri
+          example:
+          - https://www.renesas.com/sites/default/files/ra2l2-block-diagram_0.png
+        orderableProducts:
+          type: array
+          description: List of orderable product parts associated with this product.
+          items:
+            type: object
+            properties:
+              orderableId:
+                type: string
+                description: Orderable product part identifier.
+              href:
+                type: string
+                format: uri
+                description: URL to the product part endpoint.
+          example:
+          - orderableId: R7FA2A1AB2CBT#AC0
+            href: /product-parts/R7FA2A1AB2CBT%23AC0
+          - orderableId: R7FA2A1AB3CFJ#AA0
+            href: /product-parts/R7FA2A1AB3CFJ%23AA0
+          - orderableId: R7FA2A1AB3CFJ#BA0
+            href: /product-parts/R7FA2A1AB3CFJ%23BA0
+          - orderableId: R7FA2A1AB3CFM#AA0
+            href: /product-parts/R7FA2A1AB3CFM%23AA0
+          - orderableId: R7FA2A1AB3CFM#BA0
+            href: /product-parts/R7FA2A1AB3CFM%23BA0
+          - orderableId: R7FA2A1AB3CNE#AA0
+            href: /product-parts/R7FA2A1AB3CNE%23AA0
+          - orderableId: R7FA2A1AB3CNF#AA0
+            href: /product-parts/R7FA2A1AB3CNF%23AA0
+        relatedBoardsKits:
+          type: array
+          description: List of related boards and kits.
+          items:
+            type: object
+            properties:
+              boardKitId:
+                type: string
+                description: Related board or kit identifier.
+              title:
+                type: string
+                description: Title of the related board or kit.
+              href:
+                type: string
+                format: uri
+                description: URL to the board/kit endpoint.
+          example:
+          - boardKitId: EK-RA2A1
+            title: Evaluation Kit for RA2A1 MCU Group
+            href: /boards-kits/EK-RA2A1
+        featuredDocuments:
+          type: array
+          description: Featured documents associated with the product.
+          items:
+            type: object
+            properties:
+              agileId:
+                type: string
+                description: Agile ID of the document.
+              dcpDocumentId:
+                type: string
+                nullable: true
+                description: DCP Document ID, if applicable.
+              title:
+                type: string
+                description: Document title.
+              type:
+                type: string
+                description: Document type.
+              language:
+                type: string
+                description: Document language.
+              href:
+                type: string
+                format: uri
+                description: Public URL of the document file.
+          example:
+          - agileId: X1234567
+            dcpDocumentId: R01DS0354EJ0111
+            title: Renesas RA2A1 Group Datasheet
+            type: Datasheet
+            language: en
+            href: /documents/R01DS0354EJ0111
+          - agileId: X1234568
+            dcpDocumentId: R01UH0888EJ0110
+            title: 'Renesas RA2A1 Group User''s Manual: Hardware'
+            type: Manual - Hardware
+            language: en
+            href: /documents/R01UH0888EJ0110
+        relatedDocuments:
+          type: array
+          description: List of related document identifiers.
+          items:
+            type: object
+            properties:
+              agileId:
+                type: string
+                description: Agile ID of the document.
+              dcpDocumentId:
+                type: string
+                nullable: true
+                description: DCP Document ID, if applicable.
+              title:
+                type: string
+                description: Document title.
+              type:
+                type: string
+                description: Document type.
+              language:
+                type: string
+                description: Document language.
+              href:
+                type: string
+                format: uri
+                description: Public URL of the document file.
+          example:
+          - agileId: X1234567
+            dcpDocumentId: R01DS0354EJ0111
+            title: Renesas RA2A1 Group Datasheet
+            type: Datasheet
+            language: en
+            href: /documents/R01DS0354EJ0111
+          - agileId: X1234568
+            dcpDocumentId: R01UH0888EJ0110
+            title: 'Renesas RA2A1 Group User''s Manual: Hardware'
+            type: Manual - Hardware
+            language: en
+            href: /documents/R01UH0888EJ0110
+          - agileId: X1234569
+            dcpDocumentId: R01TB0027EJ0100
+            title: RA2A1 Group Handbook
+            type: Document
+            language: en
+            href: /documents/R01TB0027EJ0100
+        relatedDocumentsSecondary:
+          type: array
+          description: List of secondary related document identifiers.
+          items:
+            type: object
+            properties:
+              agileId:
+                type: string
+                description: Agile ID of the document.
+              dcpDocumentId:
+                type: string
+                nullable: true
+                description: DCP Document ID, if applicable.
+              title:
+                type: string
+                description: Document title.
+              type:
+                type: string
+                description: Document type.
+              language:
+                type: string
+                description: Document language.
+              href:
+                type: string
+                format: uri
+                description: Public URL of the document file.
+          example:
+          - agileId: X1234569
+            dcpDocumentId: R01TB0027EJ0100
+            title: RA2A1 Group Handbook
+            type: Document
+            language: en
+            href: /documents/R01TB0027EJ0100
+        softwareTools:
+          type: array
+          description: List of software tools and sample code associated with this product.
+          items:
+            type: object
+            properties:
+              softwareToolName:
+                type: string
+                description: Software tool identifier (uses full title).
+              href:
+                type: string
+                format: uri
+                description: URL to the software tool endpoint.
+          example:
+          - softwareToolName: Arm® Keil® MDK
+            href: /software-tools/Arm%C2%AE%20Keil%C2%AE%20MDK
+          - softwareToolName: E2 Emulator (With Programming Function)
+            href: /software-tools/E2%20Emulator%20(With%20Programming%20Function)
+          - softwareToolName: EK-RA2A1 Example Project Bundle
+            href: /software-tools/EK-RA2A1%20Example%20Project%20Bundle
+        applicationBlockDiagrams:
+          type: array
+          description: List of application block diagrams associated with this product.
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                description: Title of the application block diagram.
+                example: USB-C Platform with Liquid Detection and Debug Access
+              description:
+                type: string
+                description: Brief description of the application.
+                example: USB-C system with liquid detection and debug access through a single connector, improving reliability while simplifying development, testing, and manufacturing.
+              imageUrl:
+                type: string
+                format: uri
+                description: Thumbnail image URL of the block diagram.
+                example: https://www.renesas.com/sites/default/files/usb-c-liquid-detection-block-diagram.png
+              url:
+                type: string
+                format: uri
+                description: URL to the full application block diagram page.
+                example: https://www.renesas.com/en/application/usb-c-platform-liquid-detection-debug-access
+          example:
+          - title: USB-C Platform with Liquid Detection and Debug Access
+            description: USB-C system with liquid detection and debug access through a single connector, improving reliability while simplifying development, testing, and manufacturing.
+            imageUrl: https://www.renesas.com/sites/default/files/usb-c-liquid-detection-block-diagram.png
+            url: https://www.renesas.com/en/application/usb-c-platform-liquid-detection-debug-access
+          - title: USB Data Logger
+            description: Portable USB-C data logger for high-speed, low-power, and accurate metric recording anywhere.
+            imageUrl: https://www.renesas.com/sites/default/files/usb-data-logger-block-diagram.png
+            url: https://www.renesas.com/en/application/usb-data-logger
+          - title: Electronic Toll with GNSS
+            description: ETC systems automate toll payments to reduce traffic and eliminate manual toll booth delays.
+            imageUrl: https://www.renesas.com/sites/default/files/electronic-toll-gnss-block-diagram.png
+            url: https://www.renesas.com/en/application/electronic-toll-gnss
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key required for authentication

@@ -1,0 +1,443 @@
+openapi: 3.0.0
+info:
+  title: Renesas Web Data Board & Kit Package API
+  description: 'The Renesas Web Data API enables external systems to retrieve product metadata in real time, without relying on manual CSV downloads or periodic feed refreshes. This shift improves data consistency, streamlines integrations, and aligns with modern API-first architectures.
+
+    '
+  version: 1.2.0
+servers:
+- url: https://api.renesas.com/web-data/v1
+  description: Production Server
+- url: https://api.renesas-dev.com/web-data/v1
+  description: Staging Server
+security:
+- ApiKeyAuth: []
+tags:
+- name: Package
+  description: Endpoints for retrieving packages.
+paths:
+  /packages:
+    get:
+      tags:
+      - Package
+      security:
+      - ApiKeyAuth: []
+      summary: Get All Packages
+      parameters:
+      - name: limit
+        in: query
+        description: The number of results to return (default 10).
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 10
+      - name: offset
+        in: query
+        description: The page number for pagination (default 0). This is multiplied by limit to get the actual offset.
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+      - name: order
+        in: query
+        description: Sorting property (default sort is by www update date). Multiple sorts can be supplied by comma concatenation.
+        required: false
+        schema:
+          type: string
+          enum:
+          - wwwUpdateDate
+          - packageCode
+          - packageType
+          - packageStatus
+          default: wwwUpdateDate
+        example: wwwUpdateDate,packageCode
+      - name: orderDirection
+        in: query
+        description: Sorting direction (default is "desc"). Multiple directions can be defined for multiple sorts.
+        required: false
+        schema:
+          type: string
+          default: desc
+        example: desc,asc
+      - name: packageCode
+        in: query
+        description: Filter by package identifier.
+        required: false
+        schema:
+          type: string
+      - name: packageType
+        in: query
+        description: Filter by package type.
+        required: false
+        schema:
+          type: string
+      - name: packageStatus
+        in: query
+        description: Filter by package status.
+        required: false
+        schema:
+          type: string
+          enum:
+          - Active
+          - Inactive
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/package'
+                  pagination:
+                    type: object
+                    properties:
+                      offset:
+                        type: integer
+                        description: The actual offset used (page * limit)
+                      limit:
+                        type: integer
+                        description: The number of items per page
+                      total:
+                        type: integer
+                        description: Total number of items available
+                      has_more:
+                        type: boolean
+                        description: Whether there are more items available
+              example:
+                data:
+                - packageCode: pkg_20128
+                  wwwUpdateDate: '2024-01-15T10:30:00Z'
+                  url: https://www.renesas.com/package/pkg20128
+                  uuid: b87ecb11-cd57-4204-b320-63c7dfd6525d
+                  title: pkg_20128 (FCBGA 1368)
+                  packageType: FCBGA
+                  packageName: PRBG1368KA-A
+                  category: IC
+                  class: IC
+                  description: 'Terminal Material - Base: Sn-Ag-Cu'
+                  packageStatus: Active
+                  regulatory:
+                    leadFree: 'Yes'
+                    pbFreeCategory: null
+                  specifications:
+                    leadCount: 1368
+                    pitch: 0.5
+                    length: 19
+                    width: 19
+                    thickness: 2.85
+                    dimensions: 19 x 19 x 2.85
+                    jeitaStandard: ''
+                  tubeOrTray: Tray
+                  images:
+                  - https://www.renesas.com/sites/default/files/styles/medium/public/media/images/fcbga-1368pin-pkg20128-chip_0.png
+                  chipImage: https://www.renesas.com/sites/default/files/pkg20128-chip.png
+                  relatedDocuments:
+                  - agileId: X0141154
+                    title: Package Drawing FCBGA 1368pin PRBG1368KA-A
+                    type: Package Drawing
+                    language: en
+                    href: https://api.renesas.com/web-data/v1/documents/PRBG1368KA-A%20%28RDK-G-001812%29
+                - packageCode: pkg_20129
+                  wwwUpdateDate: '2024-01-10T14:20:00Z'
+                  url: https://www.renesas.com/package/pkg20129
+                  uuid: c98fdc22-de68-5215-c431-74d8efe7636e
+                  title: pkg_20129 (FCBGA 484)
+                  packageType: FCBGA
+                  packageName: PRBG484KA-A
+                  category: IC
+                  class: IC
+                  description: 484-pin flip chip ball grid array package
+                  packageStatus: Active
+                  regulatory:
+                    leadFree: 'Yes'
+                    pbFreeCategory: null
+                  specifications:
+                    leadCount: 484
+                    pitch: 0.8
+                    length: 23
+                    width: 23
+                    thickness: 2.4
+                    dimensions: 23 x 23 x 2.4
+                    jeitaStandard: ''
+                  tubeOrTray: Tray
+                pagination:
+                  offset: 0
+                  limit: 10
+                  total: 245
+                  has_more: true
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: Failed to retrieve packages list
+  /packages/{package_code}:
+    get:
+      tags:
+      - Package
+      security:
+      - ApiKeyAuth: []
+      summary: Get Package by ID
+      parameters:
+      - name: package_id
+        in: path
+        schema:
+          type: string
+        required: true
+        description: The unique identifier of the package.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/package'
+              example:
+                packageCode: pkg_20128
+                wwwUpdateDate: '2024-01-15T10:30:00Z'
+                url: https://www.renesas.com/package/pkg20128
+                uuid: b87ecb11-cd57-4204-b320-63c7dfd6525d
+                title: pkg_20128 (FCBGA 1368)
+                packageType: FCBGA
+                packageName: PRBG1368KA-A
+                category: IC
+                class: IC
+                description: 'Terminal Material - Base: Sn-Ag-Cu'
+                packageStatus: Active
+                regulatory:
+                  leadFree: 'Yes'
+                  pbFreeCategory: Category 1
+                specifications:
+                  leadCount: 1368
+                  pitch: 0.5
+                  length: 19
+                  width: 19
+                  thickness: 2.85
+                  dimensions: 19 x 19 x 2.85
+                  jeitaStandard: JEITA-7
+                tubeOrTray: Tray
+                images:
+                - https://www.renesas.com/sites/default/files/styles/medium/public/media/images/fcbga-1368pin-pkg20128-chip_0.png
+                chipImage: https://www.renesas.com/sites/default/files/pkg20128-chip.png
+                relatedDocuments:
+                - agileId: X0141154
+                  dcpDocumentId: PRBG1368KA-A (RDK-G-001812)
+                  title: Package Drawing FCBGA 1368pin PRBG1368KA-A
+                  type: Package Drawing
+                  language: en
+                  href: https://api.renesas.com/web-data/v1/documents/PRBG1368KA-A%20%28RDK-G-001812%29
+                - agileId: X0061760
+                  dcpDocumentId: R50ZZ0006EJ0100
+                  title: LGA Mounting Manual
+                  type: Mounting Manual
+                  language: en
+                  href: https://api.renesas.com/web-data/v1/documents/R50ZZ0006EJ0100
+        '404':
+          description: Package not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: Package with ID 'invalid-id' not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              example:
+                error: Failed to retrieve package details
+components:
+  schemas:
+    package:
+      type: object
+      properties:
+        packageCode:
+          type: string
+          description: Unique identifier for the package (Package Code).
+          example: pkg_20128
+        wwwUpdateDate:
+          type: string
+          description: Date the package page was last updated on the website.
+        url:
+          type: string
+          format: uri
+          description: Public URL of the package page on the Renesas website.
+          example: https://www.renesas.com/package/pkg20128
+        uuid:
+          type: string
+          description: UUID of the package.
+          example: b87ecb11-cd57-4204-b320-63c7dfd6525d
+        title:
+          type: string
+          description: Title/name of the package.
+          example: pkg_20128 (FCBGA 1368)
+        packageType:
+          type: string
+          description: Type classification of the package.
+          example: FCBGA
+        packageName:
+          type: string
+          description: Name used to describe Renesas packages.
+          example: PRBG1368KA-A
+        category:
+          type: string
+          nullable: true
+          description: Package category classification.
+          example: IC
+        class:
+          type: string
+          nullable: true
+          description: Package class.
+          example: IC
+        description:
+          type: string
+          description: Descriptive text for this package.
+          example: 'Terminal Material - Base: Sn-Ag-Cu'
+        specifications:
+          type: object
+          description: Technical specifications of the package.
+          properties:
+            leadCount:
+              type: integer
+              description: Total number of leads/pins.
+              example: 1368
+            pitch:
+              type: number
+              description: Pin pitch in millimeters.
+              example: 0.5
+            length:
+              type: number
+              description: Package length in millimeters.
+              example: 19
+            width:
+              type: number
+              description: Package width in millimeters.
+              example: 19
+            thickness:
+              type: number
+              description: Package thickness/height in millimeters.
+              example: 2.85
+            dimensions:
+              type: string
+              description: Formatted package dimensions string.
+              example: 19 x 19 x 2.85
+            peakReflowTemp:
+              type: number
+              nullable: true
+              description: Peak reflow temperature in °C.
+            jeitaStandard:
+              type: string
+              nullable: true
+              description: The JEITA standard to which the device is compliant.
+            mark:
+              type: string
+              nullable: true
+              description: Package mark/marking information.
+        packageStatus:
+          type: string
+          description: Current status of the package.
+          enum:
+          - Active
+          - Inactive
+          example: Active
+        regulatory:
+          type: object
+          description: Regulatory and compliance information.
+          properties:
+            leadFree:
+              type: string
+              description: Lead-free compliance status.
+              enum:
+              - 'Yes'
+              - 'No'
+              example: 'Yes'
+            pbFreeCategory:
+              type: string
+              nullable: true
+              description: Lead-free category classification.
+        tubeOrTray:
+          type: string
+          nullable: true
+          description: Packaging carrier type (tube/tray).
+        previousCode:
+          type: string
+          nullable: true
+          description: Package code maintained as part of the Renesas and Intersil merger.
+        images:
+          type: array
+          description: Array of image URLs for the package.
+          items:
+            type: string
+            format: uri
+          example:
+          - https://www.renesas.com/sites/default/files/styles/medium/public/media/images/fcbga-1368pin-pkg20128-chip_0.png
+        chipImage:
+          type: string
+          format: uri
+          description: URL of the chip image for this package.
+          example: https://www.renesas.com/sites/default/files/pkg20128-chip.png
+        relatedDocuments:
+          type: array
+          description: List of related document identifiers.
+          items:
+            type: object
+            properties:
+              agileId:
+                type: string
+                description: Agile ID of the document.
+              dcpDocumentId:
+                type: string
+                nullable: true
+                description: DCP Document ID, if applicable.
+              title:
+                type: string
+                description: Document title.
+              type:
+                type: string
+                description: Document type.
+              language:
+                type: string
+                description: Document language.
+              href:
+                type: string
+                format: uri
+                description: Public URL of the document file.
+          example:
+          - agileId: X0141154
+            dcpDocumentId: PRBG1368KA-A (RDK-G-001812)
+            title: Package Drawing FCBGA 1368pin PRBG1368KA-A
+            type: Package Drawing
+            language: en
+            href: https://api.renesas.com/web-data/v1/documents/PRBG1368KA-A%20%28RDK-G-001812%29
+          - agileId: X0061760
+            dcpDocumentId: R50ZZ0006EJ0100
+            title: LGA Mounting Manual
+            type: Mounting Manual
+            language: en
+            href: https://api.renesas.com/web-data/v1/documents/R50ZZ0006EJ0100
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key required for authentication
