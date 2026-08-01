@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: searched
+source:
+- https://developer.renesas.com/docs/web-data-api/changelog
+- openapi/renesas-web-data-openapi-original.yml
+versioning:
+  scheme: uri-path
+  current: v1
+  spec_version: 1.2.0
+  semver: true
+  docs: https://developer.renesas.com/docs/web-data-api/changelog
+changelog:
+  present: true
+  format: Keep a Changelog
+  url: https://developer.renesas.com/docs/web-data-api/changelog
+  ref: changelog/renesas-changelog.yml
+deprecation:
+  policy_documented: false
+  sunset_header: false
+sla:
+  documented: false
+status_page:
+  found: false
+  note: No dedicated Web Data API status page located as of 2026-07-20.
+deprecated_operations: []
+notes:
+- Semantic Versioning per the published changelog; releases 1.0.0 (2025-10-01)
+  through 1.2.0 (2026-05-27) plus an Unreleased section.
+- Access is partner-gated; no public deprecation/sunset policy or SLA published.

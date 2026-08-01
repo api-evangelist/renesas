@@ -1,0 +1,59 @@
+generated: '2026-07-20'
+method: searched
+source:
+- openapi/renesas-web-data-openapi-original.yml
+- https://developer.renesas.com/docs/web-data-api/guides/quickstart
+- https://developer.renesas.com/docs/web-data-api/guides/authentication
+authentication:
+  style: api-key
+  header: x-api-key
+  ref: authentication/renesas-authentication.yml
+pagination:
+  style: offset
+  params:
+  - name: limit
+    default: 10
+    min: 1
+    max: 100
+  - name: offset
+    default: 0
+  applies_to: list endpoints (/products, /product-parts, /documents, /boards-kits, /packages, /software-tools)
+sorting:
+  params:
+  - order
+  - orderDirection
+  note: List endpoints accept order / orderDirection query parameters where supported.
+filtering:
+  style: query-parameters
+  note: >-
+    Resource-specific query filters — e.g. documents by type/subType/language/
+    category/revision-date; product-parts by part_number, part_number_prefix,
+    part_status, product_family. Parametric filtering of product parts is done
+    via POST /product-parts/search with attribute operators (eq, gt, gte, lt,
+    lte, range) and discoverable attributes via GET /product-parts/attributes.
+versioning:
+  scheme: uri-path
+  current: v1
+  location: base path (/web-data/v1)
+  spec_version: 1.2.0
+  ref: lifecycle/renesas-lifecycle.yml
+idempotency:
+  supported: false
+  note: >-
+    No idempotency-key contract is documented. All data-plane operations are
+    reads (GET), plus POST /product-parts/search and POST /product-parts/
+    cross-reference which are read-only query operations that carry request
+    bodies; none mutate state, so idempotency keys are not applicable.
+request_tracing:
+  documented: false
+rate_limiting:
+  documented: >-
+    Per-key rate limits are applied and communicated to each partner when their
+    API key is issued; no public numeric limit or response-header signal is
+    published.
+error_envelope:
+  ref: errors/renesas-problem-types.yml
+  shape: '{ "error": "<message>" }'
+media_types:
+  request: application/json
+  response: application/json

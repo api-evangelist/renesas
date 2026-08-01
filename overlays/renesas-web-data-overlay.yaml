@@ -1,0 +1,37 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Renesas Web Data API
+  version: 1.0.0
+extends: openapi/renesas-web-data-openapi-original.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: renesas
+    x-apievangelist-artifacts:
+      authentication: authentication/renesas-authentication.yml
+      conventions: conventions/renesas-conventions.yml
+      errors: errors/renesas-problem-types.yml
+      lifecycle: lifecycle/renesas-lifecycle.yml
+      data-model: data-model/renesas-data-model.yml
+      changelog: changelog/renesas-changelog.yml
+      sandbox: sandbox/renesas-sandbox.yml
+      mcp: mcp/renesas-mcp.yml
+- target: $.info
+  update:
+    x-apievangelist-notes: >-
+      OpenAPI 3.0.0 harvested from the Redocly bundle at
+      developer.renesas.com/docs/web-data-api/_bundle/apis/web-data/index.yaml.
+      Operations carry no operationId; agent skills and derivations key on
+      method+path. Auth is a single apiKey scheme (x-api-key header). Known
+      spec inconsistencies noted by the provider: packages path parameter is
+      named package_id in the path file but {package_code} in the URL template;
+      software_tools uses tool_id vs {software_tool_id}.
+- target: $.info
+  update:
+    x-apievangelist-pagination:
+      style: offset
+      params:
+      - limit
+      - offset
+      limit_default: 10
+      limit_max: 100

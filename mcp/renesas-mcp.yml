@@ -1,0 +1,37 @@
+generated: '2026-07-20'
+method: searched
+status: published
+source: https://developer.renesas.com/docs/web-data-api/mcp
+server:
+  name: Renesas Web Data API docs MCP
+  transport: http
+  protocol: streamable-http
+  url: https://developer.renesas.com/docs/web-data-api/mcp
+  protocol_version: '2025-06-18'
+  server_info:
+    name: MCP server
+    version: '2026-07-21'
+  auth:
+    type: oauth2
+    optional: true
+    authorization_server_metadata: well-known/renesas-oauth-authorization-server.json
+    note: >-
+      Redocly-generated documentation MCP server. Anonymous access is permitted
+      for public docs; the OAuth 2.0 authorization server (issuer
+      auth.cloud.redocly.com, endpoints under /docs/web-data-api/_mcp/) governs
+      authenticated access. This MCP exposes the API documentation/spec to AI
+      agents; it is not the data-plane API itself (that uses the x-api-key
+      header — see authentication/renesas-authentication.yml).
+tools:
+- name: list-apis
+  description: Lists available APIs with their context and purpose
+- name: get-endpoints
+  description: Get all endpoints for a specific API
+- name: get-endpoint-info
+  description: Get comprehensive information about a specific endpoint including parameters
+- name: get-security-schemes
+  description: Get the security schemes for a specific API
+- name: get-full-api-description
+  description: Get the complete OpenAPI description
+- name: search
+  description: Search across the documentation to fetch relevant content for a given query

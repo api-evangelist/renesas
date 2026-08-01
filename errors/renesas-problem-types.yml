@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/renesas-web-data-openapi-original.yml
+format: custom
+envelope:
+  media_type: application/json
+  shape: '{ "error": "<human-readable message>" }'
+  field: error
+  note: >-
+    The Web Data API returns a flat JSON object with a single string `error`
+    field on failure. It does NOT use RFC 9457 application/problem+json. Errors
+    are keyed by HTTP status code only; there is no machine-readable error code
+    or type URI.
+problems:
+- status: 400
+  title: Bad request
+  description: Missing required parameter (e.g. productId) or invalid filters.
+  example: '{"error": "productId is required"}'
+  remediation: >-
+    Supply all required parameters. Parametric search (POST /product-parts/search)
+    requires productId in the body; validate filter operators (eq, gt, gte, lt,
+    lte, range).
+- status: 404
+  title: Not found
+  description: The requested resource does not exist.
+  example: '{"error": "Product with ID ''invalid-id'' not found"}'
+  remediation: Verify the resource identifier (product_id, orderable_id, dcp_id, agile_id, board_kit_id, package_code, software_tool_id).
+- status: 500
+  title: Internal server error
+  description: An unexpected server-side error occurred while fulfilling the request.
+  example: '{"error": "Failed to retrieve products list"}'
+  remediation: Retry with backoff; if the error persists, contact Renesas support.

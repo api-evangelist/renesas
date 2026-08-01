@@ -1,27 +1,202 @@
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 21
+  pass: local-v1
 aid: renesas
 name: Renesas
-description: 'Renesas is a company surfaced as a portfolio company of norwest-venture-partners and added
-  to the API Evangelist network as a stub for enrichment. Sector: unknown. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: >-
+  Renesas Electronics Corporation (TYO: 6723) is a global semiconductor
+  manufacturer producing microcontrollers and microprocessors (RA, RX, RL78,
+  RH850, RZ, Synergy families), analog, power, sensor, timing, connectivity, and
+  memory products for automotive, industrial, infrastructure, and consumer
+  electronics applications. On the developer side Renesas operates a public
+  developer portal at developer.renesas.com whose flagship programmable interface
+  is the Renesas Web Data API — a REST API that lets approved partners and
+  integrators retrieve Renesas product metadata (products, product parts,
+  documents, boards & kits, packages, and software tools) in real time instead of
+  relying on manual CSV downloads or periodic feed refreshes. The API is
+  documented on a Redocly Realm site, ships an OpenAPI 3.0.0 description, an
+  auto-generated Model Context Protocol (MCP) server, a browser Try-It console,
+  and a semantic-versioned changelog.
 url: https://raw.githubusercontent.com/api-evangelist/renesas/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - norwest-venture-partners
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: has-public-api
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-- Unknown
-apis: []
+- Semiconductors
+- Microcontrollers
+- Electronics
+- Hardware
+- Product Data
+- Developer Portal
+- Automotive
+- Industrial
+- Embedded
+image: https://www.renesas.com/themes/kachow/images/renesas-logo.png
+apis:
+- aid: renesas:renesas-board-kit-api
+  name: Renesas Board & Kit API
+  description: Endpoints for retrieving boards and kits.
+  humanURL: https://developer.renesas.com/docs/web-data-api
+  baseURL: https://api.renesas.com/web-data/v1
+  tags:
+  - Board & Kit
+  properties:
+  - type: OpenAPI
+    url: openapi/renesas-board-kit-api-openapi.yml
+  - type: Documentation
+    url: https://developer.renesas.com/docs/web-data-api
+  - type: APIReference
+    url: https://developer.renesas.com/docs/web-data-api/apis/web-data
+- aid: renesas:renesas-document-api
+  name: Renesas Document API
+  description: Endpoint for retrieving documents.
+  humanURL: https://developer.renesas.com/docs/web-data-api
+  baseURL: https://api.renesas.com/web-data/v1
+  tags:
+  - Document
+  properties:
+  - type: OpenAPI
+    url: openapi/renesas-document-api-openapi.yml
+  - type: Documentation
+    url: https://developer.renesas.com/docs/web-data-api
+  - type: APIReference
+    url: https://developer.renesas.com/docs/web-data-api/apis/web-data
+- aid: renesas:renesas-package-api
+  name: Renesas Package API
+  description: Endpoints for retrieving packages.
+  humanURL: https://developer.renesas.com/docs/web-data-api
+  baseURL: https://api.renesas.com/web-data/v1
+  tags:
+  - Package
+  properties:
+  - type: OpenAPI
+    url: openapi/renesas-package-api-openapi.yml
+  - type: Documentation
+    url: https://developer.renesas.com/docs/web-data-api
+  - type: APIReference
+    url: https://developer.renesas.com/docs/web-data-api/apis/web-data
+- aid: renesas:renesas-product-api
+  name: Renesas Product API
+  description: Endpoints for retrieving products.
+  humanURL: https://developer.renesas.com/docs/web-data-api
+  baseURL: https://api.renesas.com/web-data/v1
+  tags:
+  - Product
+  properties:
+  - type: OpenAPI
+    url: openapi/renesas-product-api-openapi.yml
+  - type: Documentation
+    url: https://developer.renesas.com/docs/web-data-api
+  - type: APIReference
+    url: https://developer.renesas.com/docs/web-data-api/apis/web-data
+- aid: renesas:renesas-product-part-api
+  name: Renesas Product Part API
+  description: Endpoints for retrieving product parts.
+  humanURL: https://developer.renesas.com/docs/web-data-api
+  baseURL: https://api.renesas.com/web-data/v1
+  tags:
+  - Product Part
+  properties:
+  - type: OpenAPI
+    url: openapi/renesas-product-part-api-openapi.yml
+  - type: Documentation
+    url: https://developer.renesas.com/docs/web-data-api
+  - type: APIReference
+    url: https://developer.renesas.com/docs/web-data-api/apis/web-data
+- aid: renesas:renesas-software-tool-api
+  name: Renesas Software Tool API
+  description: Endpoints for retrieving software tools.
+  humanURL: https://developer.renesas.com/docs/web-data-api
+  baseURL: https://api.renesas.com/web-data/v1
+  tags:
+  - Software Tool
+  properties:
+  - type: OpenAPI
+    url: openapi/renesas-software-tool-api-openapi.yml
+  - type: Documentation
+    url: https://developer.renesas.com/docs/web-data-api
+  - type: APIReference
+    url: https://developer.renesas.com/docs/web-data-api/apis/web-data
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/renesas-agentic-access.yml
 - type: Website
-  url: https://renesas.com
+  url: https://www.renesas.com
+- type: DeveloperPortal
+  url: https://developer.renesas.com
+- type: Documentation
+  url: https://developer.renesas.com/docs/web-data-api
+- type: APIReference
+  url: https://developer.renesas.com/docs/web-data-api/apis/web-data
+- type: GettingStarted
+  url: https://developer.renesas.com/docs/web-data-api/guides/quickstart
+- type: Authentication
+  url: authentication/renesas-authentication.yml
+- type: Support
+  url: https://www.renesas.com/en/support
+- type: Blog
+  url: https://www.renesas.com/en/blogs
+- type: GitHubOrganization
+  url: https://github.com/renesas
+- type: SignUp
+  url: https://www.renesas.com/en/form/web-data-api-access-request
+- type: TermsOfService
+  url: https://www.renesas.com/legal-notices
+- type: PrivacyPolicy
+  url: https://www.renesas.com/privacy
+- type: OpenAPI
+  url: openapi/renesas-web-data-openapi-original.yml
+- type: Overlay
+  url: overlays/renesas-web-data-overlay.yaml
+- type: Examples
+  url: openapi/renesas-web-data-openapi-original.yml
+- type: MCPServer
+  url: mcp/renesas-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/renesas-llms.txt
+- type: WellKnown
+  url: well-known/renesas-well-known.yml
+- type: ErrorCatalog
+  url: errors/renesas-problem-types.yml
+- type: Conventions
+  url: conventions/renesas-conventions.yml
+- type: DataModel
+  url: data-model/renesas-data-model.yml
+- type: Lifecycle
+  url: lifecycle/renesas-lifecycle.yml
+- type: ChangeLog
+  url: changelog/renesas-changelog.yml
+- type: Sandbox
+  url: sandbox/renesas-sandbox.yml
+- type: Conformance
+  url: conformance/renesas-conformance.yml
+- type: DomainSecurity
+  url: security/renesas-domain-security.yml

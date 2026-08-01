@@ -1,0 +1,27 @@
+generated: '2026-07-20'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.renesas.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 30 08:45:45 2026 GMT
+  hsts: true
+  hsts_max_age: 15552000
+- host: developer.renesas.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 12 06:44:55 2026 GMT
+  hsts: false
+- host: api.renesas.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  5 16:56:17 2026 GMT
+  hsts: null
+domains:
+- domain: renesas.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none

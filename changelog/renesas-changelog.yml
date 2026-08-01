@@ -1,0 +1,46 @@
+generated: '2026-07-20'
+method: searched
+source: https://developer.renesas.com/docs/web-data-api/changelog
+scheme: semver
+format: Keep a Changelog
+current_version: 1.2.0
+entries:
+- version: Unreleased
+  changes:
+    added:
+    - 'Product Parts — Cross Reference: POST /product-parts/cross-reference to find
+      Renesas replacement parts by competitor part number (up to 200/request); each
+      result carries match type (Drop-in, Footprint, Functional), competitor
+      manufacturer, lifecycle status, description, comments.'
+    - 'Product Parts — Get Attribute by ID: GET /product-parts/attributes/{productPartAttributeId}.'
+    - 'Product Parts — attributeValuesParsed structured parse of attribute values (types GP, BK, DOC, OP, URL).'
+    - 'Product Parts — chipImage and cadModel (Altium + third-party CAD downloads) properties.'
+    - 'Documents — type and subType filters on GET /documents; new GET /documents/types resource.'
+    - 'Products — applicationBlockDiagrams property.'
+- version: 1.2.0
+  date: '2026-05-27'
+  changes:
+    added:
+    - 'Product Parts — Parametric Search: POST /product-parts/search with attribute filters (eq, gt, gte, lt, lte, range).'
+    - 'Product Parts — Attributes: GET /product-parts/attributes, optional productId filter.'
+    - 'Product Parts — distiInventory, budgetaryPrice (1/100/1000 price breaks), directBuy properties.'
+- version: 1.1.1
+  date: '2026-04-12'
+  changes:
+    added:
+    - 'Products Resource: /products endpoints for listing/retrieving generic products (category hierarchy, features, applications, related boards/kits/documents/software tools).'
+- version: 1.1.0
+  date: '2026-03-12'
+  changes:
+    added:
+    - 'Documents Resource: /documents endpoints (filter by language, category, product, revision date; lookup by DCP or Agile ID).'
+    - 'Boards & Kits Resource: /boards-kits endpoints.'
+    - 'Packages Resource: /packages endpoints (physical specs, regulatory info, related documents).'
+    - 'Software Tools Resource: /software-tools endpoints.'
+    changed:
+    - 'Base Orderable Part Number (BOPN) property added to /product-parts endpoints.'
+- version: 1.0.0
+  date: '2025-10-01'
+  changes:
+    added:
+    - 'Initial release: Web Data API with /product-parts endpoints.'

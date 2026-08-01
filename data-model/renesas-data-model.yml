@@ -1,0 +1,101 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/renesas-web-data-openapi-original.yml
+note: >-
+  Entity graph derived from OpenAPI component schemas and their id-reference
+  fields. Operations carry no operationId; entities key on their primary
+  identifier field.
+entities:
+- name: product
+  primary_id: productId
+  also: [uuid]
+  endpoints:
+  - GET /products
+  - GET /products/{product_id}
+  relationships:
+  - to: product_part
+    kind: has_many
+    via: orderableProducts
+  - to: board_kit
+    kind: has_many
+    via: relatedBoardsKits
+  - to: document
+    kind: has_many
+    via: [featuredDocuments, relatedDocuments, relatedDocumentsSecondary]
+- name: product_part
+  primary_id: orderableId
+  endpoints:
+  - GET /product-parts
+  - GET /product-parts/{orderable_id}
+  - POST /product-parts/search
+  - GET /product-parts/attributes
+  - GET /product-parts/attributes/{productPartAttributeId}
+  - POST /product-parts/cross-reference
+  relationships:
+  - to: product
+    kind: belongs_to
+    via: genericId
+  - to: product_part_attribute
+    kind: has_many
+    via: parametricAttributes
+  - to: document
+    kind: has_many
+    via: [featuredDocument, cadModel]
+- name: product_part_attribute
+  primary_id: productPartAttributeId
+  endpoints:
+  - GET /product-parts/attributes
+  - GET /product-parts/attributes/{productPartAttributeId}
+- name: document
+  primary_id: dcpDocumentId
+  also: [agileId, nid, uuid]
+  endpoints:
+  - GET /documents
+  - GET /documents/types
+  - GET /documents/{dcp_id}
+  - GET /documents/agile-id/{agile_id}
+- name: board_kit
+  primary_id: boardKitId
+  also: [uuid]
+  endpoints:
+  - GET /boards-kits
+  - GET /boards-kits/{board_kit_id}
+  relationships:
+  - to: product_part
+    kind: has_many
+    via: orderableProducts
+  - to: board_kit
+    kind: has_many
+    via: relatedBoardsKits
+  - to: document
+    kind: has_many
+    via: [featuredDocuments, relatedDocuments]
+- name: package
+  primary_id: packageCode
+  also: [uuid]
+  endpoints:
+  - GET /packages
+  - GET /packages/{package_code}
+  relationships:
+  - to: document
+    kind: has_many
+    via: relatedDocuments
+- name: software_tool
+  primary_id: softwareToolName
+  also: [uuid]
+  endpoints:
+  - GET /software-tools
+  - GET /software-tools/{software_tool_id}
+  relationships:
+  - to: board_kit
+    kind: has_many
+    via: evaluationBoards
+  - to: product_part
+    kind: has_many
+    via: orderableProducts
+  - to: software_tool
+    kind: has_many
+    via: relatedSoftwareTools
+  - to: document
+    kind: has_many
+    via: [featuredDocuments, relatedDocuments, relatedDocumentsSecondary]

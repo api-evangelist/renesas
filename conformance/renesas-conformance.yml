@@ -1,0 +1,34 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/renesas-web-data-openapi-original.yml
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: OpenAPI 3.0.0 description published and downloadable from the Redocly docs bundle.
+- id: rest
+  conforms: true
+  evidence: Resource-oriented HTTP GET/POST endpoints returning application/json.
+- id: api-key-auth
+  conforms: true
+  evidence: apiKey securityScheme (x-api-key header) defined and applied.
+- id: semver
+  conforms: true
+  evidence: Changelog adheres to Semantic Versioning (current 1.2.0).
+- id: keep-a-changelog
+  conforms: true
+  evidence: Changelog follows the Keep a Changelog format.
+- id: offset-pagination
+  conforms: true
+  evidence: limit/offset query parameters on list endpoints (limit 1-100, default 10).
+- id: mcp
+  conforms: true
+  evidence: Redocly-generated Model Context Protocol server exposed at /docs/web-data-api/mcp with OAuth 2.0 authorization-server metadata.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: 'Errors use a flat { "error": "<message>" } JSON envelope, not application/problem+json.'
+- id: oauth2
+  conforms: false
+  evidence: Data-plane API is api-key only; OAuth 2.0 applies only to the docs MCP server.
+- id: rfc8594-sunset
+  conforms: false
+  evidence: No documented Sunset/Deprecation header support.

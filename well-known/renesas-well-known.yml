@@ -1,0 +1,38 @@
+generated: '2026-07-20'
+method: searched
+source: probed /.well-known/ across renesas hosts 2026-07-20
+hosts:
+- host: https://developer.renesas.com
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: renesas-oauth-authorization-server.json
+    note: >-
+      OAuth 2.0 authorization-server metadata (RFC 8414) for the Redocly-hosted
+      MCP server on the Web Data API docs. issuer auth.cloud.redocly.com;
+      endpoints under /docs/web-data-api/_mcp/.
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://www.renesas.com
+  documents:
+  - path: /llms.txt
+    status: 200
+    file: ../llms/renesas-llms.txt
+    note: Published llms.txt index for AI crawlers (saved under llms/).
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /security.txt
+    status: 403
+- host: https://api.renesas.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 525
+    note: TLS handshake failed at edge (Cloudflare 525) for unauthenticated probes.
+  - path: /llms.txt
+    status: 404

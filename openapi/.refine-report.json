@@ -1,0 +1,24 @@
+{
+  "provider": "renesas",
+  "sources": [
+    "renesas-board-kit-api-openapi.yml",
+    "renesas-document-api-openapi.yml",
+    "renesas-package-api-openapi.yml",
+    "renesas-product-api-openapi.yml",
+    "renesas-product-part-api-openapi.yml",
+    "renesas-software-tool-api-openapi.yml"
+  ],
+  "outputs": [
+    "renesas-board-kit-api-openapi.yml",
+    "renesas-document-api-openapi.yml",
+    "renesas-package-api-openapi.yml",
+    "renesas-product-api-openapi.yml",
+    "renesas-product-part-api-openapi.yml",
+    "renesas-software-tool-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

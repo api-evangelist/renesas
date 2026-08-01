@@ -1,0 +1,31 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/renesas-web-data-openapi-original.yml
+docs: https://developer.renesas.com/docs/web-data-api/guides/authentication
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+access_model: >-
+  API key authentication. Keys are issued to approved partners and integrators
+  only, via the Web Data API access-request form; there is no self-service
+  signup. The key is used by Renesas to identify/authorize the application,
+  track usage, apply per-key rate limits, and scope which endpoints and data the
+  caller may access.
+access_request: https://www.renesas.com/en/form/web-data-api-access-request
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: x-api-key
+  description: >-
+    API key passed in the x-api-key request header on every call, e.g.
+    `x-api-key: YOUR_API_KEY`. Also send `Accept: application/json`.
+  sources:
+  - openapi/renesas-web-data-openapi-original.yml
+notes:
+- The Redocly-generated MCP server and its OAuth 2.0 authorization-server
+  metadata (well-known/renesas-oauth-authorization-server.json) govern the docs
+  MCP endpoint only; the Web Data API itself is authenticated solely by the
+  x-api-key header.

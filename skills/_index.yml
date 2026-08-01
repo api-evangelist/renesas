@@ -1,0 +1,31 @@
+generated: '2026-07-20'
+method: generated
+api: openapi/renesas-web-data-openapi-original.yml
+note: >-
+  Skills grounded in real Renesas Web Data API operations (method+path; the spec
+  declares no operationId). renesas-CLAUDE.md is the provider-published CLAUDE.md
+  captured verbatim from the docs site.
+skills:
+- file: renesas-find-parts.md
+  name: Find and parametrically filter Renesas product parts
+  operations:
+  - GET /product-parts
+  - GET /product-parts/attributes
+  - POST /product-parts/search
+  - GET /product-parts/{orderable_id}
+- file: renesas-cross-reference.md
+  name: Cross-reference competitor parts to Renesas replacements
+  operations:
+  - POST /product-parts/cross-reference
+  - GET /product-parts/{orderable_id}
+- file: renesas-documents.md
+  name: Retrieve Renesas product documents
+  operations:
+  - GET /documents/types
+  - GET /documents
+  - GET /documents/{dcp_id}
+  - GET /documents/agile-id/{agile_id}
+- file: renesas-CLAUDE.md
+  name: Renesas Web Data API — provider-published CLAUDE.md
+  method: searched
+  source: https://developer.renesas.com/docs/web-data-api/claude.md

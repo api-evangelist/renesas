@@ -1,0 +1,28 @@
+generated: '2026-07-20'
+method: searched
+source:
+- openapi/renesas-web-data-openapi-original.yml
+- https://developer.renesas.com/docs/web-data-api/apis/web-data
+environments:
+- name: production
+  base_url: https://api.renesas.com/web-data/v1
+- name: staging
+  base_url: https://api.renesas-dev.com/web-data/v1
+  note: >-
+    Dedicated staging server declared in the OpenAPI servers[]; used to validate
+    integrations before pointing at production.
+try_it_console:
+  available: true
+  name: Try-It (Redocly Replay)
+  location: https://developer.renesas.com/docs/web-data-api/apis/web-data
+  note: >-
+    The Redocly Realm API reference renders an in-browser Try-It console
+    ("Replay") for every endpoint, pre-filled with the selected operation and
+    parameters. Requires a valid x-api-key to execute live calls.
+test_credentials:
+  self_service: false
+  note: >-
+    No public/shared sandbox API key is published. Keys are issued to approved
+    partners via the access-request form; the same key works against staging and
+    production per the caller's granted scope. No magic/test identifiers are
+    documented.
