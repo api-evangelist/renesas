@@ -171,11 +171,11 @@ common:
 - type: PrivacyPolicy
   url: https://www.renesas.com/privacy
 - type: OpenAPI
-  url: openapi/renesas-web-data-openapi-original.yml
+  url: openapi/_original/renesas-web-data-openapi-original.yml
 - type: Overlay
   url: overlays/renesas-web-data-overlay.yaml
 - type: Examples
-  url: openapi/renesas-web-data-openapi-original.yml
+  url: openapi/_original/renesas-web-data-openapi-original.yml
 - type: MCPServer
   url: mcp/renesas-mcp.yml
 - type: AgentSkill
