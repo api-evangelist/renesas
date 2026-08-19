@@ -1,0 +1,497 @@
+{
+  "item": [
+    {
+      "id": "431ac5fc-3ebc-4fec-96cc-fca732b8ca7d",
+      "name": "Package",
+      "description": {
+        "content": "Endpoints for retrieving packages.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0e68aacf-99ce-45aa-8d1e-c53418eb1a19",
+          "name": "Get All Packages",
+          "request": {
+            "name": "Get All Packages",
+            "description": {},
+            "url": {
+              "path": [
+                "packages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "The number of results to return (default 10)."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The page number for pagination (default 0). This is multiplied by limit to get the actual offset."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "wwwUpdateDate",
+                  "description": "Sorting property (default sort is by www update date). Multiple sorts can be supplied by comma concatenation."
+                },
+                {
+                  "disabled": false,
+                  "key": "orderDirection",
+                  "value": "desc",
+                  "description": "Sorting direction (default is \"desc\"). Multiple directions can be defined for multiple sorts."
+                },
+                {
+                  "disabled": false,
+                  "key": "packageCode",
+                  "value": "<string>",
+                  "description": "Filter by package identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "packageType",
+                  "value": "<string>",
+                  "description": "Filter by package type."
+                },
+                {
+                  "disabled": false,
+                  "key": "packageStatus",
+                  "value": "<string>",
+                  "description": "Filter by package status."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "da975736-3110-45ba-923c-7beffbb23517",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order",
+                      "value": "wwwUpdateDate"
+                    },
+                    {
+                      "key": "orderDirection",
+                      "value": "desc,asc"
+                    },
+                    {
+                      "key": "packageCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "packageType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "packageStatus",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"packageCode\": \"pkg_20128\",\n      \"wwwUpdateDate\": \"2024-01-15T10:30:00Z\",\n      \"url\": \"https://www.renesas.com/package/pkg20128\",\n      \"uuid\": \"b87ecb11-cd57-4204-b320-63c7dfd6525d\",\n      \"title\": \"pkg_20128 (FCBGA 1368)\",\n      \"packageType\": \"FCBGA\",\n      \"packageName\": \"PRBG1368KA-A\",\n      \"category\": \"IC\",\n      \"class\": \"IC\",\n      \"description\": \"Terminal Material - Base: Sn-Ag-Cu\",\n      \"packageStatus\": \"Active\",\n      \"regulatory\": {\n        \"leadFree\": \"Yes\",\n        \"pbFreeCategory\": null\n      },\n      \"specifications\": {\n        \"leadCount\": 1368,\n        \"pitch\": 0.5,\n        \"length\": 19,\n        \"width\": 19,\n        \"thickness\": 2.85,\n        \"dimensions\": \"19 x 19 x 2.85\",\n        \"jeitaStandard\": \"\"\n      },\n      \"tubeOrTray\": \"Tray\",\n      \"images\": [\n        \"https://www.renesas.com/sites/default/files/styles/medium/public/media/images/fcbga-1368pin-pkg20128-chip_0.png\"\n      ],\n      \"chipImage\": \"https://www.renesas.com/sites/default/files/pkg20128-chip.png\",\n      \"relatedDocuments\": [\n        {\n          \"agileId\": \"X0141154\",\n          \"title\": \"Package Drawing FCBGA 1368pin PRBG1368KA-A\",\n          \"type\": \"Package Drawing\",\n          \"language\": \"en\",\n          \"href\": \"https://api.renesas.com/web-data/v1/documents/PRBG1368KA-A%20%28RDK-G-001812%29\"\n        }\n      ]\n    },\n    {\n      \"packageCode\": \"pkg_20129\",\n      \"wwwUpdateDate\": \"2024-01-10T14:20:00Z\",\n      \"url\": \"https://www.renesas.com/package/pkg20129\",\n      \"uuid\": \"c98fdc22-de68-5215-c431-74d8efe7636e\",\n      \"title\": \"pkg_20129 (FCBGA 484)\",\n      \"packageType\": \"FCBGA\",\n      \"packageName\": \"PRBG484KA-A\",\n      \"category\": \"IC\",\n      \"class\": \"IC\",\n      \"description\": \"484-pin flip chip ball grid array package\",\n      \"packageStatus\": \"Active\",\n      \"regulatory\": {\n        \"leadFree\": \"Yes\",\n        \"pbFreeCategory\": null\n      },\n      \"specifications\": {\n        \"leadCount\": 484,\n        \"pitch\": 0.8,\n        \"length\": 23,\n        \"width\": 23,\n        \"thickness\": 2.4,\n        \"dimensions\": \"23 x 23 x 2.4\",\n        \"jeitaStandard\": \"\"\n      },\n      \"tubeOrTray\": \"Tray\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": 0,\n    \"limit\": 10,\n    \"total\": 245,\n    \"has_more\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b5a1dd0-4c46-4631-96e2-cf5e59797443",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order",
+                      "value": "wwwUpdateDate"
+                    },
+                    {
+                      "key": "orderDirection",
+                      "value": "desc,asc"
+                    },
+                    {
+                      "key": "packageCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "packageType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "packageStatus",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Failed to retrieve packages list\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1099b88-3e02-4a54-bece-0565339e2eee",
+          "name": "Get Package by ID",
+          "request": {
+            "name": "Get Package by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "packages",
+                ":package_code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "package_id",
+                  "description": "(Required) The unique identifier of the package."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8291e1aa-7127-47c9-9e29-ce31e985510f",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":package_code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "package_id",
+                      "description": "(Required) The unique identifier of the package."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"packageCode\": \"pkg_20128\",\n  \"wwwUpdateDate\": \"2024-01-15T10:30:00Z\",\n  \"url\": \"https://www.renesas.com/package/pkg20128\",\n  \"uuid\": \"b87ecb11-cd57-4204-b320-63c7dfd6525d\",\n  \"title\": \"pkg_20128 (FCBGA 1368)\",\n  \"packageType\": \"FCBGA\",\n  \"packageName\": \"PRBG1368KA-A\",\n  \"category\": \"IC\",\n  \"class\": \"IC\",\n  \"description\": \"Terminal Material - Base: Sn-Ag-Cu\",\n  \"packageStatus\": \"Active\",\n  \"regulatory\": {\n    \"leadFree\": \"Yes\",\n    \"pbFreeCategory\": \"Category 1\"\n  },\n  \"specifications\": {\n    \"leadCount\": 1368,\n    \"pitch\": 0.5,\n    \"length\": 19,\n    \"width\": 19,\n    \"thickness\": 2.85,\n    \"dimensions\": \"19 x 19 x 2.85\",\n    \"jeitaStandard\": \"JEITA-7\"\n  },\n  \"tubeOrTray\": \"Tray\",\n  \"images\": [\n    \"https://www.renesas.com/sites/default/files/styles/medium/public/media/images/fcbga-1368pin-pkg20128-chip_0.png\"\n  ],\n  \"chipImage\": \"https://www.renesas.com/sites/default/files/pkg20128-chip.png\",\n  \"relatedDocuments\": [\n    {\n      \"agileId\": \"X0141154\",\n      \"dcpDocumentId\": \"PRBG1368KA-A (RDK-G-001812)\",\n      \"title\": \"Package Drawing FCBGA 1368pin PRBG1368KA-A\",\n      \"type\": \"Package Drawing\",\n      \"language\": \"en\",\n      \"href\": \"https://api.renesas.com/web-data/v1/documents/PRBG1368KA-A%20%28RDK-G-001812%29\"\n    },\n    {\n      \"agileId\": \"X0061760\",\n      \"dcpDocumentId\": \"R50ZZ0006EJ0100\",\n      \"title\": \"LGA Mounting Manual\",\n      \"type\": \"Mounting Manual\",\n      \"language\": \"en\",\n      \"href\": \"https://api.renesas.com/web-data/v1/documents/R50ZZ0006EJ0100\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b14e8ac0-3b35-4edc-ac29-22d347a34e73",
+              "name": "Package not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":package_code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "package_id",
+                      "description": "(Required) The unique identifier of the package."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Package with ID 'invalid-id' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a28541f4-36a7-4933-9792-79af05ad0a83",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":package_code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "package_id",
+                      "description": "(Required) The unique identifier of the package."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Failed to retrieve package details\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.renesas.com/web-data/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bddb829a-fb39-43e7-9d5e-527db6f2851b",
+    "name": "Renesas Web Data Board & Kit Package API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Renesas Web Data API enables external systems to retrieve product metadata in real time, without relying on manual CSV downloads or periodic feed refreshes. This shift improves data consistency, streamlines integrations, and aligns with modern API-first architectures.\n",
+      "type": "text/plain"
+    }
+  }
+}

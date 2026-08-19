@@ -1,0 +1,497 @@
+{
+  "item": [
+    {
+      "id": "e86cd95b-98c6-4c63-a7a5-472c2cd6229a",
+      "name": "Board & Kit",
+      "description": {
+        "content": "Endpoints for retrieving boards and kits.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bb4c0d92-0cb3-408b-a874-9856017aa6ba",
+          "name": "Get All Boards & Kits",
+          "request": {
+            "name": "Get All Boards & Kits",
+            "description": {},
+            "url": {
+              "path": [
+                "boards-kits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "The number of results to return (default 10)."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The page number for pagination (default 0). This is multiplied by limit to get the actual offset."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "wwwUpdateDate",
+                  "description": "Sorting property (default sort is by www update date). Multiple sorts can be supplied by comma concatenation."
+                },
+                {
+                  "disabled": false,
+                  "key": "orderDirection",
+                  "value": "desc",
+                  "description": "Sorting direction (default is \"desc\"). Multiple directions can be defined for multiple sorts."
+                },
+                {
+                  "disabled": false,
+                  "key": "boardKitId",
+                  "value": "<string>",
+                  "description": "Filter by board/kit identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "boardKitType",
+                  "value": "<string>",
+                  "description": "Filter by board/kit type."
+                },
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "Filter by product category."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "80ed7c0c-d6ba-4208-8d5d-5fe88d2ebd78",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "boards-kits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order",
+                      "value": "wwwUpdateDate"
+                    },
+                    {
+                      "key": "orderDirection",
+                      "value": "desc,asc"
+                    },
+                    {
+                      "key": "boardKitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "boardKitType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"boardKitId\": \"rx71m-starter-kit-plus\",\n      \"wwwUpdateDate\": \"2024-01-15T10:30:00Z\",\n      \"url\": \"https://www.renesas.com/design-resources/boards-kits/rx71m-starter-kit-plus\",\n      \"uuid\": \"5cdd14dc-21a8-4e9e-9d4d-4a83042b4e47\",\n      \"title\": \"Renesas Starter Kit+ for RX71M\",\n      \"boardKitType\": \"evaluation\",\n      \"category\": [\n        {\n          \"level\": 1,\n          \"title\": \"Microcontrollers & Microprocessors\"\n        },\n        {\n          \"level\": 2,\n          \"title\": \"RX 32-Bit Performance/Efficiency MCUs\"\n        }\n      ],\n      \"description\": \"32-bit microcontroller capable of up to 240 MHz operation. Employs the RXv2 core, a more powerful evolved form of the RX core that was used in previous RX devices, while maintaining compatibility.\",\n      \"features\": \"On-board debugger, Arduino compatible headers, multiple interface options\",\n      \"applications\": \"Industrial automation, motor control, IoT applications\",\n      \"images\": [\n        \"https://www.renesas.com/sites/default/files/rx71m-evb-top.jpg\",\n        \"https://www.renesas.com/sites/default/files/rx71m-evb-bottom.jpg\"\n      ],\n      \"orderableProducts\": [\n        {\n          \"orderableId\": \"R5F571MFCDFB#V0\",\n          \"href\": \"/product-parts/R5F571MFCDFB%23V0\"\n        }\n      ],\n      \"partner\": [\n        {\n          \"name\": \"TESSERA Technology Inc.\",\n          \"url\": \"https://www.tessera.co.jp/eng/\"\n        }\n      ],\n      \"relatedBoardsKits\": [\n        {\n          \"boardKitId\": \"RX71M-Starter-Kit-Plus\",\n          \"title\": \"Renesas Starter Kit+ for RX71M\",\n          \"href\": \"/boards-kits/RX71M-Starter-Kit-Plus\"\n        },\n        {\n          \"boardKitId\": \"YRPBRX71M\",\n          \"title\": \"RX71M Revelation Kit - Easy Evaluation and Development with RX71M\",\n          \"href\": \"/boards-kits/YRPBRX71M\"\n        }\n      ],\n      \"featuredDocuments\": [\n        {\n          \"agileId\": \"X0052700\",\n          \"dcpDocumentId\": \"R01DS0249EJ0120\",\n          \"title\": \"RX71M Datasheet Group Rev.1.20\",\n          \"type\": \"Datasheet\",\n          \"language\": \"en\",\n          \"href\": \"/documents/R01DS0249EJ0120\"\n        }\n      ],\n      \"relatedDocuments\": [\n        {\n          \"agileId\": \"X0052700\",\n          \"dcpDocumentId\": \"R01DS0249EJ0120\",\n          \"title\": \"RX71M Datasheet Group Rev.1.20\",\n          \"type\": \"Datasheet\",\n          \"language\": \"en\",\n          \"href\": \"/documents/R01DS0249EJ0120\"\n        }\n      ]\n    },\n    {\n      \"boardKitId\": \"s7g2-dk\",\n      \"wwwUpdateDate\": \"2024-01-10T14:20:00Z\",\n      \"url\": \"https://www.renesas.com/design-resources/boards-kits/s7g2-dk\",\n      \"uuid\": \"2b8f94ac-31d8-4e2e-8c3d-5b92053c5e48\",\n      \"title\": \"Synergy S7G2 Development Kit\",\n      \"boardKitType\": \"development\",\n      \"category\": [\n        {\n          \"level\": 1,\n          \"title\": \"Microcontrollers & Microprocessors\"\n        },\n        {\n          \"level\": 2,\n          \"title\": \"Synergy MCUs\"\n        }\n      ],\n      \"description\": \"Complete development kit for Synergy S7G2 microcontroller with integrated development environment and rich connectivity options\",\n      \"features\": \"Integrated development environment, rich connectivity options\",\n      \"applications\": \"IoT gateways, industrial HMI, connected appliances\",\n      \"images\": [\n        \"https://www.renesas.com/sites/default/files/s7g2-dk-main.jpg\"\n      ],\n      \"orderableProducts\": [\n        {\n          \"orderableId\": \"S7G2DK\",\n          \"href\": \"/product-parts/S7G2DK\"\n        }\n      ],\n      \"partner\": [\n        {\n          \"name\": \"TESSERA Technology Inc.\",\n          \"url\": \"https://www.tessera.co.jp/eng/\"\n        }\n      ]\n    }\n  ],\n  \"pagination\": {\n    \"offset\": 0,\n    \"limit\": 10,\n    \"total\": 156,\n    \"has_more\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6fedf371-f73b-44c7-a726-9032a39f3c87",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "boards-kits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order",
+                      "value": "wwwUpdateDate"
+                    },
+                    {
+                      "key": "orderDirection",
+                      "value": "desc,asc"
+                    },
+                    {
+                      "key": "boardKitId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "boardKitType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Failed to retrieve boards and kits list\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0ba1270-fbec-4305-a859-a214666e2597",
+          "name": "Get Board or Kit by ID",
+          "request": {
+            "name": "Get Board or Kit by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "boards-kits",
+                ":board_kit_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "board_kit_id",
+                  "description": "(Required) The unique identifier of the board or kit."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4308eac0-6f87-4b7d-b9a4-516b21aeeb90",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "boards-kits",
+                    ":board_kit_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "board_kit_id",
+                      "description": "(Required) The unique identifier of the board or kit."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"boardKitId\": \"rx71m-starter-kit-plus\",\n  \"wwwUpdateDate\": \"2024-01-15T10:30:00Z\",\n  \"url\": \"https://www.renesas.com/design-resources/boards-kits/rx71m-starter-kit-plus\",\n  \"uuid\": \"5cdd14dc-21a8-4e9e-9d4d-4a83042b4e47\",\n  \"title\": \"Renesas Starter Kit+ for RX71M\",\n  \"boardKitType\": \"evaluation\",\n  \"category\": [\n    {\n      \"level\": 1,\n      \"title\": \"Microcontrollers & Microprocessors\"\n    },\n    {\n      \"level\": 2,\n      \"title\": \"RX 32-Bit Performance/Efficiency MCUs\"\n    }\n  ],\n  \"description\": \"32-bit microcontroller capable of up to 240 MHz operation. Employs the RXv2 core, a more powerful evolved form of the RX core that was used in previous RX devices, while maintaining compatibility. Realizes 1160 CoreMark, the top performance among microcontrollers with built-in flash.\",\n  \"features\": \"On-board debugger, Arduino compatible headers, multiple interface options\",\n  \"applications\": \"Industrial automation, motor control, IoT applications\",\n  \"additionalDetails\": \"The RX71M evaluation board provides a complete development environment for evaluating and developing applications using the RX71M microcontroller.\",\n  \"images\": [\n    \"https://www.renesas.com/sites/default/files/rx71m-evb-top.jpg\",\n    \"https://www.renesas.com/sites/default/files/rx71m-evb-bottom.jpg\"\n  ],\n  \"orderableProducts\": [\n    {\n      \"orderableId\": \"R5F571MFCDFB#V0\",\n      \"href\": \"/product-parts/R5F571MFCDFB%23V0\"\n    },\n    {\n      \"orderableId\": \"R5F571MFCDFC#V0\",\n      \"href\": \"/product-parts/R5F571MFCDFC%23V0\"\n    }\n  ],\n  \"relatedBoardsKits\": [\n    {\n      \"boardKitId\": \"RX71M-Starter-Kit-Plus\",\n      \"title\": \"Renesas Starter Kit+ for RX71M\",\n      \"href\": \"/boards-kits/RX71M-Starter-Kit-Plus\"\n    },\n    {\n      \"boardKitId\": \"YRPBRX71M\",\n      \"title\": \"RX71M Revelation Kit - Easy Evaluation and Development with RX71M\",\n      \"href\": \"/boards-kits/YRPBRX71M\"\n    }\n  ],\n  \"featuredDocuments\": [\n    {\n      \"agileId\": \"X0052700\",\n      \"dcpDocumentId\": \"R01DS0249EJ0120\",\n      \"title\": \"RX71M Datasheet Group Rev.1.20\",\n      \"type\": \"Datasheet\",\n      \"language\": \"en\",\n      \"href\": \"/documents/R01DS0249EJ0120\"\n    }\n  ],\n  \"relatedDocuments\": [\n    {\n      \"agileId\": \"X0052700\",\n      \"dcpDocumentId\": \"R01DS0249EJ0120\",\n      \"title\": \"RX71M Datasheet Group Rev.1.20\",\n      \"type\": \"Datasheet\",\n      \"language\": \"en\",\n      \"href\": \"/documents/R01DS0249EJ0120\"\n    }\n  ],\n  \"softwareTools\": [\n    {\n      \"name\": \"e2 studio\",\n      \"url\": \"https://www.renesas.com/en/software-tool/e2-studio\"\n    },\n    {\n      \"name\": \"Renesas Flash Programmer (Programming GUI)\",\n      \"url\": \"https://www.renesas.com/en/software-tool/renesas-flash-programmer-programming-gui\"\n    }\n  ],\n  \"partner\": [\n    {\n      \"name\": \"TESSERA Technology Inc.\",\n      \"url\": \"https://www.tessera.co.jp/eng/\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5db5139c-c2eb-4f8f-9c2c-19610fca126a",
+              "name": "Board or kit not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "boards-kits",
+                    ":board_kit_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "board_kit_id",
+                      "description": "(Required) The unique identifier of the board or kit."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Board/kit with ID 'invalid-id' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f9e5e5c5-3a9b-4437-8174-5e271573067d",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "boards-kits",
+                    ":board_kit_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "board_kit_id",
+                      "description": "(Required) The unique identifier of the board or kit."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Failed to retrieve board/kit details\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.renesas.com/web-data/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d44c94c9-cfd2-4e14-b0f9-328546f1de9c",
+    "name": "Renesas Web Data Board & Kit API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Renesas Web Data API enables external systems to retrieve product metadata in real time, without relying on manual CSV downloads or periodic feed refreshes. This shift improves data consistency, streamlines integrations, and aligns with modern API-first architectures.\n",
+      "type": "text/plain"
+    }
+  }
+}

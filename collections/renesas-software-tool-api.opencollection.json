@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Renesas Web Data Board & Kit Software Tool API",
+    "version": "1.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Software Tool",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Software Tools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.renesas.com/web-data/v1/software-tools",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return (default 10)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The page number for pagination (default 0). This is multiplied by limit to get the actual offset."
+              },
+              {
+                "name": "order",
+                "value": "wwwUpdateDate,softwareToolName",
+                "type": "query",
+                "description": "Sorting property (default sort is by www update date). Multiple sorts can be supplied by comma concatenation."
+              },
+              {
+                "name": "orderDirection",
+                "value": "desc,asc",
+                "type": "query",
+                "description": "Sorting direction (default is \"desc\"). Multiple directions can be defined for multiple sorts."
+              },
+              {
+                "name": "softwareToolName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by software tool name using the \"contains\" behavior."
+              },
+              {
+                "name": "softwareType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by software tool type. This is a string exact match."
+              },
+              {
+                "name": "includeDiscontinued",
+                "value": "",
+                "type": "query",
+                "description": "Include discontinued software. Default listing only shows active software."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get All Software Tools"
+        },
+        {
+          "info": {
+            "name": "Get Software Tool by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.renesas.com/web-data/v1/software-tools/:software_tool_id",
+            "params": [
+              {
+                "name": "tool_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the software tool."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get Software Tool by ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

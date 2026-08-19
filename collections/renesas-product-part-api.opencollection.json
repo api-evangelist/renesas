@@ -1,0 +1,228 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Renesas Web Data Board & Kit Product Part API",
+    "version": "1.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Product Part",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Product Parts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.renesas.com/web-data/v1/product-parts",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return (default 10)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The page number for pagination (default 0). This is multiplied by limit to get the actual offset."
+              },
+              {
+                "name": "order",
+                "value": "last_updated,part_number",
+                "type": "query",
+                "description": "Sorting property (default sort is by last updated date). Multiple sorts can be supplied by comma concatenation."
+              },
+              {
+                "name": "orderDirection",
+                "value": "desc,asc",
+                "type": "query",
+                "description": "Sorting direction (default is \"desc\"). Multiple directions can be defined for multiple sorts."
+              },
+              {
+                "name": "part_number_prefix",
+                "value": "",
+                "type": "query",
+                "description": "Filter by part number prefix."
+              },
+              {
+                "name": "part_number",
+                "value": "",
+                "type": "query",
+                "description": "Filter by exact part number."
+              },
+              {
+                "name": "part_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by part status."
+              },
+              {
+                "name": "generic_product_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by generic product ID."
+              },
+              {
+                "name": "product_family",
+                "value": "",
+                "type": "query",
+                "description": "Filter by product family."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get All Product Parts"
+        },
+        {
+          "info": {
+            "name": "Get Product Part by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.renesas.com/web-data/v1/product-parts/:orderable_id",
+            "params": [
+              {
+                "name": "orderable_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the product part."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get Product Part by ID"
+        },
+        {
+          "info": {
+            "name": "Parametric Search for Product Parts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.renesas.com/web-data/v1/product-parts/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Search for product parts within a specific product using parametric attributes."
+        },
+        {
+          "info": {
+            "name": "Get All Product Part Attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.renesas.com/web-data/v1/product-parts/attributes",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return (default 50)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The page number for pagination (default 0). This is multiplied by limit to get the actual offset."
+              },
+              {
+                "name": "productId",
+                "value": "RA2A1",
+                "type": "query",
+                "description": "Filter attributes by product ID to get only attributes relevant to that product."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List all available parametric attributes that can be used for filtering product parts."
+        },
+        {
+          "info": {
+            "name": "Get Product Part Attribute by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.renesas.com/web-data/v1/product-parts/attributes/:productPartAttributeId",
+            "params": [
+              {
+                "name": "productPartAttributeId",
+                "value": "field__operating_frequency",
+                "type": "path",
+                "description": "The unique identifier of the product part attribute."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get Product Part Attribute by ID"
+        },
+        {
+          "info": {
+            "name": "Cross Reference Product Parts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.renesas.com/web-data/v1/product-parts/cross-reference",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Find Renesas replacement parts for up to 200 competitor part numbers per request. Inputs with no matches are included in the response with an empty `results` array.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

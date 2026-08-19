@@ -1,0 +1,497 @@
+{
+  "item": [
+    {
+      "id": "e3bc4b8e-5630-49ad-b572-04b6cf5eab65",
+      "name": "Software Tool",
+      "description": {
+        "content": "Endpoints for retrieving software tools.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "af0a5116-3dfe-494d-8d75-884d2995d7a2",
+          "name": "Get All Software Tools",
+          "request": {
+            "name": "Get All Software Tools",
+            "description": {},
+            "url": {
+              "path": [
+                "software-tools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "The number of results to return (default 10)."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The page number for pagination (default 0). This is multiplied by limit to get the actual offset."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "wwwUpdateDate",
+                  "description": "Sorting property (default sort is by www update date). Multiple sorts can be supplied by comma concatenation."
+                },
+                {
+                  "disabled": false,
+                  "key": "orderDirection",
+                  "value": "desc",
+                  "description": "Sorting direction (default is \"desc\"). Multiple directions can be defined for multiple sorts."
+                },
+                {
+                  "disabled": false,
+                  "key": "softwareToolName",
+                  "value": "<string>",
+                  "description": "Filter by software tool name using the \"contains\" behavior."
+                },
+                {
+                  "disabled": false,
+                  "key": "softwareType",
+                  "value": "all",
+                  "description": "Filter by software tool type. This is a string exact match."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeDiscontinued",
+                  "value": "false",
+                  "description": "Include discontinued software. Default listing only shows active software."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8f69e1b1-f77c-4140-8b9b-752d2b2ee0dd",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "software-tools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order",
+                      "value": "wwwUpdateDate"
+                    },
+                    {
+                      "key": "orderDirection",
+                      "value": "desc,asc"
+                    },
+                    {
+                      "key": "softwareToolName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "softwareType",
+                      "value": "all"
+                    },
+                    {
+                      "key": "includeDiscontinued",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"softwareToolName\": \"e² studio\",\n      \"wwwUpdateDate\": \"2024-01-15T10:30:00Z\",\n      \"url\": \"https://www.renesas.com/software-tool/e2-studio\",\n      \"uuid\": \"8cdd14dc-21a8-4e9e-9d4d-4a83042b4e48\",\n      \"shortDescription\": \"Eclipse-based integrated development environment (IDE) for Renesas MCU and MPU families\",\n      \"description\": \"e² studio is an Eclipse-based integrated development environment (IDE) that provides a complete development solution for Renesas MCU and MPU families.\",\n      \"softwareType\": \"IDE and Coding Tool\",\n      \"parentSoftwareCategory\": [\n        \"Development Tools\"\n      ],\n      \"features\": \"Eclipse-based IDE, integrated debugger, code generation, project templates\",\n      \"discontinued\": false,\n      \"externalUrl\": null,\n      \"images\": [\n        \"https://www.renesas.com/sites/default/files/e2studio-screenshot.png\"\n      ],\n      \"evaluationBoards\": [\n        {\n          \"boardKitId\": \"rx71m-starter-kit-plus\",\n          \"title\": \"Renesas Starter Kit+ for RX71M\",\n          \"href\": \"/boards-kits/rx71m-starter-kit-plus\"\n        }\n      ],\n      \"featuredDocuments\": [\n        {\n          \"agileId\": \"X0053000\",\n          \"dcpDocumentId\": \"R01UH0092EJ0120\",\n          \"title\": \"e² studio User's Manual\",\n          \"type\": \"User Manual\",\n          \"language\": \"en\",\n          \"href\": \"/documents/R01UH0092EJ0120\"\n        }\n      ]\n    },\n    {\n      \"softwareToolName\": \"RZ/G Verified Linux Package [4.4-CIP]\",\n      \"wwwUpdateDate\": \"2024-01-10T14:20:00Z\",\n      \"url\": \"https://www.renesas.com/software-tool/rzg-verified-linux-package-44-cip\",\n      \"uuid\": \"9bde24ec-32b9-5f0f-ae5e-5b94063d6f59\",\n      \"shortDescription\": \"This Linux package contains ported and tested basic software necessary for the industrial segment, and its operation and performance have been verified based on a datasheet.\",\n      \"description\": \"This product provides a whole set of software, which consists of Linux packages and software add-ons. Functions of this product have been verified under our development process management.\",\n      \"softwareType\": \"Software Package\",\n      \"parentSoftwareCategory\": [\n        \"Tools to Optimize AI Software for AD/ADAS on R-Car SoC\"\n      ],\n      \"features\": \"Linux kernel (4.4-CIP or 4.4-CIP-RT), 10+ years support with CIP project cooperation, Device Driver, Media Player IF with GStreamer, Video Codec H.264 decoder/encoder (OMX)\",\n      \"discontinued\": false,\n      \"relatedDocumentsSecondary\": [\n        {\n          \"agileId\": \"X0052800\",\n          \"dcpDocumentId\": \"R01US0123EJ0100\",\n          \"title\": \"RZ/G VLP Release Notes\",\n          \"type\": \"Release Notes\",\n          \"language\": \"en\",\n          \"href\": \"/documents/R01US0123EJ0100\"\n        }\n      ],\n      \"relatedSoftwareTools\": [\n        {\n          \"softwareToolName\": \"RZ/G Linux BSP\",\n          \"href\": \"/software-tools/RZ/G Linux BSP\"\n        }\n      ]\n    }\n  ],\n  \"pagination\": {\n    \"offset\": 0,\n    \"limit\": 10,\n    \"total\": 87,\n    \"has_more\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b058a34-deb1-42fb-88ad-a452fb1050d2",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "software-tools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order",
+                      "value": "wwwUpdateDate"
+                    },
+                    {
+                      "key": "orderDirection",
+                      "value": "desc,asc"
+                    },
+                    {
+                      "key": "softwareToolName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "softwareType",
+                      "value": "all"
+                    },
+                    {
+                      "key": "includeDiscontinued",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Failed to retrieve software tools list\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a986c110-65a6-4963-b1cb-6aa8faa1ee45",
+          "name": "Get Software Tool by ID",
+          "request": {
+            "name": "Get Software Tool by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "software-tools",
+                ":software_tool_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tool_id",
+                  "description": "(Required) The unique identifier of the software tool."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a49cc86d-240d-40cb-9975-591a4b337973",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "software-tools",
+                    ":software_tool_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tool_id",
+                      "description": "(Required) The unique identifier of the software tool."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"softwareToolName\": \"e² studio\",\n  \"wwwUpdateDate\": \"2024-01-15T10:30:00Z\",\n  \"url\": \"https://www.renesas.com/software-tool/e2-studio\",\n  \"uuid\": \"8cdd14dc-21a8-4e9e-9d4d-4a83042b4e48\",\n  \"shortDescription\": \"Eclipse-based integrated development environment (IDE) for Renesas MCU and MPU families\",\n  \"description\": \"e² studio is an Eclipse-based integrated development environment (IDE) that provides a complete development solution for Renesas MCU and MPU families. It offers comprehensive support for code development, debugging, and project management across all Renesas MCU and MPU product lines.\",\n  \"softwareType\": \"IDE and Coding Tool\",\n  \"parentSoftwareCategory\": [\n    \"Tools to Optimize AI Software for AD/ADAS on R-Car SoC\"\n  ],\n  \"features\": \"Eclipse-based IDE, integrated debugger, code generation, project templates, multi-core debugging, real-time trace\",\n  \"additionalDetails\": \"The IDE includes advanced features such as intelligent code completion, refactoring tools, and integrated version control.\",\n  \"documentationDetails\": \"Comprehensive documentation including user manuals, quick start guides, and video tutorials.\",\n  \"downloadDetails\": \"Available for Windows, Linux, and macOS. Includes installer packages and update sites.\",\n  \"releaseInformation\": \"Latest version 2024.01 released on January 15, 2024 with enhanced debugging capabilities and improved support for RZ series MPUs.\",\n  \"targetDeviceDescription\": \"Supports all Renesas MCU and MPU families including RA, RX, RH850, RZ/A, RZ/G, and RZ/V series with comprehensive development toolchain integration.\",\n  \"discontinued\": false,\n  \"externalUrl\": null,\n  \"images\": [\n    \"https://www.renesas.com/sites/default/files/e2studio-screenshot.png\",\n    \"https://www.renesas.com/sites/default/files/e2studio-debug-view.png\"\n  ],\n  \"evaluationBoards\": [\n    {\n      \"boardKitId\": \"rx71m-starter-kit-plus\",\n      \"title\": \"Renesas Starter Kit+ for RX71M\",\n      \"href\": \"/boards-kits/rx71m-starter-kit-plus\"\n    },\n    {\n      \"boardKitId\": \"ra6m4-cpk\",\n      \"title\": \"RA6M4 Clicker Prototype Kit\",\n      \"href\": \"/boards-kits/ra6m4-cpk\"\n    }\n  ],\n  \"orderableProducts\": [\n    {\n      \"orderableId\": \"R5F571MFCDFB#V0\",\n      \"href\": \"/product-parts/R5F571MFCDFB%23V0\"\n    }\n  ],\n  \"featuredDocuments\": [\n    {\n      \"agileId\": \"X0053000\",\n      \"dcpDocumentId\": \"R01UH0092EJ0120\",\n      \"title\": \"e² studio User's Manual\",\n      \"type\": \"User Manual\",\n      \"language\": \"en\",\n      \"href\": \"/documents/R01UH0092EJ0120\"\n    },\n    {\n      \"agileId\": \"X0053001\",\n      \"dcpDocumentId\": \"R01AN0001EJ0100\",\n      \"title\": \"e² studio Quick Start Guide\",\n      \"type\": \"Quick Start Guide\",\n      \"language\": \"en\",\n      \"href\": \"/documents/R01AN0001EJ0100\"\n    }\n  ],\n  \"relatedDocuments\": [\n    {\n      \"agileId\": \"X0053002\",\n      \"dcpDocumentId\": \"R01AN0002EJ0100\",\n      \"title\": \"e² studio Installation Guide\",\n      \"type\": \"Installation Guide\",\n      \"language\": \"en\",\n      \"href\": \"/documents/R01AN0002EJ0100\"\n    }\n  ],\n  \"relatedDocumentsSecondary\": [\n    {\n      \"agileId\": \"X0053003\",\n      \"dcpDocumentId\": \"R01AN0003EJ0100\",\n      \"title\": \"e² studio Migration Guide\",\n      \"type\": \"Application Note\",\n      \"language\": \"en\",\n      \"href\": \"/documents/R01AN0003EJ0100\"\n    }\n  ],\n  \"relatedSoftwareTools\": [\n    {\n      \"softwareToolName\": \"Smart Configurator for RA/RE Family\",\n      \"href\": \"/software-tools/Smart Configurator for RA/RE Family\"\n    },\n    {\n      \"softwareToolName\": \"Flexible Software Package (FSP)\",\n      \"href\": \"/software-tools/Flexible Software Package (FSP)\"\n    }\n  ],\n  \"relatedSoftwareToolsSecondary\": [\n    {\n      \"name\": \"Renesas Flash Programmer (Programming GUI)\",\n      \"href\": \"/software-tools/Renesas Flash Programmer (Programming GUI)\"\n    }\n  ],\n  \"partner\": [\n    {\n      \"name\": \"Eclipse Foundation\",\n      \"url\": \"https://www.eclipse.org/\"\n    }\n  ],\n  \"relatedVideos\": [\n    {\n      \"videoId\": \"25586088\",\n      \"title\": \"How to Use Event Link Control on RA0E1 Fast Prototyping Board\",\n      \"url\": \"https://www.renesas.com/video/how-use-event-link-control-ra0e1-fast-prototyping-board\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed2354b9-7d4a-4caf-8a3c-7e3db2df6d0e",
+              "name": "Software tool not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "software-tools",
+                    ":software_tool_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tool_id",
+                      "description": "(Required) The unique identifier of the software tool."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Software tool with ID 'invalid-id' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "980bdfce-f293-414b-b60f-123f12da68a5",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "software-tools",
+                    ":software_tool_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tool_id",
+                      "description": "(Required) The unique identifier of the software tool."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Failed to retrieve software tool details\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.renesas.com/web-data/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7946c94d-8fe0-4f0b-a978-2391389d8da6",
+    "name": "Renesas Web Data Board & Kit Software Tool API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Renesas Web Data API enables external systems to retrieve product metadata in real time, without relying on manual CSV downloads or periodic feed refreshes. This shift improves data consistency, streamlines integrations, and aligns with modern API-first architectures.\n",
+      "type": "text/plain"
+    }
+  }
+}

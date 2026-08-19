@@ -1,0 +1,483 @@
+{
+  "item": [
+    {
+      "id": "7877be17-34be-4275-aa1e-5bfd8d998009",
+      "name": "Product",
+      "description": {
+        "content": "Endpoints for retrieving products.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "31c666d1-e0a0-47a9-a9e0-c68c2912b852",
+          "name": "Get All Products",
+          "request": {
+            "name": "Get All Products",
+            "description": {},
+            "url": {
+              "path": [
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "The number of results to return (default 10)."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The page number for pagination (default 0). This is multiplied by limit to get the actual offset."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "wwwUpdateDate",
+                  "description": "Sorting property (default sort is by www update date). Multiple sorts can be supplied by comma concatenation."
+                },
+                {
+                  "disabled": false,
+                  "key": "orderDirection",
+                  "value": "desc",
+                  "description": "Sorting direction (default is \"desc\"). Multiple directions can be defined for multiple sorts."
+                },
+                {
+                  "disabled": false,
+                  "key": "productId",
+                  "value": "<string>",
+                  "description": "Filter by product identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "Filter by product category."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9a8cfdeb-81de-4b79-b6a7-66642d3a5404",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order",
+                      "value": "wwwUpdateDate"
+                    },
+                    {
+                      "key": "orderDirection",
+                      "value": "desc,asc"
+                    },
+                    {
+                      "key": "productId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"productId\": \"RA2A1\",\n      \"wwwUpdateDate\": \"2024-01-15T10:30:00Z\",\n      \"url\": \"https://www.renesas.com/products/ra2a1\",\n      \"uuid\": \"8a9c4b2e-1f3d-4e9a-b5c6-7d8e9f0a1b2c\",\n      \"title\": \"32-bit Microcontrollers with 48MHz Arm Cortex-M23 and Integration of 24-bit Sigma-Delta ADC\",\n      \"category\": [\n        {\n          \"level\": 1,\n          \"title\": \"Microcontrollers & Microprocessors\"\n        },\n        {\n          \"level\": 2,\n          \"title\": \"RA Arm Cortex-M MCUs\"\n        }\n      ],\n      \"description\": \"The RA2A1 group is a high-performance, low-power analog microcontroller based on an Arm® Cortex®-M23 core with a 48MHz clock frequency and a wide range of analog front ends, including two types of A/D converters.\",\n      \"features\": \"• 48MHz Arm Cortex-M23\\n• 256kB Flash memory and 32kB SRAM\\n• 16-bit SAR A/D, 24-bit SD A/D\\n• USB 2.0 Full Speed\\n• CAN 2.0\",\n      \"applications\": \"Industrial automation, Process automation, Healthcare\",\n      \"images\": [\n        \"https://www.renesas.com/sites/default/files/ra2a1-block-diagram.png\"\n      ],\n      \"orderableProducts\": [\n        {\n          \"orderableId\": \"R7FA2A1AB2CBT#AC0\",\n          \"href\": \"/product-parts/R7FA2A1AB2CBT%23AC0\"\n        }\n      ],\n      \"relatedBoardsKits\": [\n        {\n          \"boardKitId\": \"EK-RA2A1\",\n          \"title\": \"Evaluation Kit for RA2A1 MCU Group\",\n          \"href\": \"/boards-kits/EK-RA2A1\"\n        }\n      ],\n      \"featuredDocuments\": [\n        {\n          \"agileId\": \"X1234567\",\n          \"dcpDocumentId\": \"R01DS0354EJ0111\",\n          \"title\": \"Renesas RA2A1 Group Datasheet\",\n          \"type\": \"Datasheet\",\n          \"language\": \"en\",\n          \"href\": \"/documents/R01DS0354EJ0111\"\n        }\n      ],\n      \"relatedDocuments\": [\n        {\n          \"agileId\": \"X1234567\",\n          \"dcpDocumentId\": \"R01DS0354EJ0111\",\n          \"title\": \"Renesas RA2A1 Group Datasheet\",\n          \"type\": \"Datasheet\",\n          \"language\": \"en\",\n          \"href\": \"/documents/R01DS0354EJ0111\"\n        }\n      ],\n      \"softwareTools\": [\n        {\n          \"softwareToolName\": \"Arm® Keil® MDK\",\n          \"href\": \"/software-tools/Arm%C2%AE%20Keil%C2%AE%20MDK\"\n        }\n      ],\n      \"applicationBlockDiagrams\": [\n        {\n          \"title\": \"USB-C Platform with Liquid Detection and Debug Access\",\n          \"description\": \"USB-C system with liquid detection and debug access through a single connector, improving reliability while simplifying development, testing, and manufacturing.\",\n          \"imageUrl\": \"https://www.renesas.com/sites/default/files/usb-c-liquid-detection-block-diagram.png\",\n          \"url\": \"https://www.renesas.com/en/application/usb-c-platform-liquid-detection-debug-access\"\n        }\n      ]\n    }\n  ],\n  \"pagination\": {\n    \"offset\": 0,\n    \"limit\": 10,\n    \"total\": 256,\n    \"has_more\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "92bd597b-c731-4b65-be06-dbc8fbea5aaf",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order",
+                      "value": "wwwUpdateDate"
+                    },
+                    {
+                      "key": "orderDirection",
+                      "value": "desc,asc"
+                    },
+                    {
+                      "key": "productId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Failed to retrieve products list\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9567a7c4-b05e-47c1-bfda-f118e29f3ac1",
+          "name": "Get Product by ID",
+          "request": {
+            "name": "Get Product by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "products",
+                ":product_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product_id",
+                  "description": "(Required) The unique identifier of the product."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8b24bd52-dc98-4549-98b7-8193e3f6f399",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    ":product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The unique identifier of the product."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"productId\": \"RA2A1\",\n  \"wwwUpdateDate\": \"2024-01-15T10:30:00Z\",\n  \"url\": \"https://www.renesas.com/products/ra2a1\",\n  \"uuid\": \"8a9c4b2e-1f3d-4e9a-b5c6-7d8e9f0a1b2c\",\n  \"title\": \"32-bit Microcontrollers with 48MHz Arm Cortex-M23 and Integration of 24-bit Sigma-Delta ADC\",\n  \"category\": [\n    {\n      \"level\": 1,\n      \"title\": \"Microcontrollers & Microprocessors\"\n    },\n    {\n      \"level\": 2,\n      \"title\": \"RA Arm Cortex-M MCUs\"\n    }\n  ],\n  \"description\": \"The RA2A1 group is a high-performance, low-power analog microcontroller based on an Arm® Cortex®-M23 core with a 48MHz clock frequency and a wide range of analog front ends, including two types of A/D converters. This group supports a 16-bit SAR A/D converter, a 24-bit sigma-delta A/D converter, a 12-bit D/A converter, comparators, and operational amplifiers. These functions are suitable for applications that measure and adjust sensor signals with high accuracy. In addition, UART, I2C, simple SPI, CAN, and USB 2.0 Full-Speed are also integrated as peripheral functions, enabling easy communication with other devices. The RA2A1 supports a wide operating voltage range of 1.6V to 5.5V, enabling communication with devices operating at 5V without level shifters. The RA2A1 MCU targets industrial sensor applications with low power consumption and low-cost advantage.\",\n  \"features\": \"• 48MHz Arm Cortex-M23\\n• 256kB Flash memory and 32kB SRAM\\n• 8kB Data Flash to store data as in EEPROM\\n• Scalable from 32-pin to 64-pin packages\\n• Capacitive touch sensing unit\\n• 16-bit SAR A/D, 24-bit SD A/D\\n• 12-bit D/A, 8-bit D/A\\n• OPAMP (3ch), ACMP-HS/LP\\n• USB 2.0 Full Speed\\n• CAN 2.0\\n• SCI (UART, Simple SPI, Simple I2C)\",\n  \"applications\": \"Industrial automation (photoelectric sensor, fiber sensor, temperature sensor), Process automation (pressure sensor, flow control meter, single phase meter), Building automation/home appliance (smoke detector), Healthcare (pulse oximeters, body composition measurement), General purpose\",\n  \"images\": [\n    \"https://www.renesas.com/sites/default/files/ra2a1-block-diagram.png\"\n  ],\n  \"orderableProducts\": [\n    {\n      \"orderableId\": \"R7FA2A1AB2CBT#AC0\",\n      \"href\": \"/product-parts/R7FA2A1AB2CBT%23AC0\"\n    },\n    {\n      \"orderableId\": \"R7FA2A1AB3CFJ#AA0\",\n      \"href\": \"/product-parts/R7FA2A1AB3CFJ%23AA0\"\n    },\n    {\n      \"orderableId\": \"R7FA2A1AB3CFM#AA0\",\n      \"href\": \"/product-parts/R7FA2A1AB3CFM%23AA0\"\n    }\n  ],\n  \"relatedBoardsKits\": [\n    {\n      \"boardKitId\": \"EK-RA2A1\",\n      \"title\": \"Evaluation Kit for RA2A1 MCU Group\",\n      \"href\": \"/boards-kits/EK-RA2A1\"\n    }\n  ],\n  \"featuredDocuments\": [\n    {\n      \"agileId\": \"X1234567\",\n      \"dcpDocumentId\": \"R01DS0354EJ0111\",\n      \"title\": \"Renesas RA2A1 Group Datasheet\",\n      \"type\": \"Datasheet\",\n      \"language\": \"en\",\n      \"href\": \"/documents/R01DS0354EJ0111\"\n    },\n    {\n      \"agileId\": \"X1234568\",\n      \"dcpDocumentId\": \"R01UH0888EJ0110\",\n      \"title\": \"Renesas RA2A1 Group User's Manual: Hardware\",\n      \"type\": \"Manual - Hardware\",\n      \"language\": \"en\",\n      \"href\": \"/documents/R01UH0888EJ0110\"\n    }\n  ],\n  \"relatedDocuments\": [\n    {\n      \"agileId\": \"X1234567\",\n      \"dcpDocumentId\": \"R01DS0354EJ0111\",\n      \"title\": \"Renesas RA2A1 Group Datasheet\",\n      \"type\": \"Datasheet\",\n      \"language\": \"en\",\n      \"href\": \"/documents/R01DS0354EJ0111\"\n    },\n    {\n      \"agileId\": \"X1234568\",\n      \"dcpDocumentId\": \"R01UH0888EJ0110\",\n      \"title\": \"Renesas RA2A1 Group User's Manual: Hardware\",\n      \"type\": \"Manual - Hardware\",\n      \"language\": \"en\",\n      \"href\": \"/documents/R01UH0888EJ0110\"\n    },\n    {\n      \"agileId\": \"X1234569\",\n      \"dcpDocumentId\": \"R01TB0027EJ0100\",\n      \"title\": \"RA2A1 Group Handbook\",\n      \"type\": \"Document\",\n      \"language\": \"en\",\n      \"href\": \"/documents/R01TB0027EJ0100\"\n    }\n  ],\n  \"relatedDocumentsSecondary\": [\n    {\n      \"agileId\": \"X1234569\",\n      \"dcpDocumentId\": \"R01TB0027EJ0100\",\n      \"title\": \"RA2A1 Group Handbook\",\n      \"type\": \"Document\",\n      \"language\": \"en\",\n      \"href\": \"/documents/R01TB0027EJ0100\"\n    }\n  ],\n  \"softwareTools\": [\n    {\n      \"softwareToolName\": \"Arm® Keil® MDK\",\n      \"href\": \"/software-tools/Arm%C2%AE%20Keil%C2%AE%20MDK\"\n    },\n    {\n      \"softwareToolName\": \"E2 Emulator (With Programming Function)\",\n      \"href\": \"/software-tools/E2%20Emulator%20(With%20Programming%20Function)\"\n    },\n    {\n      \"softwareToolName\": \"EK-RA2A1 Example Project Bundle\",\n      \"href\": \"/software-tools/EK-RA2A1%20Example%20Project%20Bundle\"\n    }\n  ],\n  \"applicationBlockDiagrams\": [\n    {\n      \"title\": \"USB-C Platform with Liquid Detection and Debug Access\",\n      \"description\": \"USB-C system with liquid detection and debug access through a single connector, improving reliability while simplifying development, testing, and manufacturing.\",\n      \"imageUrl\": \"https://www.renesas.com/sites/default/files/usb-c-liquid-detection-block-diagram.png\",\n      \"url\": \"https://www.renesas.com/en/application/usb-c-platform-liquid-detection-debug-access\"\n    },\n    {\n      \"title\": \"USB Data Logger\",\n      \"description\": \"Portable USB-C data logger for high-speed, low-power, and accurate metric recording anywhere.\",\n      \"imageUrl\": \"https://www.renesas.com/sites/default/files/usb-data-logger-block-diagram.png\",\n      \"url\": \"https://www.renesas.com/en/application/usb-data-logger\"\n    },\n    {\n      \"title\": \"Electronic Toll with GNSS\",\n      \"description\": \"ETC systems automate toll payments to reduce traffic and eliminate manual toll booth delays.\",\n      \"imageUrl\": \"https://www.renesas.com/sites/default/files/electronic-toll-gnss-block-diagram.png\",\n      \"url\": \"https://www.renesas.com/en/application/electronic-toll-gnss\"\n    },\n    {\n      \"title\": \"Gaming Keyboard\",\n      \"description\": \"A power-efficient, highly integrated, and compact keyboard system with customizable RGB lighting and stable, low-latency wireless performance.\",\n      \"imageUrl\": \"https://www.renesas.com/sites/default/files/gaming-keyboard-block-diagram.png\",\n      \"url\": \"https://www.renesas.com/en/application/gaming-keyboard\"\n    },\n    {\n      \"title\": \"Gaming Mouse\",\n      \"description\": \"A power-efficient, highly integrated, and compact mouse system with customizable RGB lighting and stable, low-latency wireless performance.\",\n      \"imageUrl\": \"https://www.renesas.com/sites/default/files/gaming-mouse-block-diagram.png\",\n      \"url\": \"https://www.renesas.com/en/application/gaming-mouse\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15ef6945-9e53-4c32-ace6-dc3019013f20",
+              "name": "Product not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    ":product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The unique identifier of the product."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Product with ID 'invalid-id' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a6f8306-5709-46b6-9c25-1d54e5dee324",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    ":product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The unique identifier of the product."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Failed to retrieve product details\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.renesas.com/web-data/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6b604f5e-67bb-4084-9009-014736757bcf",
+    "name": "Renesas Web Data Board & Kit Product API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Renesas Web Data API enables external systems to retrieve product metadata in real time, without relying on manual CSV downloads or periodic feed refreshes. This shift improves data consistency, streamlines integrations, and aligns with modern API-first architectures.\n",
+      "type": "text/plain"
+    }
+  }
+}

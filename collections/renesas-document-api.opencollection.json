@@ -1,0 +1,168 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Renesas Web Data Board & Kit Document API",
+    "version": "1.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Document",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.renesas.com/web-data/v1/documents",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return (default 10)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The offset for pagination."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Filter by document language (`en`, `ja`, `zh-hans`)."
+              },
+              {
+                "name": "dcpDocumentIdStartsWith",
+                "value": "",
+                "type": "query",
+                "description": "Filter by DCP Document ID prefix."
+              },
+              {
+                "name": "productId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by associated product ID."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by document type. Example values: `Datasheet`, `Datasheet - Short-Form`, `Datasheet Addendum`, `Datasheet Change Notice Guide`, `Manual - Development Tools`, `Manual - Hardware`, `Manual - Software`, `Quick Start Guide`, `General Reliability Literature`, `ICP Test Report`, `Materials Composition Declaration`, `MSDS Document`, `Product Reliability Report`.\n"
+              },
+              {
+                "name": "subType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by document sub-type. Example values: `Core Module`, `Driver Package`, `FIT Module`, `FreeRTOS`, `Software Integration System Application Example`, `Development Environment`, `Middleware`, `Migration Guide`, `Peripherals - Analog`, `Peripherals - Built-in Memory`, `Peripherals - Clock`, `Peripherals - Communication`, `Peripherals - Other`, `Peripherals - Security`, `Peripherals - Timer`.\n"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the product category the document is associated with."
+              },
+              {
+                "name": "documentRevisionDateStart",
+                "value": "",
+                "type": "query",
+                "description": "Filter by documents revised on or after this date (YYYY-MM-DD)."
+              },
+              {
+                "name": "documentRevisionDateEnd",
+                "value": "",
+                "type": "query",
+                "description": "Filter by documents revised on or before this date (YYYY-MM-DD)."
+              }
+            ]
+          },
+          "docs": "Get All Documents"
+        },
+        {
+          "info": {
+            "name": "Get All Document Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.renesas.com/web-data/v1/documents/types",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return (default 50)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The offset for pagination (default 0)."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List all available document types and their associated sub-types."
+        },
+        {
+          "info": {
+            "name": "Get Document by DCP Document ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.renesas.com/web-data/v1/documents/:dcp_id",
+            "params": [
+              {
+                "name": "dcp_id",
+                "value": "",
+                "type": "path",
+                "description": "The DCP document identifier."
+              }
+            ]
+          },
+          "docs": "Get Document by DCP Document ID"
+        },
+        {
+          "info": {
+            "name": "Get Document by Agile ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.renesas.com/web-data/v1/documents/agile-id/:agile_id",
+            "params": [
+              {
+                "name": "agile_id",
+                "value": "",
+                "type": "path",
+                "description": "The Agile ID of the document."
+              }
+            ]
+          },
+          "docs": "Get Document by Agile ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

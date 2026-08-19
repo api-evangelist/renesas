@@ -1,0 +1,690 @@
+{
+  "item": [
+    {
+      "id": "ab632310-0bbe-4392-96ed-4794d5cfde34",
+      "name": "Document",
+      "description": {
+        "content": "Endpoint for retrieving documents.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e72ea940-5096-4e59-885f-052b68dcaef7",
+          "name": "Get All Documents",
+          "request": {
+            "name": "Get All Documents",
+            "description": {},
+            "url": {
+              "path": [
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "The number of results to return (default 10)."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "The offset for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "<string>",
+                  "description": "Filter by document language (`en`, `ja`, `zh-hans`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "dcpDocumentIdStartsWith",
+                  "value": "<string>",
+                  "description": "Filter by DCP Document ID prefix."
+                },
+                {
+                  "disabled": false,
+                  "key": "productId",
+                  "value": "<string>",
+                  "description": "Filter by associated product ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by document type. Example values: `Datasheet`, `Datasheet - Short-Form`, `Datasheet Addendum`, `Datasheet Change Notice Guide`, `Manual - Development Tools`, `Manual - Hardware`, `Manual - Software`, `Quick Start Guide`, `General Reliability Literature`, `ICP Test Report`, `Materials Composition Declaration`, `MSDS Document`, `Product Reliability Report`.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "subType",
+                  "value": "<string>",
+                  "description": "Filter by document sub-type. Example values: `Core Module`, `Driver Package`, `FIT Module`, `FreeRTOS`, `Software Integration System Application Example`, `Development Environment`, `Middleware`, `Migration Guide`, `Peripherals - Analog`, `Peripherals - Built-in Memory`, `Peripherals - Clock`, `Peripherals - Communication`, `Peripherals - Other`, `Peripherals - Security`, `Peripherals - Timer`.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "Filter by the product category the document is associated with."
+                },
+                {
+                  "disabled": false,
+                  "key": "documentRevisionDateStart",
+                  "value": "<date>",
+                  "description": "Filter by documents revised on or after this date (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "documentRevisionDateEnd",
+                  "value": "<date>",
+                  "description": "Filter by documents revised on or before this date (YYYY-MM-DD)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a9dcfbd-8829-4d4c-8eb2-c769e08421ab",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dcpDocumentIdStartsWith",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "productId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "documentRevisionDateStart",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "documentRevisionDateEnd",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"agileId\": \"X0052700\",\n      \"dcpDocumentId\": \"R01DS0249EJ0120\",\n      \"url\": \"https://www.renesas.com/en/document/dst/rx71m-datasheet-group-rev120-r01ds0249ej0120\",\n      \"category\": [\n        {\n          \"level\": 1,\n          \"title\": \"Microcontrollers & Microprocessors\"\n        },\n        {\n          \"level\": 2,\n          \"title\": \"RX 32-Bit Performance/Efficiency MCUs\"\n        }\n      ],\n      \"product\": [\n        {\n          \"productId\": \"RX71M\",\n          \"type\": \"Product\",\n          \"title\": \"RX71M Group\",\n          \"nid\": \"12345\",\n          \"uuid\": \"550e8400-e29b-41d4-a716-446655440000\",\n          \"language\": \"en\"\n        }\n      ],\n      \"title\": \"RX71M Datasheet Group Rev.1.20\",\n      \"type\": \"Datasheet\",\n      \"fileType\": \"PDF\",\n      \"secureDocument\": false,\n      \"href\": \"/documents/R01DS0249EJ0120\",\n      \"revisionDate\": \"2024-01-15\",\n      \"wwwUpdateDate\": \"2024-01-15T10:30:00Z\",\n      \"language\": \"en\",\n      \"nid\": \"67890\",\n      \"uuid\": \"660f9550-f3ac-42e5-b827-556766550001\",\n      \"published\": true,\n      \"featured\": true,\n      \"filename\": \"r01ds0249ej0120.pdf\",\n      \"myrenesasDocument\": false\n    },\n    {\n      \"agileId\": \"X0061760\",\n      \"dcpDocumentId\": \"R01AN0184EJ0110\",\n      \"url\": \"https://www.renesas.com/en/document/apn/rx-family-driver-package-application-note\",\n      \"category\": [\n        {\n          \"level\": 1,\n          \"title\": \"Microcontrollers & Microprocessors\"\n        },\n        {\n          \"level\": 2,\n          \"title\": \"RX 32-Bit Performance/Efficiency MCUs\"\n        }\n      ],\n      \"title\": \"RX Family Driver Package Application Note\",\n      \"type\": \"Manual - Software\",\n      \"subType\": [\n        \"Driver Package\"\n      ],\n      \"fileType\": \"PDF\",\n      \"secureDocument\": false,\n      \"href\": \"/documents/R01AN0184EJ0110\",\n      \"revisionDate\": \"2023-12-10\",\n      \"wwwUpdateDate\": \"2023-12-10T14:20:00Z\",\n      \"language\": \"en\",\n      \"nid\": \"67891\",\n      \"uuid\": \"770f9550-f3ac-42e5-b827-556766550002\",\n      \"published\": true,\n      \"featured\": false,\n      \"filename\": \"r01an0184ej0110.pdf\",\n      \"myrenesasDocument\": false\n    }\n  ],\n  \"pagination\": {\n    \"offset\": 0,\n    \"limit\": 10,\n    \"total\": 1523,\n    \"has_more\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "da58620c-c240-40ed-8d7f-7f26b44a5d05",
+          "name": "Get All Document Types",
+          "request": {
+            "name": "Get All Document Types",
+            "description": {
+              "content": "List all available document types and their associated sub-types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "documents",
+                "types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "The number of results to return (default 50)."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The offset for pagination (default 0)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7f0f01c4-fc02-4be2-a155-2dca53729f0a",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents",
+                    "types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"type\": \"Datasheet\",\n      \"subTypes\": []\n    },\n    {\n      \"type\": \"Datasheet - Short-Form\",\n      \"subTypes\": []\n    },\n    {\n      \"type\": \"Datasheet Addendum\",\n      \"subTypes\": []\n    },\n    {\n      \"type\": \"Datasheet Change Notice Guide\",\n      \"subTypes\": []\n    },\n    {\n      \"type\": \"Manual - Development Tools\",\n      \"subTypes\": []\n    },\n    {\n      \"type\": \"Manual - Hardware\",\n      \"subTypes\": [\n        \"Peripherals - Analog\",\n        \"Peripherals - Built-in Memory\",\n        \"Peripherals - Clock\",\n        \"Peripherals - Communication\",\n        \"Peripherals - Other\",\n        \"Peripherals - Security\",\n        \"Peripherals - Timer\"\n      ]\n    },\n    {\n      \"type\": \"Manual - Software\",\n      \"subTypes\": [\n        \"Core Module\",\n        \"Development Environment\",\n        \"Driver Package\",\n        \"FIT Module\",\n        \"FreeRTOS\",\n        \"Middleware\",\n        \"Migration Guide\",\n        \"Software Integration System Application Example\"\n      ]\n    },\n    {\n      \"type\": \"Quick Start Guide\",\n      \"subTypes\": []\n    },\n    {\n      \"type\": \"General Reliability Literature\",\n      \"subTypes\": []\n    },\n    {\n      \"type\": \"ICP Test Report\",\n      \"subTypes\": []\n    },\n    {\n      \"type\": \"Materials Composition Declaration\",\n      \"subTypes\": []\n    },\n    {\n      \"type\": \"MSDS Document\",\n      \"subTypes\": []\n    },\n    {\n      \"type\": \"Product Reliability Report\",\n      \"subTypes\": []\n    }\n  ],\n  \"pagination\": {\n    \"offset\": 0,\n    \"limit\": 50,\n    \"total\": 13,\n    \"has_more\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae8677d9-958d-40f4-8b8e-9142f70676f5",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents",
+                    "types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Failed to retrieve document types\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2d6c621f-b0a9-47af-8a50-506e56bb92e8",
+          "name": "Get Document by DCP Document ID",
+          "request": {
+            "name": "Get Document by DCP Document ID",
+            "description": {},
+            "url": {
+              "path": [
+                "documents",
+                ":dcp_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dcp_id",
+                  "description": "(Required) The DCP document identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "adce8b43-667f-4c93-a426-c151425bbf5e",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents",
+                    ":dcp_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dcp_id",
+                      "description": "(Required) The DCP document identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"agileId\": \"X0052700\",\n  \"dcpDocumentId\": \"R01DS0249EJ0120\",\n  \"url\": \"https://www.renesas.com/en/document/dst/rx71m-datasheet-group-rev120-r01ds0249ej0120\",\n  \"category\": [\n    {\n      \"level\": 1,\n      \"title\": \"Microcontrollers & Microprocessors\"\n    },\n    {\n      \"level\": 2,\n      \"title\": \"RX 32-Bit Performance/Efficiency MCUs\"\n    }\n  ],\n  \"product\": [\n    {\n      \"productId\": \"RX71M\",\n      \"type\": \"Product\",\n      \"title\": \"RX71M Group\",\n      \"nid\": \"12345\",\n      \"uuid\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"language\": \"en\"\n    }\n  ],\n  \"title\": \"RX71M Datasheet Group Rev.1.20\",\n  \"type\": \"Datasheet\",\n  \"fileType\": \"PDF\",\n  \"secureDocument\": false,\n  \"revisionDate\": \"2024-01-15\",\n  \"wwwUpdateDate\": \"2024-01-15T10:30:00Z\",\n  \"language\": \"en\",\n  \"nid\": \"67890\",\n  \"uuid\": \"660f9550-f3ac-42e5-b827-556766550001\",\n  \"translation\": [\n    {\n      \"language\": \"ja\",\n      \"dcpDocumentId\": \"R01DS0249JJ0120\",\n      \"agileId\": \"X0052700\",\n      \"title\": \"RX71Mグループ データシート Rev.1.20\",\n      \"href\": \"/documents/R01DS0249JJ0120\"\n    }\n  ],\n  \"published\": true,\n  \"featured\": true,\n  \"filename\": \"r01ds0249ej0120.pdf\",\n  \"disclaimer\": [\n    {\n      \"dcpDocumentId\": \"DISC789012\",\n      \"agileId\": \"X1234567\",\n      \"language\": \"en\",\n      \"title\": \"Standard Product Disclaimer\",\n      \"href\": \"/documents/DISC789012\"\n    }\n  ],\n  \"myrenesasDocument\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "987474ab-7f4f-4f3d-a654-399211eba86c",
+              "name": "Document not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents",
+                    ":dcp_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dcp_id",
+                      "description": "(Required) The DCP document identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Document with DCP ID 'INVALID123' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "abf7b511-0ade-4263-bb84-af382e1d4d68",
+          "name": "Get Document by Agile ID",
+          "request": {
+            "name": "Get Document by Agile ID",
+            "description": {},
+            "url": {
+              "path": [
+                "documents",
+                "agile-id",
+                ":agile_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agile_id",
+                  "description": "(Required) The Agile ID of the document."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a5e4c819-30b8-4d83-bd34-e416c526051e",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents",
+                    "agile-id",
+                    ":agile_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agile_id",
+                      "description": "(Required) The Agile ID of the document."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"agileId\": \"X0061760\",\n  \"dcpDocumentId\": \"R01AN0184EJ0110\",\n  \"url\": \"https://www.renesas.com/en/document/apn/rx-family-driver-package-application-note\",\n  \"category\": [\n    {\n      \"level\": 1,\n      \"title\": \"Microcontrollers & Microprocessors\"\n    },\n    {\n      \"level\": 2,\n      \"title\": \"RX 32-Bit Performance/Efficiency MCUs\"\n    }\n  ],\n  \"title\": \"RX Family Driver Package Application Note\",\n  \"type\": \"Manual - Software\",\n  \"subType\": \"Driver Package\",\n  \"fileType\": \"PDF\",\n  \"secureDocument\": false,\n  \"revisionDate\": \"2023-12-10\",\n  \"wwwUpdateDate\": \"2023-12-10T14:20:00Z\",\n  \"language\": \"en\",\n  \"nid\": \"67891\",\n  \"uuid\": \"770f9550-f3ac-42e5-b827-556766550002\",\n  \"published\": true,\n  \"featured\": false,\n  \"filename\": \"r01an0184ej0110.pdf\",\n  \"myrenesasDocument\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "036973bd-251b-4a5b-903a-02025a840db0",
+              "name": "Document not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents",
+                    "agile-id",
+                    ":agile_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agile_id",
+                      "description": "(Required) The Agile ID of the document."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Document with Agile ID 'INVALID123' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.renesas.com/web-data/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5235e770-ddee-4576-bae5-dd4cfaa0e850",
+    "name": "Renesas Web Data Board & Kit Document API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Renesas Web Data API enables external systems to retrieve product metadata in real time, without relying on manual CSV downloads or periodic feed refreshes. This shift improves data consistency, streamlines integrations, and aligns with modern API-first architectures.\n",
+      "type": "text/plain"
+    }
+  }
+}

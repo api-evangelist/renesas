@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Renesas Web Data Board & Kit Package API",
+    "version": "1.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Package",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.renesas.com/web-data/v1/packages",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return (default 10)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The page number for pagination (default 0). This is multiplied by limit to get the actual offset."
+              },
+              {
+                "name": "order",
+                "value": "wwwUpdateDate,packageCode",
+                "type": "query",
+                "description": "Sorting property (default sort is by www update date). Multiple sorts can be supplied by comma concatenation."
+              },
+              {
+                "name": "orderDirection",
+                "value": "desc,asc",
+                "type": "query",
+                "description": "Sorting direction (default is \"desc\"). Multiple directions can be defined for multiple sorts."
+              },
+              {
+                "name": "packageCode",
+                "value": "",
+                "type": "query",
+                "description": "Filter by package identifier."
+              },
+              {
+                "name": "packageType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by package type."
+              },
+              {
+                "name": "packageStatus",
+                "value": "",
+                "type": "query",
+                "description": "Filter by package status."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get All Packages"
+        },
+        {
+          "info": {
+            "name": "Get Package by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.renesas.com/web-data/v1/packages/:package_code",
+            "params": [
+              {
+                "name": "package_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the package."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get Package by ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Renesas Web Data Board & Kit API",
+    "version": "1.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Board & Kit",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Boards & Kits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.renesas.com/web-data/v1/boards-kits",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return (default 10)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The page number for pagination (default 0). This is multiplied by limit to get the actual offset."
+              },
+              {
+                "name": "order",
+                "value": "wwwUpdateDate,title",
+                "type": "query",
+                "description": "Sorting property (default sort is by www update date). Multiple sorts can be supplied by comma concatenation."
+              },
+              {
+                "name": "orderDirection",
+                "value": "desc,asc",
+                "type": "query",
+                "description": "Sorting direction (default is \"desc\"). Multiple directions can be defined for multiple sorts."
+              },
+              {
+                "name": "boardKitId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by board/kit identifier."
+              },
+              {
+                "name": "boardKitType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by board/kit type."
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Filter by product category."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get All Boards & Kits"
+        },
+        {
+          "info": {
+            "name": "Get Board or Kit by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.renesas.com/web-data/v1/boards-kits/:board_kit_id",
+            "params": [
+              {
+                "name": "board_kit_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the board or kit."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get Board or Kit by ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

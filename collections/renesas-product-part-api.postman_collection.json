@@ -1,0 +1,1421 @@
+{
+  "item": [
+    {
+      "id": "5cfc4877-d8aa-493c-afdf-81561f6a19e3",
+      "name": "Product Part",
+      "description": {
+        "content": "Endpoints for retrieving product parts.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "665bc4b3-bd3f-47bb-94d9-fee96095a527",
+          "name": "Get All Product Parts",
+          "request": {
+            "name": "Get All Product Parts",
+            "description": {},
+            "url": {
+              "path": [
+                "product-parts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "The number of results to return (default 10)."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The page number for pagination (default 0). This is multiplied by limit to get the actual offset."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "last_updated",
+                  "description": "Sorting property (default sort is by last updated date). Multiple sorts can be supplied by comma concatenation."
+                },
+                {
+                  "disabled": false,
+                  "key": "orderDirection",
+                  "value": "desc",
+                  "description": "Sorting direction (default is \"desc\"). Multiple directions can be defined for multiple sorts."
+                },
+                {
+                  "disabled": false,
+                  "key": "part_number_prefix",
+                  "value": "<string>",
+                  "description": "Filter by part number prefix."
+                },
+                {
+                  "disabled": false,
+                  "key": "part_number",
+                  "value": "<string>",
+                  "description": "Filter by exact part number."
+                },
+                {
+                  "disabled": false,
+                  "key": "part_status",
+                  "value": "<string>",
+                  "description": "Filter by part status."
+                },
+                {
+                  "disabled": false,
+                  "key": "generic_product_id",
+                  "value": "<string>",
+                  "description": "Filter by generic product ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "product_family",
+                  "value": "<string>",
+                  "description": "Filter by product family."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a925cdc0-35dc-409b-b3dd-9ba08bb0599a",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-parts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order",
+                      "value": "last_updated"
+                    },
+                    {
+                      "key": "orderDirection",
+                      "value": "desc,asc"
+                    },
+                    {
+                      "key": "part_number_prefix",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "part_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "part_status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "generic_product_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "product_family",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"orderableId\": \"ISL91302B40-EVZ\",\n      \"productCategory\": \"\",\n      \"firstProductSubcategory\": \"Multi-Channel Power Management ICs (PMICs)\",\n      \"genericId\": \"ISL91302B40-EVZ\",\n      \"genericTitle\": \"ISL91302B Evaluation Board 1, 4+0 PMIC, WLCSP RoHS Compliant\",\n      \"genericUrl\": \"https://www.renesas.com/en/design-resources/boards-kits/isl91302b40-evz\",\n      \"productFamily\": \"\",\n      \"1kuPrice\": 352.42,\n      \"status\": \"Active\",\n      \"type\": \"\",\n      \"description\": \"\",\n      \"class\": \"\",\n      \"category\": \"\",\n      \"leadCount\": 0,\n      \"dimensions\": {\n        \"length\": 0,\n        \"width\": 0,\n        \"thickness\": 0,\n        \"pitch\": 0\n      },\n      \"peakReflowTemperature\": \"\",\n      \"leadFree\": true,\n      \"partAvailability\": false,\n      \"featuredDocument\": {\n        \"title\": \"\",\n        \"url\": \"\"\n      },\n      \"images\": \"\",\n      \"regulatory\": {\n        \"htsus\": \"8471.30.1180\",\n        \"eccn\": \"EAR99\",\n        \"moistureSensitivityLevel\": \"Not Applicable\",\n        \"rohsCompliant\": \"\",\n        \"chinaRohsCompliant\": \"\",\n        \"hazardousMaterials\": {\n          \"mercury\": \"\",\n          \"lead\": \"\",\n          \"halogen\": \"\",\n          \"cadmium\": \"\",\n          \"hexavalentChromium\": \"\",\n          \"pbde\": \"\",\n          \"pbb\": \"\"\n        }\n      },\n      \"lifecycle\": \"\",\n      \"alternative\": {\n        \"alternativeGenericId\": \"\",\n        \"alternativeNote\": \"\"\n      },\n      \"packaging\": {\n        \"package\": {\n          \"packageCode\": \"pkg_20001\",\n          \"href\": \"/packages/pkg_20001\"\n        },\n        \"carrierType\": \"Board Pack\",\n        \"packageCode\": \"\",\n        \"pbFreeCategory\": \"None\",\n        \"jedecStandard\": \"\",\n        \"quantityPerCarrier\": \"\",\n        \"quantityPerReel\": \"\",\n        \"reelSize\": \"\",\n        \"tapePin1Quad\": \"\",\n        \"tapePocketPitch\": \"\",\n        \"packageUrl\": \"\",\n        \"packageDescription\": \"The ISL91302B40-EVZ platform allows quick evaluation...\",\n        \"packageName\": \"\",\n        \"prevCode\": \"\"\n      },\n      \"plp\": \"\",\n      \"sampleable\": true,\n      \"replacementProduct\": \"\",\n      \"replacementProductRemark\": \"\",\n      \"parametricAttributes\": [\n        {\n          \"productPartAttributeId\": \"field__display_1k_unit_price\",\n          \"attributeValues\": [\n            352.42\n          ],\n          \"attributeName\": \"Price (USD)\",\n          \"href\": \"/product-parts/attributes/field__display_1k_unit_price\"\n        },\n        {\n          \"productPartAttributeId\": \"field__group_name_linked_url\",\n          \"attributeValues\": [\n            \"URL: https://www.renesas.com/products/microcontrollers-microprocessors/ra-cortex-m-mcus/ra2a1-32mhz-arm-cortex-m23-with-capacitive-touch-sensing-unit-low-power-microcontroller|RA2A1\"\n          ],\n          \"attributeName\": \"Group Name\",\n          \"href\": \"/product-parts/attributes/field__group_name_linked_url\",\n          \"attributeValuesParsed\": [\n            {\n              \"type\": \"URL\",\n              \"value\": \"RA2A1\",\n              \"url\": \"https://www.renesas.com/products/microcontrollers-microprocessors/ra-cortex-m-mcus/ra2a1-32mhz-arm-cortex-m23-with-capacitive-touch-sensing-unit-low-power-microcontroller\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"orderableId\": \"ISL71090SEHX50SAMPLE\",\n      \"productCategory\": \"Space & Harsh Environment\",\n      \"firstProductSubcategory\": \"Hi-Rel Voltage References\",\n      \"genericId\": \"ISL71090SEH50\",\n      \"genericTitle\": \"Radiation Hardened Ultra Low Noise, Precision Voltage Reference\",\n      \"genericUrl\": \"https://www.renesas.com/en/products/isl71090seh50\",\n      \"productFamily\": \"\",\n      \"1kuPrice\": \"\",\n      \"status\": \"Active\",\n      \"type\": \"\",\n      \"description\": \"\",\n      \"class\": \"\",\n      \"category\": \"\",\n      \"leadCount\": 0,\n      \"dimensions\": {\n        \"length\": 0,\n        \"width\": 0,\n        \"thickness\": 0,\n        \"pitch\": 0\n      },\n      \"peakReflowTemperature\": \"\",\n      \"leadFree\": true,\n      \"partAvailability\": false,\n      \"featuredDocument\": {\n        \"title\": \"\",\n        \"url\": \"\"\n      },\n      \"images\": [\n        \"https://www.renesas.com/sites/default/files/isl71090seh50_0.png\"\n      ],\n      \"regulatory\": {\n        \"htsus\": \"8542.39.0090\",\n        \"eccn\": \"9A515.e.1\",\n        \"moistureSensitivityLevel\": \"Not Applicable\",\n        \"rohsCompliant\": \"\",\n        \"chinaRohsCompliant\": \"\",\n        \"hazardousMaterials\": {\n          \"mercury\": \"\",\n          \"lead\": \"\",\n          \"halogen\": \"\",\n          \"cadmium\": \"\",\n          \"hexavalentChromium\": \"\",\n          \"pbde\": \"\",\n          \"pbb\": \"\"\n        }\n      },\n      \"lifecycle\": \"\",\n      \"alternative\": {\n        \"alternativeGenericId\": \"\",\n        \"alternativeNote\": \"\"\n      },\n      \"packaging\": {\n        \"package\": {\n          \"packageCode\": \"pkg_20002\",\n          \"href\": \"/packages/pkg_20002\"\n        },\n        \"carrierType\": \"Die Waffle Pack\",\n        \"packageCode\": \"\",\n        \"pbFreeCategory\": \"Not Applicable\",\n        \"jedecStandard\": \"\",\n        \"quantityPerCarrier\": \"\",\n        \"quantityPerReel\": \"\",\n        \"reelSize\": \"\",\n        \"tapePin1Quad\": \"\",\n        \"tapePocketPitch\": \"\",\n        \"packageUrl\": \"\",\n        \"packageDescription\": \"The ISL71090SEH50 is an ultra low noise...\",\n        \"packageName\": \"\",\n        \"prevCode\": \"\"\n      },\n      \"plp\": \"\",\n      \"sampleable\": false,\n      \"replacementProduct\": \"\",\n      \"replacementProductRemark\": \"\",\n      \"parametricAttributes\": [\n        {\n          \"productPartAttributeId\": \"field__sel\",\n          \"attributeValues\": [\n            \"86\"\n          ],\n          \"attributeName\": \"DSEE (MeV·cm2/mg)\",\n          \"href\": \"/product-parts/attributes/field__sel\"\n        },\n        {\n          \"productPartAttributeId\": \"field__supply_voltage_min\",\n          \"attributeValues\": [\n            {\n              \"to\": \"7\",\n              \"from\": \"7\"\n            }\n          ],\n          \"attributeName\": \"Supply Voltage (min)\",\n          \"href\": \"/product-parts/attributes/field__supply_voltage_min\"\n        }\n      ]\n    },\n    {\n      \"orderableId\": \"RAA7881502GSP#AB0\",\n      \"productCategory\": \"Interface\",\n      \"firstProductSubcategory\": \"RS-485/422 with Enhanced ESD Protection\",\n      \"genericId\": \"RAA788150\",\n      \"genericTitle\": \"5V Full-Duplex, 0.115Mbps RS-485/422 Differential Transceiver with ±5kV EFT Immunity and ±10kV ESD Protection\",\n      \"genericUrl\": \"https://www.renesas.com/en/products/raa788150\",\n      \"productFamily\": \"\",\n      \"1kuPrice\": 1.00163,\n      \"status\": \"Active\",\n      \"type\": \"SOICN\",\n      \"description\": \"\",\n      \"class\": \"\",\n      \"category\": \"\",\n      \"leadCount\": 14,\n      \"dimensions\": {\n        \"length\": 8.7,\n        \"width\": 3.9,\n        \"thickness\": 0,\n        \"pitch\": 1.3\n      },\n      \"peakReflowTemperature\": \"\",\n      \"leadFree\": true,\n      \"partAvailability\": true,\n      \"featuredDocument\": {\n        \"title\": \"\",\n        \"url\": \"\"\n      },\n      \"images\": [\n        \"https://www.renesas.com/sites/default/files/RAA788150%20-%20Typical%20Operating%20Circuit%20for%20Full-Duplex%20Transceiver.PNG\",\n        \"https://www.renesas.com/sites/default/files/RAA788150%20-%20Block%20Diagram.PNG\"\n      ],\n      \"regulatory\": {\n        \"htsus\": \"\",\n        \"eccn\": \"\",\n        \"moistureSensitivityLevel\": \"3\",\n        \"rohsCompliant\": \"\",\n        \"chinaRohsCompliant\": \"\",\n        \"hazardousMaterials\": {\n          \"mercury\": \"\",\n          \"lead\": \"\",\n          \"halogen\": \"\",\n          \"cadmium\": \"\",\n          \"hexavalentChromium\": \"\",\n          \"pbde\": \"\",\n          \"pbb\": \"\"\n        }\n      },\n      \"lifecycle\": \"\",\n      \"alternative\": {\n        \"alternativeGenericId\": \"\",\n        \"alternativeNote\": \"\"\n      },\n      \"packaging\": {\n        \"package\": {\n          \"packageCode\": \"pkg_9399\",\n          \"href\": \"/packages/pkg_9399\"\n        },\n        \"carrierType\": \"Tube\",\n        \"packageCode\": \"MOR\",\n        \"pbFreeCategory\": \"Pb-Free 100% Matte Tin Plate w/Anneal-e3\",\n        \"jedecStandard\": \"\",\n        \"quantityPerCarrier\": \"\",\n        \"quantityPerReel\": \"\",\n        \"reelSize\": \"\",\n        \"tapePin1Quad\": \"\",\n        \"tapePocketPitch\": \"\",\n        \"packageUrl\": \"https://www.renesas.com/en/package/mor\",\n        \"packageDescription\": \"The RAA788150 5V full-duplex powered RS-485/RS-422 transceiver...\",\n        \"packageName\": \"M14.15\",\n        \"prevCode\": \"MOR\"\n      },\n      \"plp\": \"\",\n      \"sampleable\": true,\n      \"replacementProduct\": \"\",\n      \"replacementProductRemark\": \"\",\n      \"parametricAttributes\": [\n        {\n          \"productPartAttributeId\": \"field__data_rate\",\n          \"attributeValues\": [\n            \"0.115\"\n          ],\n          \"attributeName\": \"Data Rate (Mbps)\",\n          \"href\": \"/product-parts/attributes/field__data_rate\"\n        },\n        {\n          \"productPartAttributeId\": \"field__display_1k_unit_price\",\n          \"attributeValues\": [\n            1.00163\n          ],\n          \"attributeName\": \"Price (USD)\",\n          \"href\": \"/product-parts/attributes/field__display_1k_unit_price\"\n        }\n      ]\n    }\n  ],\n  \"pagination\": {\n    \"offset\": 0,\n    \"limit\": 3,\n    \"total\": 8973,\n    \"has_more\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82586574-0c1d-48b8-ac51-883c68be5223",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-parts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "order",
+                      "value": "last_updated"
+                    },
+                    {
+                      "key": "orderDirection",
+                      "value": "desc,asc"
+                    },
+                    {
+                      "key": "part_number_prefix",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "part_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "part_status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "generic_product_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "product_family",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Failed to retrieve parts list\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1779a8f3-7601-4354-8210-e41a85e1213c",
+          "name": "Get Product Part by ID",
+          "request": {
+            "name": "Get Product Part by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "product-parts",
+                ":orderable_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderable_id",
+                  "description": "(Required) The unique identifier of the product part."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2662bdb1-b38f-40fa-91ba-4140d27d4394",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-parts",
+                    ":orderable_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderable_id",
+                      "description": "(Required) The unique identifier of the product part."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orderableId\": \"R5F571MGCDFB#10\",\n  \"productCategory\": \"Microcontrollers & Microprocessors\",\n  \"firstProductSubcategory\": \"RX 32-Bit Performance/Efficiency MCUs\",\n  \"genericId\": \"RX71M\",\n  \"genericTitle\": \"High Performance Real-time Engine 32-bit Microcontrollers for Industrial Equipment\",\n  \"genericUrl\": \"https://www.renesas.com/en/products/rx71m\",\n  \"productFamily\": \"RX\",\n  \"1kuPrice\": 13.43121,\n  \"status\": \"Active\",\n  \"type\": \"LFQFP\",\n  \"description\": \"\",\n  \"class\": \"IC\",\n  \"category\": \"\",\n  \"leadCount\": 144,\n  \"dimensions\": {\n    \"length\": 20,\n    \"width\": 20,\n    \"thickness\": 1.7,\n    \"pitch\": 0.5\n  },\n  \"peakReflowTemperature\": \"\",\n  \"leadFree\": true,\n  \"partAvailability\": false,\n  \"featuredDocument\": {\n    \"title\": \"\",\n    \"url\": \"\"\n  },\n  \"images\": [\n    \"https://www.renesas.com/sites/default/files/block-rx71m_0.png\",\n    \"https://www.renesas.com/sites/default/files/rx71m-pin-memory-image-item-d_0.png\",\n    \"https://www.renesas.com/sites/default/files/rx71m-pin-memory-image-item-g_0.png\"\n  ],\n  \"chipImage\": \"https://www.renesas.com/sites/default/files/r5f571mgcdfb-chip.png\",\n  \"regulatory\": {\n    \"htsus\": \"8542.31.0025\",\n    \"eccn\": \"3A991.a.2\",\n    \"moistureSensitivityLevel\": \"3\",\n    \"rohsCompliant\": true,\n    \"chinaRohsCompliant\": true,\n    \"hazardousMaterials\": {\n      \"mercury\": true,\n      \"lead\": true,\n      \"halogen\": true,\n      \"cadmium\": true,\n      \"hexavalentChromium\": true,\n      \"pbde\": true,\n      \"pbb\": true\n    }\n  },\n  \"lifecycle\": \"e\",\n  \"alternative\": {\n    \"alternativeGenericId\": \"\",\n    \"alternativeNote\": \"\"\n  },\n  \"packaging\": {\n    \"package\": {\n      \"packageCode\": \"pkg_9398\",\n      \"href\": \"/packages/pkg_9398\"\n    },\n    \"carrierType\": \"Full Carton (Tray)\",\n    \"packageCode\": \"pkg_9398\",\n    \"pbFreeCategory\": \"\",\n    \"jedecStandard\": \"\",\n    \"quantityPerCarrier\": \"\",\n    \"quantityPerReel\": \"\",\n    \"reelSize\": \"\",\n    \"tapePin1Quad\": \"\",\n    \"tapePocketPitch\": \"\",\n    \"packageUrl\": \"https://www.renesas.com/en/package/pkg9398\",\n    \"packageDescription\": \"32-bit microcontroller capable of up to 240 MHz operation...\",\n    \"packageName\": \"PLQP0144KA-A\",\n    \"prevCode\": \"FP-144LV\"\n  },\n  \"plp\": \"2039/12\",\n  \"sampleable\": false,\n  \"replacementProduct\": \"\",\n  \"replacementProductRemark\": \"\",\n  \"parametricAttributes\": [\n    {\n      \"productPartAttributeId\": \"field__gpu\",\n      \"attributeValues\": [\n        \"No\"\n      ],\n      \"attributeName\": \"3D GPU\",\n      \"href\": \"/product-parts/attributes/field__gpu\"\n    },\n    {\n      \"productPartAttributeId\": \"field__i2c\",\n      \"attributeValues\": [\n        \"11\"\n      ],\n      \"attributeName\": \"I2C\",\n      \"href\": \"/product-parts/attributes/field__i2c\"\n    },\n    {\n      \"productPartAttributeId\": \"field__bit_length\",\n      \"attributeValues\": [\n        \"32\"\n      ],\n      \"attributeName\": \"Bit Length\",\n      \"href\": \"/product-parts/attributes/field__bit_length\"\n    },\n    {\n      \"productPartAttributeId\": \"field__supply_voltage_v\",\n      \"attributeValues\": [\n        {\n          \"to\": \"3.6\",\n          \"from\": \"2.7\"\n        }\n      ],\n      \"attributeName\": \"Supply Voltage\",\n      \"href\": \"/product-parts/attributes/field__supply_voltage_v\"\n    },\n    {\n      \"productPartAttributeId\": \"field__display_1k_unit_price\",\n      \"attributeValues\": [\n        13.43121\n      ],\n      \"attributeName\": \"Price (USD)\",\n      \"href\": \"/product-parts/attributes/field__display_1k_unit_price\"\n    },\n    {\n      \"productPartAttributeId\": \"field__group_name_linked_url\",\n      \"attributeValues\": [\n        \"URL: https://www.renesas.com/products/microcontrollers-microprocessors/rx-32-bit-performance-efficiency-mcus/rx71m-high-performance-real-time-engine-32-bit-microcontrollers-industrial-equipment|RX71M\"\n      ],\n      \"attributeName\": \"Group Name\",\n      \"href\": \"/product-parts/attributes/field__group_name_linked_url\",\n      \"attributeValuesParsed\": [\n        {\n          \"type\": \"URL\",\n          \"value\": \"RX71M\",\n          \"url\": \"https://www.renesas.com/products/microcontrollers-microprocessors/rx-32-bit-performance-efficiency-mcus/rx71m-high-performance-real-time-engine-32-bit-microcontrollers-industrial-equipment\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5302989e-5a50-4cc3-8620-c76ae3e5908d",
+              "name": "Product part not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-parts",
+                    ":orderable_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderable_id",
+                      "description": "(Required) The unique identifier of the product part."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Product part with ID 'INVALID123' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f449cc1-3a4b-4fc0-a3c9-bc2df2ff09eb",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-parts",
+                    ":orderable_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderable_id",
+                      "description": "(Required) The unique identifier of the product part."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Failed to retrieve product part\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b11b44fe-c2dc-4bf1-8ca2-17680a8844da",
+          "name": "Parametric Search for Product Parts",
+          "request": {
+            "name": "Parametric Search for Product Parts",
+            "description": {
+              "content": "Search for product parts within a specific product using parametric attributes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "product-parts",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"<string>\",\n  \"limit\": 10,\n  \"offset\": 0,\n  \"filters\": [\n    {\n      \"productPartAttributeId\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"operator\": \"eq\",\n      \"min\": \"<number>\",\n      \"max\": \"<number>\"\n    },\n    {\n      \"productPartAttributeId\": \"<string>\",\n      \"values\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"operator\": \"eq\",\n      \"min\": \"<number>\",\n      \"max\": \"<number>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9bc7ec79-a512-4e8d-8cce-a795f4c7fa0a",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-parts",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": \"RA2A1\",\n  \"limit\": 20,\n  \"offset\": 0,\n  \"filters\": [\n    {\n      \"productPartAttributeId\": \"field__operating_frequency\",\n      \"operator\": \"gte\",\n      \"min\": 48\n    },\n    {\n      \"productPartAttributeId\": \"field__package_type\",\n      \"values\": [\n        \"LQFP\",\n        \"QFN\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"orderableId\": \"R7FA2A1AB3CFM#AA0\",\n      \"genericId\": \"RA2A1\",\n      \"status\": \"Active\",\n      \"parametricAttributes\": [\n        {\n          \"productPartAttributeId\": \"field__operating_frequency\",\n          \"attributeValues\": [\n            48\n          ],\n          \"attributeName\": \"Operating Frequency (MHz)\",\n          \"href\": \"/product-parts/attributes/field__operating_frequency\"\n        },\n        {\n          \"productPartAttributeId\": \"field__package_type\",\n          \"attributeValues\": [\n            \"LQFP\"\n          ],\n          \"attributeName\": \"Package Type\",\n          \"href\": \"/product-parts/attributes/field__package_type\"\n        },\n        {\n          \"productPartAttributeId\": \"field__pin_count\",\n          \"attributeValues\": [\n            48\n          ],\n          \"attributeName\": \"Pin Count\",\n          \"href\": \"/product-parts/attributes/field__pin_count\"\n        },\n        {\n          \"productPartAttributeId\": \"field__flash_memory_kb\",\n          \"attributeValues\": [\n            256\n          ],\n          \"attributeName\": \"Flash Memory (KB)\",\n          \"href\": \"/product-parts/attributes/field__flash_memory_kb\"\n        },\n        {\n          \"productPartAttributeId\": \"field__ram_kb\",\n          \"attributeValues\": [\n            32\n          ],\n          \"attributeName\": \"RAM (KB)\",\n          \"href\": \"/product-parts/attributes/field__ram_kb\"\n        }\n      ],\n      \"href\": \"/product-parts/R7FA2A1AB3CFM%23AA0\"\n    },\n    {\n      \"orderableId\": \"R7FA2A1AB3CFM#BA0\",\n      \"genericId\": \"RA2A1\",\n      \"status\": \"Active\",\n      \"parametricAttributes\": [\n        {\n          \"productPartAttributeId\": \"field__operating_frequency\",\n          \"attributeValues\": [\n            48\n          ],\n          \"attributeName\": \"Operating Frequency (MHz)\",\n          \"href\": \"/product-parts/attributes/field__operating_frequency\"\n        },\n        {\n          \"productPartAttributeId\": \"field__package_type\",\n          \"attributeValues\": [\n            \"LQFP\"\n          ],\n          \"attributeName\": \"Package Type\",\n          \"href\": \"/product-parts/attributes/field__package_type\"\n        },\n        {\n          \"productPartAttributeId\": \"field__pin_count\",\n          \"attributeValues\": [\n            48\n          ],\n          \"attributeName\": \"Pin Count\",\n          \"href\": \"/product-parts/attributes/field__pin_count\"\n        },\n        {\n          \"productPartAttributeId\": \"field__flash_memory_kb\",\n          \"attributeValues\": [\n            256\n          ],\n          \"attributeName\": \"Flash Memory (KB)\",\n          \"href\": \"/product-parts/attributes/field__flash_memory_kb\"\n        },\n        {\n          \"productPartAttributeId\": \"field__ram_kb\",\n          \"attributeValues\": [\n            32\n          ],\n          \"attributeName\": \"RAM (KB)\",\n          \"href\": \"/product-parts/attributes/field__ram_kb\"\n        }\n      ],\n      \"href\": \"/product-parts/R7FA2A1AB3CFM%23BA0\"\n    },\n    {\n      \"orderableId\": \"R7FA2A1AB3CNF#AA0\",\n      \"genericId\": \"RA2A1\",\n      \"status\": \"Active\",\n      \"parametricAttributes\": [\n        {\n          \"productPartAttributeId\": \"field__operating_frequency\",\n          \"attributeValues\": [\n            48\n          ],\n          \"attributeName\": \"Operating Frequency (MHz)\",\n          \"href\": \"/product-parts/attributes/field__operating_frequency\"\n        },\n        {\n          \"productPartAttributeId\": \"field__package_type\",\n          \"attributeValues\": [\n            \"QFN\"\n          ],\n          \"attributeName\": \"Package Type\",\n          \"href\": \"/product-parts/attributes/field__package_type\"\n        },\n        {\n          \"productPartAttributeId\": \"field__pin_count\",\n          \"attributeValues\": [\n            40\n          ],\n          \"attributeName\": \"Pin Count\",\n          \"href\": \"/product-parts/attributes/field__pin_count\"\n        },\n        {\n          \"productPartAttributeId\": \"field__flash_memory_kb\",\n          \"attributeValues\": [\n            256\n          ],\n          \"attributeName\": \"Flash Memory (KB)\",\n          \"href\": \"/product-parts/attributes/field__flash_memory_kb\"\n        },\n        {\n          \"productPartAttributeId\": \"field__ram_kb\",\n          \"attributeValues\": [\n            32\n          ],\n          \"attributeName\": \"RAM (KB)\",\n          \"href\": \"/product-parts/attributes/field__ram_kb\"\n        }\n      ],\n      \"href\": \"/product-parts/R7FA2A1AB3CNF%23AA0\"\n    }\n  ],\n  \"pagination\": {\n    \"offset\": 0,\n    \"limit\": 20,\n    \"total\": 7,\n    \"has_more\": false\n  },\n  \"filters\": {\n    \"productId\": \"RA2A1\",\n    \"applied\": [\n      {\n        \"productPartAttributeId\": \"field__operating_frequency\",\n        \"operator\": \"gte\",\n        \"min\": 48\n      },\n      {\n        \"productPartAttributeId\": \"field__package_type\",\n        \"values\": [\n          \"LQFP\",\n          \"QFN\"\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "069b492d-7309-437b-9485-99adbebd535e",
+              "name": "Bad request - missing required productId or invalid filters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-parts",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": \"RA2A1\",\n  \"limit\": 20,\n  \"offset\": 0,\n  \"filters\": [\n    {\n      \"productPartAttributeId\": \"field__operating_frequency\",\n      \"operator\": \"gte\",\n      \"min\": 48\n    },\n    {\n      \"productPartAttributeId\": \"field__package_type\",\n      \"values\": [\n        \"LQFP\",\n        \"QFN\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"productId is required\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c91559c1-adf0-4dac-9666-b1c40a9f739a",
+              "name": "Product not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-parts",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": \"RA2A1\",\n  \"limit\": 20,\n  \"offset\": 0,\n  \"filters\": [\n    {\n      \"productPartAttributeId\": \"field__operating_frequency\",\n      \"operator\": \"gte\",\n      \"min\": 48\n    },\n    {\n      \"productPartAttributeId\": \"field__package_type\",\n      \"values\": [\n        \"LQFP\",\n        \"QFN\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Product with ID 'RA2A1' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "023ec022-76fc-41a1-94cf-4b3c0a1d92dd",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-parts",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": \"RA2A1\",\n  \"limit\": 20,\n  \"offset\": 0,\n  \"filters\": [\n    {\n      \"productPartAttributeId\": \"field__operating_frequency\",\n      \"operator\": \"gte\",\n      \"min\": 48\n    },\n    {\n      \"productPartAttributeId\": \"field__package_type\",\n      \"values\": [\n        \"LQFP\",\n        \"QFN\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Failed to perform parametric search\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7262c09a-b21b-4b9d-bcc3-dd6d48e1419e",
+          "name": "Get All Product Part Attributes",
+          "request": {
+            "name": "Get All Product Part Attributes",
+            "description": {
+              "content": "List all available parametric attributes that can be used for filtering product parts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "product-parts",
+                "attributes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "The number of results to return (default 50)."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The page number for pagination (default 0). This is multiplied by limit to get the actual offset."
+                },
+                {
+                  "disabled": false,
+                  "key": "productId",
+                  "value": "<string>",
+                  "description": "Filter attributes by product ID to get only attributes relevant to that product."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e65d87be-4ac4-4a53-96e4-f41770068096",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-parts",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "productId",
+                      "value": "RA2A1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"productPartAttributeId\": \"field__operating_frequency\",\n      \"attributeName\": \"Operating Frequency (MHz)\",\n      \"attributeType\": \"numeric\",\n      \"description\": \"Maximum operating frequency of the microcontroller\",\n      \"unit\": \"MHz\",\n      \"filterType\": \"range\"\n    },\n    {\n      \"productPartAttributeId\": \"field__package_type\",\n      \"attributeName\": \"Package Type\",\n      \"attributeType\": \"string\",\n      \"description\": \"Physical package type of the component\",\n      \"unit\": null,\n      \"filterType\": \"select\",\n      \"possibleValues\": [\n        \"LQFP\",\n        \"QFN\",\n        \"BGA\",\n        \"TQFP\"\n      ]\n    },\n    {\n      \"productPartAttributeId\": \"field__memory_flash_kb\",\n      \"attributeName\": \"Flash Memory (KB)\",\n      \"attributeType\": \"numeric\",\n      \"description\": \"On-chip flash memory size\",\n      \"unit\": \"KB\",\n      \"filterType\": \"range\"\n    },\n    {\n      \"productPartAttributeId\": \"field__memory_ram_kb\",\n      \"attributeName\": \"RAM (KB)\",\n      \"attributeType\": \"numeric\",\n      \"description\": \"On-chip RAM size\",\n      \"unit\": \"KB\",\n      \"filterType\": \"range\"\n    },\n    {\n      \"productPartAttributeId\": \"field__segment_lcd_controller\",\n      \"attributeName\": \"Segment LCD Controller\",\n      \"attributeType\": \"boolean\",\n      \"description\": \"Has segment LCD controller\",\n      \"unit\": null,\n      \"filterType\": \"boolean\",\n      \"possibleValues\": [\n        \"Yes\",\n        \"No\"\n      ]\n    }\n  ],\n  \"pagination\": {\n    \"offset\": 0,\n    \"limit\": 50,\n    \"total\": 127,\n    \"has_more\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6f15f350-4e85-4a0c-bb84-1b2cf973cd0c",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-parts",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "productId",
+                      "value": "RA2A1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Failed to retrieve product part attributes\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c21aabf7-bcd2-4f82-a2e2-4fcdd3280d57",
+          "name": "Get Product Part Attribute by ID",
+          "request": {
+            "name": "Get Product Part Attribute by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "product-parts",
+                "attributes",
+                ":productPartAttributeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "productPartAttributeId",
+                  "description": "(Required) The unique identifier of the product part attribute."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4a4fb7a2-95f1-453a-86d7-c9f15f717f10",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-parts",
+                    "attributes",
+                    ":productPartAttributeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "productPartAttributeId",
+                      "description": "(Required) The unique identifier of the product part attribute."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"productPartAttributeId\": \"field__operating_frequency\",\n  \"attributeName\": \"Operating Frequency (MHz)\",\n  \"attributeType\": \"numeric\",\n  \"description\": \"Maximum operating frequency of the microcontroller\",\n  \"unit\": \"MHz\",\n  \"filterType\": \"range\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e9f8635-328f-41ae-913f-945c1d409525",
+              "name": "Product part attribute not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-parts",
+                    "attributes",
+                    ":productPartAttributeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "productPartAttributeId",
+                      "description": "(Required) The unique identifier of the product part attribute."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Product part attribute with ID 'field__invalid' not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "beedb3ad-74ad-40ef-93d4-dada8748c817",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-parts",
+                    "attributes",
+                    ":productPartAttributeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "productPartAttributeId",
+                      "description": "(Required) The unique identifier of the product part attribute."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Failed to retrieve product part attribute\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2bd051a4-0364-45d7-a6d6-90629804fd8e",
+          "name": "Cross Reference Product Parts",
+          "request": {
+            "name": "Cross Reference Product Parts",
+            "description": {
+              "content": "Find Renesas replacement parts for up to 200 competitor part numbers per request. Inputs with no matches are included in the response with an empty `results` array.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "product-parts",
+                "cross-reference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"partNumbers\": [\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "86a4c011-c22e-4455-b0c8-afa7c44f7588",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-parts",
+                    "cross-reference"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partNumbers\": [\n    \"STM32F103C8T6\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"partNumber\": \"STM32F103C8T6\",\n      \"results\": [\n        {\n          \"crossPartNumber\": \"STM32F103C8T6\",\n          \"crossManufacturer\": \"STMicroelectronics\",\n          \"matchType\": \"Functional\",\n          \"genericId\": \"RX63T\",\n          \"status\": \"Active\",\n          \"comments\": \"32-bit Microcontrollers for Motor Control Enhancing the Precision of Inverter/Converter Control\",\n          \"description\": \"Like the RX62T Group, the high performance (max. 100 MHz) of this microcontroller makes it ideal for motor control. On-chip functions include multifunction timers (MTU3 and GPT) that facilitate mot...\",\n          \"dataSource\": \"Renesas Database\",\n          \"href\": \"/product-parts/RX63T\"\n        },\n        {\n          \"crossPartNumber\": \"STM32F103C8T6\",\n          \"crossManufacturer\": \"STMicroelectronics\",\n          \"matchType\": \"Functional\",\n          \"orderableId\": \"R5F563T5EDFL#10\",\n          \"genericId\": \"RX63T\",\n          \"status\": \"NRND\",\n          \"comments\": \"32-bit Microcontrollers for Motor Control Enhancing the Precision of Inverter/Converter Control\",\n          \"description\": \"Like the RX62T Group, the high performance (max. 100 MHz) of this microcontroller makes it ideal for motor control. On-chip functions include multifunction timers (MTU3 and GPT) that facilitate mot...\",\n          \"dataSource\": \"Renesas Database\",\n          \"href\": \"/product-parts/R5F563T5EDFL%2310\"\n        },\n        {\n          \"crossPartNumber\": \"STM32F103C8T6\",\n          \"crossManufacturer\": \"STMicroelectronics\",\n          \"matchType\": \"Functional\",\n          \"orderableId\": \"R5F563T5EDFL#V0\",\n          \"genericId\": \"RX63T\",\n          \"status\": \"NRND\",\n          \"comments\": \"32-bit Microcontrollers for Motor Control Enhancing the Precision of Inverter/Converter Control\",\n          \"description\": \"Like the RX62T Group, the high performance (max. 100 MHz) of this microcontroller makes it ideal for motor control. On-chip functions include multifunction timers (MTU3 and GPT) that facilitate mot...\",\n          \"dataSource\": \"Renesas Database\",\n          \"href\": \"/product-parts/R5F563T5EDFL%23V0\"\n        },\n        {\n          \"crossPartNumber\": \"STM32F103C8T6\",\n          \"crossManufacturer\": \"STMicroelectronics\",\n          \"matchType\": \"Functional\",\n          \"orderableId\": \"R5F563T5EGFL#V0\",\n          \"genericId\": \"RX63T\",\n          \"status\": \"NRND\",\n          \"comments\": \"32-bit Microcontrollers for Motor Control Enhancing the Precision of Inverter/Converter Control\",\n          \"description\": \"Like the RX62T Group, the high performance (max. 100 MHz) of this microcontroller makes it ideal for motor control. On-chip functions include multifunction timers (MTU3 and GPT) that facilitate mot...\",\n          \"dataSource\": \"Renesas Database\",\n          \"href\": \"/product-parts/R5F563T5EGFL%23V0\"\n        },\n        {\n          \"crossPartNumber\": \"STM32F103C8T6\",\n          \"crossManufacturer\": \"STMicroelectronics\",\n          \"matchType\": \"Functional\",\n          \"orderableId\": \"R5F563T6EGFL#V0\",\n          \"genericId\": \"RX63T\",\n          \"status\": \"NRND\",\n          \"comments\": \"32-bit Microcontrollers for Motor Control Enhancing the Precision of Inverter/Converter Control\",\n          \"description\": \"Like the RX62T Group, the high performance (max. 100 MHz) of this microcontroller makes it ideal for motor control. On-chip functions include multifunction timers (MTU3 and GPT) that facilitate mot...\",\n          \"dataSource\": \"Renesas Database\",\n          \"href\": \"/product-parts/R5F563T6EGFL%23V0\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c8ad06e-a446-4aa7-96cf-e6da80a72130",
+              "name": "Bad request - missing or invalid request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-parts",
+                    "cross-reference"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partNumbers\": [\n    \"STM32F103C8T6\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"partNumbers is required and must contain between 1 and 200 entries\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c4ee31b-5f12-48f0-93b4-d29cac82b8c0",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product-parts",
+                    "cross-reference"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partNumbers\": [\n    \"STM32F103C8T6\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Failed to retrieve cross-reference results\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.renesas.com/web-data/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d7242b0a-79c9-42c6-a9a2-1eea0b0cba2a",
+    "name": "Renesas Web Data Board & Kit Product Part API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Renesas Web Data API enables external systems to retrieve product metadata in real time, without relying on manual CSV downloads or periodic feed refreshes. This shift improves data consistency, streamlines integrations, and aligns with modern API-first architectures.\n",
+      "type": "text/plain"
+    }
+  }
+}

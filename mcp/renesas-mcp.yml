@@ -15,13 +15,10 @@ server:
     type: oauth2
     optional: true
     authorization_server_metadata: well-known/renesas-oauth-authorization-server.json
-    note: >-
-      Redocly-generated documentation MCP server. Anonymous access is permitted
-      for public docs; the OAuth 2.0 authorization server (issuer
-      auth.cloud.redocly.com, endpoints under /docs/web-data-api/_mcp/) governs
-      authenticated access. This MCP exposes the API documentation/spec to AI
-      agents; it is not the data-plane API itself (that uses the x-api-key
-      header — see authentication/renesas-authentication.yml).
+    note: Redocly-generated documentation MCP server. Anonymous access is permitted for public docs; the
+      OAuth 2.0 authorization server (issuer auth.cloud.redocly.com, endpoints under /docs/web-data-api/_mcp/)
+      governs authenticated access. This MCP exposes the API documentation/spec to AI agents; it is not
+      the data-plane API itself (that uses the x-api-key header — see authentication/renesas-authentication.yml).
 tools:
 - name: list-apis
   description: Lists available APIs with their context and purpose
@@ -35,3 +32,11 @@ tools:
   description: Get the complete OpenAPI description
 - name: search
   description: Search across the documentation to fetch relevant content for a given query
+deployment:
+  mode: remote
+  endpoint: https://developer.renesas.com/docs/web-data-api/mcp
+  verified: probed
+  probe: live
+  tools: 6
+  checked: '2026-08-12'
+  source: catalog MCP census
