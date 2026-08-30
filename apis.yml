@@ -156,6 +156,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/renesas-capability-edges.yml
+  name: Renesas Business Capability Map
 - type: AgenticAccess
   url: agentic-access/renesas-agentic-access.yml
 - type: Website
