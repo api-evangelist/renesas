@@ -66,6 +66,7 @@ tags:
 - Automotive
 - Industrial
 - Embedded
+- Developer Tools
 image: https://www.renesas.com/themes/kachow/images/renesas-logo.png
 apis:
 - aid: renesas:renesas-board-kit-api
