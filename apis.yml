@@ -89,6 +89,8 @@ apis:
   humanURL: https://developer.renesas.com/docs/web-data-api
   baseURL: https://api.renesas.com/web-data/v1
   tags:
+  - Documents
+  tags_raw:
   - Document
   properties:
   - type: OpenAPI
