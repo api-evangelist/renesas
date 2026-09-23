@@ -1,12 +1,7 @@
 {
   "provider": "renesas",
   "sources": [
-    "renesas-board-kit-api-openapi.yml",
-    "renesas-document-api-openapi.yml",
-    "renesas-package-api-openapi.yml",
-    "renesas-product-api-openapi.yml",
-    "renesas-product-part-api-openapi.yml",
-    "renesas-software-tool-api-openapi.yml"
+    "_original/renesas-web-data-openapi-original.yml"
   ],
   "outputs": [
     "renesas-board-kit-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "renesas-web-data-openapi-original.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "renesas-board-kit-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "renesas-document-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "renesas-package-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "renesas-product-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "renesas-product-part-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "renesas-software-tool-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

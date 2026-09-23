@@ -1,9 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Renesas Web Data Board & Kit Package API
-  description: 'The Renesas Web Data API enables external systems to retrieve product metadata in real time, without relying on manual CSV downloads or periodic feed refreshes. This shift improves data consistency, streamlines integrations, and aligns with modern API-first architectures.
-
-    '
+  title: Renesas Web Data Package API
+  description: The Renesas Web Data API enables external systems to retrieve product metadata in real time, without relying on manual CSV downloads or periodic feed refreshes. This shift improves data consistency, streamlines integrations, and aligns with modern API-first architectures.
   version: 1.2.0
 servers:
 - url: https://api.renesas.com/web-data/v1
@@ -183,6 +181,8 @@ paths:
                     type: string
               example:
                 error: Failed to retrieve packages list
+      operationId: getPackages
+      x-operation-id-source: derived
   /packages/{package_code}:
     get:
       tags:
@@ -266,6 +266,8 @@ paths:
                     type: string
               example:
                 error: Failed to retrieve package details
+      operationId: getPackagesByPackageCode
+      x-operation-id-source: derived
 components:
   schemas:
     package:
@@ -300,13 +302,15 @@ components:
           description: Name used to describe Renesas packages.
           example: PRBG1368KA-A
         category:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Package category classification.
           example: IC
         class:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Package class.
           example: IC
         description:
@@ -342,16 +346,19 @@ components:
               description: Formatted package dimensions string.
               example: 19 x 19 x 2.85
             peakReflowTemp:
-              type: number
-              nullable: true
+              type:
+              - number
+              - 'null'
               description: Peak reflow temperature in °C.
             jeitaStandard:
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
               description: The JEITA standard to which the device is compliant.
             mark:
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
               description: Package mark/marking information.
         packageStatus:
           type: string
@@ -372,16 +379,19 @@ components:
               - 'No'
               example: 'Yes'
             pbFreeCategory:
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
               description: Lead-free category classification.
         tubeOrTray:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Packaging carrier type (tube/tray).
         previousCode:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Package code maintained as part of the Renesas and Intersil merger.
         images:
           type: array
@@ -406,8 +416,9 @@ components:
                 type: string
                 description: Agile ID of the document.
               dcpDocumentId:
-                type: string
-                nullable: true
+                type:
+                - string
+                - 'null'
                 description: DCP Document ID, if applicable.
               title:
                 type: string

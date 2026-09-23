@@ -1,9 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Renesas Web Data Board & Kit Software Tool API
-  description: 'The Renesas Web Data API enables external systems to retrieve product metadata in real time, without relying on manual CSV downloads or periodic feed refreshes. This shift improves data consistency, streamlines integrations, and aligns with modern API-first architectures.
-
-    '
+  title: Renesas Web Data Software Tool API
+  description: The Renesas Web Data API enables external systems to retrieve product metadata in real time, without relying on manual CSV downloads or periodic feed refreshes. This shift improves data consistency, streamlines integrations, and aligns with modern API-first architectures.
   version: 1.2.0
 servers:
 - url: https://api.renesas.com/web-data/v1
@@ -172,6 +170,8 @@ paths:
                     type: string
               example:
                 error: Failed to retrieve software tools list
+      operationId: getSoftwareTools
+      x-operation-id-source: derived
   /software-tools/{software_tool_id}:
     get:
       tags:
@@ -288,6 +288,8 @@ paths:
                     type: string
               example:
                 error: Failed to retrieve software tool details
+      operationId: getSoftwareToolsBySoftwareToolId
+      x-operation-id-source: derived
 components:
   schemas:
     software_tool:
@@ -333,25 +335,30 @@ components:
           description: Key features and capabilities of the software tool.
           example: Linux kernel (4.4-CIP or 4.4-CIP-RT), 10+ years support with CIP project cooperation, Device Driver, Media Player IF with GStreamer, Video Codec H.264 decoder/encoder (OMX), Video processing with scaling/clipping/compositing, Graphics function with OpenGL ES (SGX)
         additionalDetails:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Additional technical details and specifications.
         documentationDetails:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Details about documentation and help resources.
         downloadDetails:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Information about downloads and installation.
         releaseInformation:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Release notes and version information.
           example: 'Next release: 4.4-CIP version VLP 2.1.25 (end of Dec 2026). Latest: 4.4-CIP version VLP 2.1.24 (Dec 26, 2025). Recent updates include VLP 2.1.23-update2 with both 4.4-CIP and 4.4-CIP-RT support.'
         targetDeviceDescription:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Description of target devices and compatibility.
           example: 'Target Reference Boards: iWave RZ/G1H-PF Development Kit, iWave RZ/G1M-PF Development Kit, iWave RZ/G1N-PF Development Kit, iWave RZ/G1E-PF Development Kit, iWave RZ/G1C-PF Development Kit. All targets support Standard Version.'
         discontinued:
@@ -359,9 +366,10 @@ components:
           description: Whether the software tool has been discontinued.
           example: false
         externalUrl:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uri
-          nullable: true
           description: External download or information URL.
         images:
           type: array
@@ -419,8 +427,9 @@ components:
                 type: string
                 description: Agile ID of the document.
               dcpDocumentId:
-                type: string
-                nullable: true
+                type:
+                - string
+                - 'null'
                 description: DCP Document ID, if applicable.
               title:
                 type: string
@@ -452,8 +461,9 @@ components:
                 type: string
                 description: Agile ID of the document.
               dcpDocumentId:
-                type: string
-                nullable: true
+                type:
+                - string
+                - 'null'
                 description: DCP Document ID, if applicable.
               title:
                 type: string
@@ -485,8 +495,9 @@ components:
                 type: string
                 description: Agile ID of the document.
               dcpDocumentId:
-                type: string
-                nullable: true
+                type:
+                - string
+                - 'null'
                 description: DCP Document ID, if applicable.
               title:
                 type: string
@@ -538,8 +549,9 @@ components:
                 format: uri
                 description: URL to the software tool details.
         alternative:
-          type: object
-          nullable: true
+          type:
+          - object
+          - 'null'
           description: Alternative software tool.
           properties:
             softwareToolName:
@@ -550,12 +562,14 @@ components:
               format: uri
               description: URL to the alternative tool.
             notes:
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
               description: Notes about the alternative.
         partner:
-          type: array
-          nullable: true
+          type:
+          - array
+          - 'null'
           description: Partner information if applicable.
           items:
             type: object
@@ -564,9 +578,10 @@ components:
                 type: string
                 description: Partner company name.
               url:
-                type: string
+                type:
+                - string
+                - 'null'
                 format: uri
-                nullable: true
                 description: Partner website URL.
           example:
           - name: TESSERA Technology Inc.

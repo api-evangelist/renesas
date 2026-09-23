@@ -1,9 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Renesas Web Data Board & Kit Product Part API
-  description: 'The Renesas Web Data API enables external systems to retrieve product metadata in real time, without relying on manual CSV downloads or periodic feed refreshes. This shift improves data consistency, streamlines integrations, and aligns with modern API-first architectures.
-
-    '
+  title: Renesas Web Data Product Part API
+  description: The Renesas Web Data API enables external systems to retrieve product metadata in real time, without relying on manual CSV downloads or periodic feed refreshes. This shift improves data consistency, streamlines integrations, and aligns with modern API-first architectures.
   version: 1.2.0
 servers:
 - url: https://api.renesas.com/web-data/v1
@@ -381,6 +379,8 @@ paths:
                     type: string
               example:
                 error: Failed to retrieve parts list
+      operationId: getProductParts
+      x-operation-id-source: derived
   /product-parts/{orderable_id}:
     get:
       tags:
@@ -530,6 +530,8 @@ paths:
                     type: string
               example:
                 error: Failed to retrieve product part
+      operationId: getProductPartsByOrderableId
+      x-operation-id-source: derived
   /product-parts/search:
     post:
       tags:
@@ -819,6 +821,8 @@ paths:
                     type: string
               example:
                 error: Failed to perform parametric search
+      operationId: postProductPartsSearch
+      x-operation-id-source: derived
   /product-parts/attributes:
     get:
       tags:
@@ -935,6 +939,8 @@ paths:
                     type: string
               example:
                 error: Failed to retrieve product part attributes
+      operationId: getProductPartsAttributes
+      x-operation-id-source: derived
   /product-parts/attributes/{productPartAttributeId}:
     get:
       tags:
@@ -986,6 +992,8 @@ paths:
                     type: string
               example:
                 error: Failed to retrieve product part attribute
+      operationId: getProductPartsAttributesByProductPartAttributeId
+      x-operation-id-source: derived
   /product-parts/cross-reference:
     post:
       tags:
@@ -993,9 +1001,7 @@ paths:
       security:
       - ApiKeyAuth: []
       summary: Cross Reference Product Parts
-      description: 'Find Renesas replacement parts for up to 200 competitor part numbers per request. Inputs with no matches are included in the response with an empty `results` array.
-
-        '
+      description: Find Renesas replacement parts for up to 200 competitor part numbers per request. Inputs with no matches are included in the response with an empty `results` array.
       requestBody:
         required: true
         content:
@@ -1158,6 +1164,8 @@ paths:
                     type: string
               example:
                 error: Failed to retrieve cross-reference results
+      operationId: postProductPartsCrossReference
+      x-operation-id-source: derived
 components:
   schemas:
     product_part_attribute:
@@ -1201,9 +1209,10 @@ components:
           description: Family of the product.
           example: RL78/L13
         1kuPrice:
-          type: number
+          type:
+          - number
+          - 'null'
           format: float
-          nullable: true
           description: Price for 1K units of the product part.
           example: 36.08
         budgetaryPrice:
@@ -1250,13 +1259,15 @@ components:
           description: Description of the product part.
           example: RL78/L13 32-bit Microcontroller, 100-pin LQFP
         class:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Classification of the product part.
           example: Microcontroller
         category:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Category of the product part.
           example: MCU
         leadCount:
@@ -1268,32 +1279,37 @@ components:
           type: object
           properties:
             length:
-              type: number
+              type:
+              - number
+              - 'null'
               format: float
-              nullable: true
               description: Length of the product part.
               example: 14
             width:
-              type: number
+              type:
+              - number
+              - 'null'
               format: float
-              nullable: true
               description: Width of the product part.
               example: 14
             thickness:
-              type: number
+              type:
+              - number
+              - 'null'
               format: float
-              nullable: true
               description: Thickness of the product part.
               example: 1.4
             pitch:
-              type: number
+              type:
+              - number
+              - 'null'
               format: float
-              nullable: true
               description: Pitch of the product part.
               example: 0.5
         peakReflowTemperature:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Peak reflow temperature for the product part.
           example: 260°C
         leadFree:
@@ -1325,27 +1341,31 @@ components:
           example:
           - https://www.renesas.com/images/products/r5f100mja.jpg
         chipImage:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uri
-          nullable: true
           description: URL of the chip image.
           example: https://www.renesas.com/sites/default/files/r7fa2e1a52dnh-chip.png
         regulatory:
           type: object
           properties:
             htsus:
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
               description: HTSUS classification.
               example: 8542.31.0001
             eccn:
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
               description: ECCN classification.
               example: EAR99
             moistureSensitivityLevel:
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
               description: Moisture Sensitivity Level (MSL).
               example: MSL3
             rohsCompliant:
@@ -1388,13 +1408,15 @@ components:
           type: object
           properties:
             alternativeGenericId:
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
               description: Alternative generic ID for the product part.
               example: null
             alternativeNote:
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
               description: Additional notes on alternatives.
               example: null
         packaging:
@@ -1434,25 +1456,29 @@ components:
               description: Quantity per carrier.
               example: 160
             quantityPerReel:
-              type: integer
+              type:
+              - integer
+              - 'null'
               minimum: 0
-              nullable: true
               description: Quantity per reel.
               example: null
             reelSize:
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
               description: Reel size information.
               example: null
             tapePin1Quad:
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
               description: Tape pin 1 quadrant information.
               example: null
             tapePocketPitch:
-              type: number
+              type:
+              - number
+              - 'null'
               format: float
-              nullable: true
               description: Tape pocket pitch measurement.
               example: null
             packageUrl:
@@ -1469,13 +1495,15 @@ components:
               description: Name of the package.
               example: LQFP
             prevCode:
-              type: string
-              nullable: true
+              type:
+              - string
+              - 'null'
               description: Previous package code if applicable.
               example: null
         plp:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: PLP termination information.
           example: null
         sampleable:
@@ -1487,13 +1515,15 @@ components:
           description: Indicates if the product part is available for direct purchase.
           example: true
         replacementProduct:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Replacement product identifier.
           example: null
         replacementProductRemark:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Remarks about the replacement product.
           example: null
         distiInventory:
@@ -1589,8 +1619,9 @@ components:
                 description: Agile ID of the associated document resource. Present when the CAD model is a Renesas-provided document.
                 example: X0185126
               dcpDocumentId:
-                type: string
-                nullable: true
+                type:
+                - string
+                - 'null'
                 description: DCP Document ID of the associated document resource. Present when the CAD model is a Renesas-provided document.
                 example: R20UT4567EJ0100
               title:

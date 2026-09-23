@@ -1,9 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   title: Renesas Web Data Board & Kit API
-  description: 'The Renesas Web Data API enables external systems to retrieve product metadata in real time, without relying on manual CSV downloads or periodic feed refreshes. This shift improves data consistency, streamlines integrations, and aligns with modern API-first architectures.
-
-    '
+  description: The Renesas Web Data API enables external systems to retrieve product metadata in real time, without relying on manual CSV downloads or periodic feed refreshes. This shift improves data consistency, streamlines integrations, and aligns with modern API-first architectures.
   version: 1.2.0
 servers:
 - url: https://api.renesas.com/web-data/v1
@@ -196,6 +194,8 @@ paths:
                     type: string
               example:
                 error: Failed to retrieve boards and kits list
+      operationId: getBoardsKits
+      x-operation-id-source: derived
   /boards-kits/{board_kit_id}:
     get:
       tags:
@@ -292,6 +292,8 @@ paths:
                     type: string
               example:
                 error: Failed to retrieve board/kit details
+      operationId: getBoardsKitsByBoardKitId
+      x-operation-id-source: derived
 components:
   schemas:
     board_kit:
@@ -362,8 +364,9 @@ components:
           description: Target applications and use cases.
           example: Industrial automation, motor control, IoT applications
         additionalDetails:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Additional technical details and specifications.
         images:
           type: array
@@ -425,8 +428,9 @@ components:
                 type: string
                 description: Agile ID of the document.
               dcpDocumentId:
-                type: string
-                nullable: true
+                type:
+                - string
+                - 'null'
                 description: DCP Document ID, if applicable.
               title:
                 type: string
@@ -458,8 +462,9 @@ components:
                 type: string
                 description: Agile ID of the document.
               dcpDocumentId:
-                type: string
-                nullable: true
+                type:
+                - string
+                - 'null'
                 description: DCP Document ID, if applicable.
               title:
                 type: string
@@ -500,8 +505,9 @@ components:
           - softwareToolName: Renesas Flash Programmer (Programming GUI)
             href: /software-tools/Renesas%20Flash%20Programmer%20(Programming%20GUI)
         partner:
-          type: array
-          nullable: true
+          type:
+          - array
+          - 'null'
           description: Partner information if applicable.
           items:
             type: object
@@ -510,9 +516,10 @@ components:
                 type: string
                 description: Partner company name.
               url:
-                type: string
+                type:
+                - string
+                - 'null'
                 format: uri
-                nullable: true
                 description: Partner website URL.
           example:
           - name: TESSERA Technology Inc.
