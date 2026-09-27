@@ -426,24 +426,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    document_type:
-      type: object
-      required:
-      - type
-      properties:
-        type:
-          type: string
-          description: Document type.
-          example: Manual - Software
-        subTypes:
-          type: array
-          description: List of sub-types associated with this document type.
-          items:
-            type: string
-          example:
-          - Core Module
-          - Driver Package
-          - FIT Module
     document:
       type: object
       properties:
@@ -635,6 +617,24 @@ components:
         myrenesasDocument:
           type: boolean
           description: Is a MyRenesas document.
+    document_type:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          description: Document type.
+          example: Manual - Software
+        subTypes:
+          type: array
+          description: List of sub-types associated with this document type.
+          items:
+            type: string
+          example:
+          - Core Module
+          - Driver Package
+          - FIT Module
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
