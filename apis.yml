@@ -62,7 +62,6 @@ tags:
 - Electronics
 - Hardware
 - Product Data
-- Developer Portal
 - Automotive
 - Industrial
 - Embedded
@@ -220,3 +219,5 @@ common:
   url: conformance/renesas-conformance.yml
 - type: DomainSecurity
   url: security/renesas-domain-security.yml
+x-tags-removed:
+- Developer Portal
