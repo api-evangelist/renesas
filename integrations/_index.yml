@@ -41,3 +41,38 @@
     detected: '2026-10-15'
   status: not-a-workflow
   arazzo: null
+- slug: renesas-khronos-group-conformant-products
+  label: Khronos Group conformant products
+  partner_name: Khronos Group conformant products
+  category: graphics API conformance
+  type: register
+  channel: standard-directory
+  evidence: https://www.khronos.org/conformance/adopters/conformant-products/openvg#submission_73
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: Khronos Group conformant products + API adopters (khronos.org/conformance/adopters)
+    standard: Khronos conformance
+    spec_file: null
+    role: khronos-conformant-adopter
+    registered_name: Renesas Electronics
+    register_id: https://www.khronos.org/conformance/adopters/conformant-products/openvg#submission_73
+    matched_domain: renesas.com
+    matched_by: domain
+    certified_products:
+    - product: OpenVG
+      lapsed: false
+      newest_submission: '2014-12-13'
+      versions:
+      - OpenVG_1_1
+      submissions_listed: 2
+    products_sample:
+    - 'Product covered: SH7269'
+    - RZ/A1H
+    signal_note: certified_products = one entry per Khronos API the company is a conformant adopter of (the API
+      Adopters page), never per submission or product; dates, versions and submission counts are context. Khronos
+      marks no conformance as superseded or lapsed, so lapsed is false
+    detected_by: sweep-xr-graphics.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
