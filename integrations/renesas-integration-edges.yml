@@ -71,6 +71,29 @@ edges:
     detected: '2026-10-20'
   detected_by: sweep-xr-graphics.py
   first_seen: '2026-10-20'
+- partner_name: Eclipse Foundation (open-vsx)
+  partner: eclipse
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: open-vsx
+  evidence: https://open-vsx.org/namespace/RenesasElectronicsCorporation
+  mirror_of: eclipse/integrations/eclipse-integration-edges.yml
+  apps:
+  - Renesas Debug
+  - Renesas Platform
+  - Renesas Power Profiler
+  - Renesas Configuration Script Manager
+  - Renesas RF Master
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: IDE / developer extension marketplace listing
+  badges:
+  - Verified namespace
 generated: '2026-10-15'
 method: searched
 source:
@@ -85,3 +108,4 @@ checked:
 - https://www.khronos.org/conformance/adopters/conformant-products
 - https://www.khronos.org/conformance/adopters/file-format-adopters
 - https://www.khronos.org/members/list
+- eclipse/integrations/eclipse-integration-edges.yml
