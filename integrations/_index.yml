@@ -89,3 +89,26 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: renesas-risc-v-international-members
+  label: RISC-V International (members)
+  partner_name: RISC-V International (members)
+  category: processor ISA standards body membership
+  type: register
+  channel: standard-directory
+  evidence: https://riscv.org/members/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: RISC-V International members (riscv.org/members; riscv.landscape2.io/data/full.json)
+    standard: RISC-V ISA
+    spec_file: null
+    role: risc-v-member
+    registered_name: Renesas Electronics Corporation
+    register_id: risc-v-members--strategic--renesas-electronics-corporation-member
+    matched_domain: renesas.com
+    matched_by: domain
+    signal_note: 'participation only: membership level is partner_tier, never counted'
+    detected_by: sweep-semiconductor-consortia.py
+    detected: '2026-10-21'
+  status: not-a-workflow
+  arazzo: null

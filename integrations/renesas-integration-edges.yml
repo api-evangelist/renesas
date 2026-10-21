@@ -94,6 +94,30 @@ edges:
   category: IDE / developer extension marketplace listing
   badges:
   - Verified namespace
+- partner_name: RISC-V International (members)
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://riscv.org/members/
+  category: processor ISA standards body membership
+  partner_tier: strategic
+  contract_reference:
+    register: RISC-V International members (riscv.org/members; riscv.landscape2.io/data/full.json)
+    standard: RISC-V ISA
+    spec_file: null
+    role: risc-v-member
+    registered_name: Renesas Electronics Corporation
+    register_id: risc-v-members--strategic--renesas-electronics-corporation-member
+    matched_domain: renesas.com
+    matched_by: domain
+    signal_note: 'participation only: membership level is partner_tier, never counted'
+    detected_by: sweep-semiconductor-consortia.py
+    detected: '2026-10-21'
+  detected_by: sweep-semiconductor-consortia.py
+  first_seen: '2026-10-21'
 generated: '2026-10-15'
 method: searched
 source:
@@ -109,3 +133,10 @@ checked:
 - https://www.khronos.org/conformance/adopters/file-format-adopters
 - https://www.khronos.org/members/list
 - eclipse/integrations/eclipse-integration-edges.yml
+- https://riscv.landscape2.io/data/full.json
+- https://riscv.org/members/
+- https://www.nist.gov/chips/chips-program-office-awards
+- https://www.nist.gov/chips/chips-rd-office-awards
+- https://www.opencompute.org/products
+- https://www.opencompute.org/wp-json/wp/v2/companies
+- https://www.opencompute.org/wp-json/wp/v2/marketplace
