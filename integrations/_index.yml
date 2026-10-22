@@ -135,7 +135,9 @@
       product_type: ICs, Smart Cards and Smart Card-Related Devices and Systems
       standard: ISO/IEC 15408 Common Criteria for Information Technology Security Evaluation (CCRA)
       lapsed: true
-      partner_tier: EAL4+,AVA_VLA.4,AVA_MSU.3,ADV_IMP.2,ALC_DVS.2
+      partner_tier: EAL5+,ALC_DVS.2,AVA_VAN.5
+      protection_profiles:
+      - SECURITY_IC_V1.0
       schemes:
       - DE
     signal_note: 'certified_products = one entry per Common Criteria product CATEGORY held (highest EAL for that
@@ -144,6 +146,9 @@
     detected_by: sweep-common-criteria-certified-products.py
     detected: '2026-10-21'
     register_name_note: register-name 'renesas' = renesas; no wikidata P856
+    other_registrations:
+    - Renesas Electronics Corporation
+    - Renesas Technology Corporation
     identity_source: register-name
     identity_note: register gave only the name; exact normalised match to the repo's apis.yml name, one repo, Wikidata
       P856 not contradicting (Kin 2026-10-20 decision 2)
