@@ -64,6 +64,129 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Renesas is a company surfaced as a portfolio company of norwest-venture-partners and added to the API Evangelist network as a stub for enrichment. Sector: unknown. This profile is a lead awaiting the enrichment pipeline.
+Renesas Electronics Corporation (TYO: 6723) is a global semiconductor manufacturer producing microcontrollers and microprocessors (RA, RX, RL78, RH850, RZ, Synergy families), analog, power, sensor, timing, connectivity, and memory products for automotive, industrial, infrastructure, and consumer electronics applications. On the developer side Renesas operates a public developer portal at developer.renesas.com whose flagship programmable interface is the Renesas Web Data API — a REST API that lets approved partners and integrators retrieve Renesas product metadata (products, product parts, documents, boards & kits, packages, and software tools) in real time instead of relying on manual CSV downloads or periodic feed refreshes. The API is documented on a Redocly Realm site, ships an OpenAPI 3.0.0 description, an auto-generated Model Context Protocol (MCP) server, a browser Try-It console, and a semantic-versioned changelog.
 
-Backed by: norwest-venture-partners — https://renesas.com
+**Areas:** Company · Semiconductors · Microcontrollers · Electronics · Hardware · Product Data · Automotive · Industrial · Embedded · Developer Tools
+
+## Renesas on APIs.io
+
+Everything profiled for Renesas is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/renesas/](https://apis.io/providers/renesas/)** — or go straight to one of the APIs or properties below.
+
+### APIs (6)
+
+- [Renesas Board & Kit API](https://apis.io/apis/renesas/renesas-board-kit-api/) — Endpoints for retrieving boards and kits.
+- [Renesas Document API](https://apis.io/apis/renesas/renesas-document-api/) — Endpoint for retrieving documents.
+- [Renesas Package API](https://apis.io/apis/renesas/renesas-package-api/) — Endpoints for retrieving packages.
+- [Renesas Product API](https://apis.io/apis/renesas/renesas-product-api/) — Endpoints for retrieving products.
+- [Renesas Product Part API](https://apis.io/apis/renesas/renesas-product-part-api/) — Endpoints for retrieving product parts.
+- [Renesas Software Tool API](https://apis.io/apis/renesas/renesas-software-tool-api/) — Endpoints for retrieving software tools.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [Renesas Web Data API docs MCP](https://apis.io/servers/renesas/renesas-web-data-api-docs-mcp/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Renesas Agentic Access](https://apis.io/agentic-access/renesas/renesas-agentic-access/)
+
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [Renesas Web Data Board & Kit API](https://apis.io/collections/renesas/open-renesas-board-kit-api/)
+- [Renesas Web Data Board & Kit Document API](https://apis.io/collections/renesas/open-renesas-document-api/)
+- [Renesas Web Data Board & Kit Package API](https://apis.io/collections/renesas/open-renesas-package-api/)
+- [Renesas Web Data Board & Kit Product API](https://apis.io/collections/renesas/open-renesas-product-api/)
+- [Renesas Web Data Board & Kit Product Part API](https://apis.io/collections/renesas/open-renesas-product-part-api/)
+- [Renesas Web Data Board & Kit Software Tool API](https://apis.io/collections/renesas/open-renesas-software-tool-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Renesas Web Data Overlay](https://apis.io/overlays/renesas/renesas-web-data-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Renesas Authentication](https://apis.io/security/renesas/renesas-authentication/)
+- [Renesas Domain Security](https://apis.io/security/renesas/renesas-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.renesas.com)
+- [Documentation](https://developer.renesas.com/docs/web-data-api)
+- [Getting started](https://developer.renesas.com/docs/web-data-api/guides/quickstart)
+- [API reference](https://developer.renesas.com/docs/web-data-api/apis/web-data)
+- [Sign up](https://www.renesas.com/en/form/web-data-api-access-request)
+- [Support](https://www.renesas.com/en/support)
+- [Blog](https://www.renesas.com/en/blogs)
+- [Terms of service](https://www.renesas.com/legal-notices)
+- [Privacy policy](https://www.renesas.com/privacy)
+- [GitHub](https://github.com/renesas)
+
+## API Evangelist rating
+
+**Kin Score 43.5** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 49.3 |
+| Contract governance | 4.5 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 66.1 |
+| Access clarity | 34.2 |
+
+**Agent readiness 42.0** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | platform (partial credit) |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | paginated |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/renesas/](https://apis.io/providers/renesas/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Renesas: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/renesas/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
